@@ -1,2 +1,2 @@
-# Discipulus
+# Discipuli
 blabla
