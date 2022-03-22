@@ -1,0 +1,38 @@
+La société LEB22 est une start-up a été fondé dans le cadre du projet de lifap4 pour répondre 
+À la demande de l'université Claude Bernard Lyon 1. Constitué de 3 magnifique développeurs 
+talentueux spécialisé dans la programmation en C/C++ pour diverses applications.
+
+Dans ce contexte, la société Université Claude Bernard commande le produit « Discipuli » à la société
+LEB22. Le présent cahier des charges est composé :
+- d’une description détaillée du produit
+- d’une prévision détaillée du déroulement du développement
+- d’un diagramme de Gantt
+- d’un diagramme des classes
+L'ensemble de ces documents sera maintenu pendant toute la durée de développement du produit.
+
+DESCRIPTION :
+
+Le jeu se lance sur un menu avec comme option "Commencer" qui lance le jeu, une option choisissant son terrain, d'une option aide et des 3 meilleurs scores réalisés (pouvant être remis à 0).
+Lors du début de la partie un plateau généré aléatoirement avec un chemin apparaît.
+Des ennemis apparaissent sur le chemin et des tours peuvent être placés sur les autres cases.
+Les tours attaquent les ennemies et les ennemies doivent avancer jusqu'à la fin du chemin.
+Après un certain nombre d'ennemis finissant le chemin le joueur perd, son but est d'aller le plus loin possible.
+Le joueur possède de l'argent capable d'ajouter des tours sur le terrain ou d'améliorer celles déjà présentes.
+L'argent est gagné après chaque ennemi vaincu.
+Les ennemis apparaissent sur le chemin en vague qui sont chacune plus forte que les autres.
+Des bonus peuvent être lâchés par les ennemis:
+	1 augmente la vitesse d'attaque des tours
+	2 baisse la vitesse des ennemis
+	3 Rajoute de l'argent
+Chaque vague a une chance de devenir plus dur que le normal ( dans le contexte du jeu appelé "période d'examens").
+
+
+3. Contraintes
+- Le jeu sera développé en C/C++ sous Linux
+- Les librairies utilisées seront SDL2 et une librairie texte pour une version alpha
+- Le code respectera le standard suivant : code indenté, variable ayant du sens, ...
+- Le code sera géré et archivé sur GitLab
+- La documentation du code sera produite par Doxygen
+- Un diagramme des classes permettra d'avoir une vision de haut niveau de l'implantation
+- L'équipe de développement utilisera les outils de debug et de profiling : gdb et valgrind
+- Le code sera fourni à la société InfogamesPro
