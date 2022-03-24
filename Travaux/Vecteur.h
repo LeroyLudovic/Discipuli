@@ -1,5 +1,5 @@
-#ifndef _VECTEUR
-#define _VECTEUR
+#ifndef _VECTEUR_H
+#define _VECTEUR_H
 
 #include <iostream>
 
