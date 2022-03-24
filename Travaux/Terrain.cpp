@@ -12,7 +12,7 @@ Terrain::Terrain(){
 }
 
 Terrain::~Terrain(){
-    cout<<"Terain détruit"<<endl;
+    cout<<"Terrain détruit"<<endl;
 }
 
 Terrain::generation(){
