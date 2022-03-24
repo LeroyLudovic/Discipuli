@@ -4,12 +4,12 @@
 using namespace std;
 
 int main(){
-    Vecteur v1(8,8);
-    Vecteur v2(5,6);
+    Vecteur v1;
+    //Vecteur v2;
 
-    cout<<v1<<endl;
+    //cout<<v1<<endl;
 
-    v1 = v1+v2;
+    //v1 = v1+v2;
 
-    cout<<v1<<endl;
+    //cout<<v1<<endl;
 }

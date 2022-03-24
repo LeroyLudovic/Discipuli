@@ -5,8 +5,11 @@
 
 class Vecteur{
     private :
+
         int x;
+        
         int y;
+
     public :   
         Vecteur();
 
