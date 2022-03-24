@@ -16,7 +16,7 @@ class Vecteur{
 
         const Vecteur operator + (const Vecteur&);
         
-        friend std::ostream& operator << (std::ostream&, const Date&);
+        friend std::ostream& operator << (std::ostream&, const Vecteur&);
 };
 
 #endif
