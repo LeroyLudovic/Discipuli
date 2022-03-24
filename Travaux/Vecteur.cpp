@@ -14,7 +14,7 @@ Vecteur::~Vecteur(){
     cout<<"Vecteur supprimé"<<endl;
 }
 
-Vecteur::const oparator + (const Vecteur& op){
+const Vecteur::operator + (const Vecteur& op){
     Vecteur res;
 
     res.x = x + op.x;
@@ -23,6 +23,6 @@ Vecteur::const oparator + (const Vecteur& op){
     return res;
 }
 
-Vecteur::friend std::ostream& operator << (std::ostream& flux, const Vecteur& d){
+friend std::ostream& Vecteur::operator << (std::ostream& flux, const Vecteur& d){
     std::cout<<d.x<<d.y<<std::endl;
 }
