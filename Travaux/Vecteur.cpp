@@ -8,7 +8,6 @@ Vecteur::Vecteur (){
 Vecteur::Vecteur (int x, int y){
     this.x -> x;
     this.y -> y;
-    return this;
 }
 
 Vecteur::~Vecteur (){
