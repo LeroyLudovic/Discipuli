@@ -11,7 +11,7 @@ Vecteur::Vecteur(int x, int y){
 }
 
 Vecteur::~Vecteur(){
-    cout<<"Vecteur supprimer"<<endl;
+    cout<<"Vecteur supprimé"<<endl;
 }
 
 Vecteur::const oparator + (const Vecteur& op){
