@@ -3,15 +3,28 @@
 #include <iostream>
 using namespace std;
 
+const int m_terrain1[10][10] = {
+0000000000,
+0000000000,
+0000000000,
+0000000000,
+0000000000,
+0000000000,
+0000000000,
+0000000000,
+0000000000,
+0000000000,
+
+
+
+};
+
 Terrain::Terrain(){
-    int test[Longeur][Longeur];
-    for(int i;i<Longeur;i++){
-        for(int j;j<Largeur;j++){
-            test[i][j] = 0;
-            
-        }
-        this->tab[][]= test;
-    }
+    Longeur = 10;
+    Largeur = 10;
+    for(int x=0;x<Longeur;++x)
+		for(int y=0;y<Largeur;++y)
+			tab[x][y] = m_terrain1[Longeur-1-y][x];
 }
 
 Terrain::~Terrain(){
