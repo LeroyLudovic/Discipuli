@@ -12,7 +12,7 @@ Vecteur::Vecteur (int x, int y){
 }
 
 Vecteur::~Vecteur (){
-    std::cout<<"Vecteur supprimé"<<std::endl;
+    //std::cout<<"Vecteur supprimé"<<std::endl;
 }
 
 const Vecteur Vecteur::operator + (const Vecteur& op){
@@ -24,6 +24,7 @@ const Vecteur Vecteur::operator + (const Vecteur& op){
     return res;
 }
 
-std::ostream& Vecteur::operator << (std::ostream& flux, const Vecteur& d){
-    std::cout<<d.x<<d.y<<std::endl;
+std::ostream& operator << (std::ostream& flux, const Vecteur& d){
+    std::cout<<d.x<<' '<<d.y<<std::endl;
+    return flux;
 }
