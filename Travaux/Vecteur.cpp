@@ -24,6 +24,6 @@ const Vecteur Vecteur::operator + (const Vecteur& op){
     return res;
 }
 
-friend std::ostream& Vecteur::operator << (std::ostream& flux, const Vecteur& d){
+std::ostream& Vecteur::operator << (std::ostream& flux, const Vecteur& d){
     std::cout<<d.x<<d.y<<std::endl;
 }
