@@ -33,6 +33,6 @@ const Vecteur Vecteur::operator = (const Vecteur& op){
 }
 
 std::ostream& operator << (std::ostream& flux, const Vecteur& d){
-    std::cout<<d.x<<' '<<d.y<<std::endl;
+    std::cout<<'('<<d.x<<','<<d.y<<')';
     return flux;
 }

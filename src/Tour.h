@@ -1,11 +1,13 @@
 #ifndef _TOUR
 #define _TOUR
 
+#include <iostream>
+
 class Tour {
 
     private :
 
-    int type;
+    int type;   
     int degat;
     float vitesse;
     int portee;
@@ -13,7 +15,7 @@ class Tour {
 
     public :
 
-    Tour();
+    Tour(int);
 
     ~Tour();
 
@@ -21,4 +23,6 @@ class Tour {
 
     int Vendre();
 
-}
+};
+
+#endif
