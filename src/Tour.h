@@ -7,6 +7,7 @@ class Tour {
 
     private :
 
+    const Vecteur position;
     int type;   
     int degat;
     float vitesse;
@@ -15,7 +16,7 @@ class Tour {
 
     public :
 
-    Tour(int);
+    Tour(Vecteur,int);
 
     ~Tour();
 

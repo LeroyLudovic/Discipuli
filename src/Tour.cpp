@@ -1,8 +1,9 @@
 #include "Tour.h"
 
 
-Tour::Tour(int t){
+Tour::Tour(Vecteur v,int t){
     type = t;
+    position = v;
     switch (t)
     {
     case 0 :    
