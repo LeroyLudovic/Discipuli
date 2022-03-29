@@ -15,7 +15,7 @@ void Ennemi::DevienFort(){
         //crée un ennemi fort
     }
     else {
-        //crée un ennemei normal
+        //crée un ennemi normal
     }
 }
 
