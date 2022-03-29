@@ -1,8 +1,12 @@
 #include "Ennemi.h"
 #include <ctime>
 
-Ennemi::Ennemi(){
+Ennemi::Ennemi(){}
 
+Ennemi::Ennemi(){
+    vie = 100;
+    vitesse = 1.0;
+    
 }
 
 Ennemi::~Ennemi(){
