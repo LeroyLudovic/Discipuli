@@ -14,6 +14,11 @@ int main(){
         }
         cout<<endl;
     }
-    cout<<t.prochaineCase(a);
+    for(int i = 0;i<20;i++){
+        cout<<a;
+        a = t.prochaineCase(a);
+    }
+   
+    
     return 0;
 }   

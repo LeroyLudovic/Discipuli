@@ -25,11 +25,11 @@ const Vecteur Vecteur::operator + (const Vecteur& op){
 }
 
 const Vecteur Vecteur::operator = (const Vecteur& op){   
-    Vecteur res;
-    res.x = op.x;
-    res.y = op.y;
 
-    return res;
+    x = op.x;
+    y = op.y;
+
+    return *this;
 }
 
 std::ostream& operator << (std::ostream& flux, const Vecteur& d){
