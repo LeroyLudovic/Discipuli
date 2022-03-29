@@ -6,11 +6,12 @@
 class Terrain{
     private :
 
-        int Longeur;
         int Largeur;
-        int tab[10][10];
+        int Longeur;
     
     public :
+
+        int tab[5][20];
     
         Terrain();
 
