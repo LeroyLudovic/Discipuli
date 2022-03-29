@@ -8,7 +8,7 @@ class Terrain{
 
         const int Longeur = 10;
         const int Largeur = 10;
-        int tab[][];
+        int tab[Longeur][Largeur];
     
     public :
     

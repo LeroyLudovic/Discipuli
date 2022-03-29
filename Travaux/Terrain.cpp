@@ -4,10 +4,13 @@
 using namespace std;
 
 Terrain::Terrain(){
-    for(int i;i<longeur;i++){
-        for(int i;i<Largeur;i++){
-            tab[i][j] = 0;
+    int test[Longeur][Longeur];
+    for(int i;i<Longeur;i++){
+        for(int j;j<Largeur;j++){
+            test[i][j] = 0;
+            
         }
+        this->tab[][]= test;
     }
 }
 
@@ -15,8 +18,8 @@ Terrain::~Terrain(){
     cout<<"Terrain détruit"<<endl;
 }
 
-Terrain::generation(){
-    for(int i=0;i<longeur;i++){
+void Terrain::generation(){
+    for(int i=0;i<Longeur;i++){
         tab[5][i] = 1;
     }
 }
