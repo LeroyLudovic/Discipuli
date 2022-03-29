@@ -4,13 +4,12 @@
 #include <iostream>
 
 class Vecteur{
-    private :
+    public : 
 
         int x;
         
         int y;
 
-    public :   
         Vecteur();
 
         Vecteur(int,int);
@@ -18,6 +17,8 @@ class Vecteur{
         ~Vecteur();
 
         const Vecteur operator + (const Vecteur&);
+
+        const Vecteur operator = (const Vecteur&);
         
         friend std::ostream& operator << (std::ostream&, const Vecteur&);
 };

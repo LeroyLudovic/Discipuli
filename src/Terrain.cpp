@@ -32,3 +32,10 @@ void Terrain::generation(){
         tab[3][i] = 1;
     }
 }
+
+Vecteur Terrain::prochaineCase(Vecteur v){
+    if(tab[v.x - 1][v.y] == 1){Vecteur a(v.x-1,v.y);return a;}
+    if(tab[v.x][v.y + 1] == 1){Vecteur a(v.x,v.y+1);return a;}
+    if(tab[v.x + 1][v.y] == 1){Vecteur a(v.x+1,v.y);return a;}
+    return v;
+}

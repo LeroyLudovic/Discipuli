@@ -13,11 +13,11 @@ class Terrain{
 
         int tab[5][20];
     
+        Vecteur prochaineCase(Vecteur);
+
         Terrain();
 
         ~Terrain();
-
-        Vecteur prochaineCase(Vecteur v);
 
         void generation();
 };
