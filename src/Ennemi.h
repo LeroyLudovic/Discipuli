@@ -14,13 +14,13 @@ class Ennemi {
 
     public :
 
-    Ennemi();
+    Ennemi(int);
 
     ~Ennemi();
 
     void DevienFort();
 
-    Vecteur Deplacement (Vecteur v);
+    void Deplacement (Vecteur v);
 
     void BoostVitesse(float n);
 
