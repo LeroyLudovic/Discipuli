@@ -9,7 +9,7 @@ class Ennemi {
 
     unsigned int type;
     Vecteur position;
-    double int vie;
+    double vie;
     float vitesse;
 
     public :
@@ -25,3 +25,5 @@ class Ennemi {
     void BoostVitesse(float n);
 
 };
+
+#endif
