@@ -15,7 +15,7 @@ void txtAff(WinTXT & win, Jeu & jeu) {
 	for(int x=0;x<jeu.ter.getX();++x){
 		for(int y=0;y<jeu.ter.getY();++y){
 			win.print(x,y,jeu.ter.getCase(x,y));}}
-
+/*
     for(int x=0;x<int(jeu.tabE.size());++x){
         win.print(jeu.tabE[x].PosX(),jeu.tabE[x].PosY(),'e');
     }
@@ -23,6 +23,7 @@ void txtAff(WinTXT & win, Jeu & jeu) {
     for(int x=0;x<int(jeu.tabT.size());++x){
         win.print(jeu.tabT[x].PosX(),jeu.tabT[x].PosY(),'T');
     }
+	*/
 
 	win.draw();
 }

@@ -20,7 +20,7 @@ class Terrain{
 
         Vecteur prochaineCase(Vecteur);
 
-        int getCase(int,int);
+        char getCase(int,int);
 
         int getX();
 
