@@ -1,28 +1,25 @@
 all: executable.out
 
-executable.out: Main.o Terrain.o Tour.o Ennemi.o Vecteur.o TableauDynamique.o Element.o
+executable.out: Main.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o
 			g++ -g Main.o Terrain.o Vecteur.o -o executable.out
 
-Main.o: src/Main.cpp src/Terrain.h src/Vecteur.h
-			g++ -g -Wall -c src/Main.cpp
+Jeu.o: src/core/Jeu.h src/core/Jeu.cpp src/core/Vecteur.h src/core/Terrain.h src/core/Tour.h src/core/Ennemi.h 
+			g++ -g -Wall -c src/core/Jeu.cpp
 
-Terrain.o: src/Terrain.h src/Terrain.cpp src/Vecteur.h
-			g++ -g -Wall -c src/Terrain.cpp
+Main.o: src/core/Main.cpp src/core/Terrain.h src/core/Vecteur.h
+			g++ -g -Wall -c src/core/Main.cpp
 
-Tour.o: src/Tour.h src/Tour.cpp
-			g++ -g -Wall -c src/Tour.cpp
+Terrain.o: src/core/Terrain.h src/core/Terrain.cpp src/core/Vecteur.h
+			g++ -g -Wall -c src/core/Terrain.cpp
 
-Ennemi.o: src/Ennemi.h src/Ennemi.cpp
-			g++ -g -Wall -c src/Ennemi.cpp
+Tour.o: src/core/Tour.h src/core/Tour.cpp src/core/Vecteur.h
+			g++ -g -Wall -c src/core/Tour.cpp
 
-Vecteur.o: src/Vecteur.h src/Vecteur.cpp
-			g++ -g -Wall -c src/Vecteur.cpp
+Ennemi.o: src/core/Ennemi.h src/core/Ennemi.cpp
+			g++ -g -Wall -c src/core/Ennemi.cpp
 
-TableauDynamique.o: src/TableauDynamique.h src/TableauDynamique.cpp src/Element.h
-			g++ -g -Wall -c src/TableauDynamique.cpp
-
-Element.o: src/Element.h src/Element.cpp
-			g++ -g -Wall -c src/Element.cpp
+Vecteur.o: src/core/Vecteur.h src/core/Vecteur.cpp
+			g++ -g -Wall -c src/core/Vecteur.cpp
 
 
 clean:

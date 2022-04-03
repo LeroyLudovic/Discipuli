@@ -2,19 +2,21 @@
 #define _TOUR
 
 #include <iostream>
+#include "Vecteur.h"
 
 class Tour {
 
     private :
 
-    const Vecteur position;
+    Vecteur position;
     int type;   
-    int degat;
-    float vitesse;
-    int portee;
     int prix;
 
     public :
+
+    int degat;
+    float vitesse;
+    int portee;
 
     Tour(Vecteur,int);
 

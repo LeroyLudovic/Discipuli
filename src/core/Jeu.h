@@ -1,22 +1,25 @@
 #ifndef _JEU
 #define _JEU
 
-#include "TableauDynamique.h"
 #include "Vecteur.h"
 #include "Terrain.h"
 #include "Tour.h"
 #include "Ennemi.h"
+
+#include <vector>
+
+using namespace std;
 
 
 class Jeu{
 
     private :
         Terrain ter;
-        TableauDynamique tabE;
-        TableauDynamique tabT;
-        int fonds
-        int vague
-        int nbVagueFort
+        vector<Ennemi> tabE;
+        vector<Tour> tabT;
+        int fonds;
+        int vague;  
+        int nbVagueFort;
 
     public :
 
@@ -28,9 +31,9 @@ class Jeu{
 
     void Examen();
 
-    Ennemi Attaque(Ennemi,Tour);
+    void Attaque(Ennemi&,Tour);
 
-    int GainFonds(Ennemi,int);
+    int GainFonds(Ennemi);
 };
 
 #endif

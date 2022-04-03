@@ -9,10 +9,10 @@ class Ennemi {
 
     unsigned int type;
     Vecteur position;
-    double vie;
     float vitesse;
 
     public :
+    double vie;
 
     Ennemi(int);
 
