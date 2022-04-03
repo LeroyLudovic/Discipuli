@@ -34,3 +34,11 @@ void Ennemi::Deplacement(Vecteur v){
 void Ennemi::BoostVitesse(float n){
     vitesse = vitesse * n; 
 }
+
+int Ennemi::PosX(){
+    return position.x;
+}
+
+int Ennemi::PosY(){
+    return position.y;
+}

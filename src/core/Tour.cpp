@@ -25,3 +25,11 @@ void Tour::Amelioration(){
 int Tour::Vendre(){
     return 0;
 }
+
+int Ennemi::PosX(){
+    return position.x;
+}
+
+int Ennemi::PosY(){
+    return position.y;
+}

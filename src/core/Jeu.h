@@ -14,26 +14,27 @@ using namespace std;
 class Jeu{
 
     private :
-        Terrain ter;
-        vector<Ennemi> tabE;
-        vector<Tour> tabT;
         int fonds;
         int vague;  
         int nbVagueFort;
 
     public :
 
-    Jeu();
+        Terrain ter;
+        vector<Ennemi> tabE;
+        vector<Tour> tabT;
 
-    ~Jeu();
+        Jeu();
 
-    void ajoutTour(Vecteur,int);
+        ~Jeu();
 
-    void Examen();
+        void ajoutTour(Vecteur,int);
 
-    void Attaque(Ennemi&,Tour);
+        void Examen();
 
-    int GainFonds(Ennemi);
+        void Attaque(Ennemi&,Tour);
+
+        int GainFonds(Ennemi);
 };
 
 #endif

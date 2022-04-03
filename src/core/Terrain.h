@@ -6,20 +6,25 @@
 class Terrain{
     private :
 
-        int Largeur;
-        int Longeur;
-    
-    public :
-
+        const int Largeur = 5;
+        const int Longeur = 20;
         int tab[5][20];
     
-        Vecteur prochaineCase(Vecteur);
+    public :
 
         Terrain();
 
         ~Terrain();
 
         void generation();
+
+        Vecteur prochaineCase(Vecteur);
+
+        int getCase(int,int);
+
+        int getX();
+
+        int getY();
 };
 
     

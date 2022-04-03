@@ -10,7 +10,7 @@ int main(){
     t.generation();
     for(int i =0;i<5;i++){
         for(int j =0;j<20;j++){
-            cout<<t.tab[i][j];
+            cout<<t.getCase(i,j);
         }
         cout<<endl;
     }

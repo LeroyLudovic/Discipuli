@@ -26,6 +26,10 @@ class Tour {
 
     int Vendre();
 
+    int PosX();
+
+    int PosY();
+
 };
 
 #endif

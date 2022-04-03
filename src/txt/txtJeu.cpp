@@ -6,24 +6,23 @@
 #endif // WIN32
 #include "winTxt.h"
 
-#include "Jeu.h"
+#include "txtJeu.h"
 
-void txtAff(WinTXT & win, const Jeu & jeu) {
-	const Terrain& ter = jeu.getConstTerrain();
-	const Pacman& pac = jeu.getConstPacman();
-	const Fantome& fan = jeu.getConstFantome();
-
+void txtAff(WinTXT & win, Jeu & jeu) {
 	win.clear();
 
     // Affichage des murs et des pastilles
-	for(int x=0;x<ter.getDimX();++x)
-		for(int y=0;y<ter.getDimY();++y)
-			win.print(x,y,ter.getXY(x,y));
+	for(int x=0;x<jeu.ter.getX();++x){
+		for(int y=0;y<jeu.ter.getY();++y){
+			win.print(x,y,jeu.ter.getCase(x,y));}}
 
-    // Affichage de Pacman
-	win.print(pac.getX(),pac.getY(),'P');
-	// Affichage du Fantome
-	win.print(fan.getX(),fan.getY(),'F');
+    for(int x=0;x<int(jeu.tabE.size());++x){
+        win.print(jeu.tabE[x].PosX(),jeu.tabE[x].PosY(),'e');
+    }
+
+    for(int x=0;x<int(jeu.tabT.size());++x){
+        win.print(jeu.tabT[x].PosX(),jeu.tabT[x].PosY(),'T');
+    }
 
 	win.draw();
 }
@@ -31,7 +30,7 @@ void txtAff(WinTXT & win, const Jeu & jeu) {
 void txtBoucle (Jeu & jeu) {
 	// Creation d'une nouvelle fenetre en mode texte
 	// => fenetre de dimension et position (WIDTH,HEIGHT,STARTX,STARTY)
-    WinTXT win (jeu.getConstTerrain().getDimX(),jeu.getConstTerrain().getDimY());
+    WinTXT win (jeu.ter.getX(),jeu.ter.getX());
 
 	bool ok = true;
 	int c;

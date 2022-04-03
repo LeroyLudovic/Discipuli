@@ -12,8 +12,6 @@ const int m_terrain1[5][20] = {
 };
 
 Terrain::Terrain(){
-    Largeur = 5;
-    Longeur = 20;
     for(int x=0;x<Largeur;++x)
 		for(int y=0;y<Longeur;++y)
 			tab[x][y] = m_terrain1[x][y];
@@ -46,4 +44,16 @@ Vecteur Terrain::prochaineCase(Vecteur v){
         if(tab[v.x - 1][v.y] == 1){Vecteur a(v.x-1,v.y);return a;}
     }
     return v;
+}
+
+int Terrain::getCase(int x, int y){
+    return tab[x][y];
+}
+
+int Terrain::getX(){
+    return Longeur;
+}
+
+int Terrain::getY(){
+    return Largeur;
 }
