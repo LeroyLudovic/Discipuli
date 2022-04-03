@@ -6,6 +6,10 @@ Jeu::Jeu(){
     nbVagueFort = 0;
 }
 
+Jeu::~Jeu(){
+    
+}
+
 void Jeu::ajoutTour(Vecteur a,int b){
     Tour t(a,b);
     tabT.push_back(t);

@@ -1,6 +1,7 @@
 all: executable.out
 
 executable.out: mainTxt.o txtJeu.o winTxt.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o
+			g++ -g mainTxt.o txtJeu.o winTxt.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o -o executable.out
 
 mainTxt.o: src/txt/mainTxt.cpp src/txt/txtJeu.h src/txt/winTxt.h
 			g++ -g -Wall -c src/txt/mainTxt.cpp
