@@ -16,6 +16,14 @@ void Jeu::ajoutTour(Vecteur a,int b){
     fonds-=50;
 }
 
+void Jeu::creerVague(){
+    for(int i=0;i<vague+2;i++){
+        Vecteur pos(0,2);
+        Ennemi ad(pos,0);
+        tabE.push_back(ad);
+    }
+}
+
 void Jeu::Attaque(Ennemi &E,Tour T){
     E.vie -= T.degat;
 }
@@ -25,14 +33,13 @@ int Jeu::GainFonds(Ennemi E){
     return res;
 }
 
+
 void Jeu::actionsAutomatiques (){
     Vecteur direction;
 
-    for(int x=0;x<int(tabE.size());++x){
-        direction = ter.prochaineCase(tabE[x].position);
-        tabE[x].Deplacement(direction);
+    if(tabE.size() < 1){
+        creerVague();
     }
-
 }
 
 

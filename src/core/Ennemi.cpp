@@ -1,12 +1,13 @@
 #include "Ennemi.h"
 #include <ctime>
 
-Ennemi::Ennemi(int t){
+Ennemi::Ennemi(Vecteur v, int t){
     type = t;
+    position = v;
     switch (t){
         case 0 :
             vie = 100;
-            vitesse = 1.0;
+            vitesse = 1;
             break;
     }
     
@@ -28,7 +29,7 @@ void Ennemi::DevienFort(){
 }
 
 void Ennemi::Deplacement(Vecteur v){
-    position = position + (v * vitesse);
+    position = position + (v);
 }
 
 void Ennemi::BoostVitesse(float n){

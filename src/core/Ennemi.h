@@ -15,7 +15,7 @@ class Ennemi {
     Vecteur position;
     double vie;
 
-    Ennemi(int);
+    Ennemi(Vecteur, int);
 
     ~Ennemi();
 

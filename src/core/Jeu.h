@@ -30,6 +30,8 @@ class Jeu{
 
         void ajoutTour(Vecteur,int);
 
+        void creerVague();
+
         void Examen();
 
         void Attaque(Ennemi&,Tour);

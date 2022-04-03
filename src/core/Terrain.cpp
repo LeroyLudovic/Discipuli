@@ -33,15 +33,15 @@ void Terrain::generation(){
 
 Vecteur Terrain::prochaineCase(Vecteur v){
     Vecteur test;
-    if(tab[v.x][v.y + 1] == 1){Vecteur a(v.x,v.y+1);return a;}
+    if(tab[v.x][v.y + 1] == 1){Vecteur a(0,1);return a;}
 
     for (int i=0;i<Largeur;i++){
         if(tab[i][v.y+1] == 1){test = Vecteur(i,v.y+1);}
     }
     if(test.x > v.x){
-        if(tab[v.x + 1][v.y] == 1){Vecteur a(v.x+1,v.y);return a;}
+        if(tab[v.x + 1][v.y] == 1){Vecteur a(1,0);return a;}
     }else{
-        if(tab[v.x - 1][v.y] == 1){Vecteur a(v.x-1,v.y);return a;}
+        if(tab[v.x - 1][v.y] == 1){Vecteur a(-1,0);return a;}
     }
     return v;
 }
