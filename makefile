@@ -1,4 +1,4 @@
-all: executable.out
+
 
 executable.out: Main.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o
 			g++ -g Main.o Terrain.o Vecteur.o -o executable.out
@@ -21,6 +21,7 @@ Ennemi.o: src/core/Ennemi.h src/core/Ennemi.cpp
 Vecteur.o: src/core/Vecteur.h src/core/Vecteur.cpp
 			g++ -g -Wall -c src/core/Vecteur.cpp
 
+test: executable.out
 
 clean:
 		rm *.o
