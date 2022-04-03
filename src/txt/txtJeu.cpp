@@ -49,17 +49,22 @@ void txtBoucle (Jeu & jeu) {
 		jeu.actionsAutomatiques();
 
 		//DEPLACEMENT
+		cout<<endl<<endl<<"nombre d'ennemi : "<<jeu.tabE.size();
         for(int x=0;x<int(jeu.tabE.size());++x){
             Vecteur direction = jeu.ter.prochaineCase(jeu.tabE[x].position);
 
+
 			#ifdef _WIN32
-        		Sleep(10000);
+        		Sleep(500);
 			#else
-				usleep(10000000);
+				usleep(500000);
         	#endif // WIN32
 
             jeu.tabE[x].Deplacement(direction);
-        }		
+			cout<<endl;
+			cout<<"Ennemi "<<x+1<<" : "<<jeu.tabE[x].PosX()<<" "<<jeu.tabE[x].PosY()<<endl;
+			cout<<"direction : "<<direction;
+        }
 
 
 		c = win.getCh();

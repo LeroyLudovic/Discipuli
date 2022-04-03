@@ -18,8 +18,8 @@ Vecteur::~Vecteur (){
 const Vecteur Vecteur::operator + (const Vecteur& op){
     Vecteur res;    
 
-    res.x = x + op.x;
-    res.y = y + op.y;
+    res.x = res.x + op.x;
+    res.y = res.y + op.y;
 
     return res;
 }
