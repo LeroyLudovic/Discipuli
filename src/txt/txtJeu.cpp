@@ -10,7 +10,7 @@
 
 void txtAff(WinTXT & win, Jeu & jeu) {
 	win.clear();
-
+    
     // Affichage des murs et des pastilles
 	for(int x=0;x<jeu.ter.getX();++x){
 		for(int y=0;y<jeu.ter.getY();++y){

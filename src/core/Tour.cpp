@@ -26,10 +26,10 @@ int Tour::Vendre(){
     return 0;
 }
 
-int Ennemi::PosX(){
+int Tour::PosX(){
     return position.x;
 }
 
-int Ennemi::PosY(){
+int Tour::PosY(){
     return position.y;
 }

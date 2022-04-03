@@ -32,6 +32,14 @@ const Vecteur Vecteur::operator = (const Vecteur& op){
     return *this;
 }
 
+const Vecteur Vecteur::operator * (const int& op){   
+
+    x = x*op;
+    y = y*op;
+
+    return *this;
+}
+
 std::ostream& operator << (std::ostream& flux, const Vecteur& d){
     std::cout<<'('<<d.x<<','<<d.y<<')';
     return flux;

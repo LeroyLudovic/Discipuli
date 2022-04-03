@@ -35,6 +35,9 @@ class Jeu{
         void Attaque(Ennemi&,Tour);
 
         int GainFonds(Ennemi);
+
+        void actionsAutomatiques ();
+        bool actionClavier(const char touche); 
 };
 
 #endif

@@ -20,3 +20,18 @@ int Jeu::GainFonds(Ennemi E){
     int res = 5*(vague + 1);
     return res;
 }
+
+void Jeu::actionsAutomatiques (){
+    Vecteur direction;
+
+    for(int x=0;x<int(tabE.size());++x){
+        direction = ter.prochaineCase(tabE[x].position);
+        tabE[x].Deplacement(direction);
+    }
+
+}
+
+
+bool Jeu::actionClavier(const char touche){
+    
+} 
