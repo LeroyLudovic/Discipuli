@@ -30,7 +30,7 @@ void txtAff(WinTXT & win, Jeu & jeu) {
 void txtBoucle (Jeu & jeu) {
 	// Creation d'une nouvelle fenetre en mode texte
 	// => fenetre de dimension et position (WIDTH,HEIGHT,STARTX,STARTY)
-    WinTXT win (jeu.ter.getX(),jeu.ter.getX());
+    WinTXT win (jeu.ter.getX(),jeu.ter.getY());
 
 	bool ok = true;
 	int c;
