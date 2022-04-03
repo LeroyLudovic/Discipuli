@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-const int m_terrain1[5][20] = {
+const char m_terrain1[5][20] = {
 00000000000000000000,
 00000000000000000000,
 00000000000000000000,
@@ -14,7 +14,7 @@ const int m_terrain1[5][20] = {
 Terrain::Terrain(){
     for(int x=0;x<Largeur;++x)
 		for(int y=0;y<Longeur;++y)
-			tab[x][y] = 0;
+			tab[x][y] = '0';
 }
 
 Terrain::~Terrain(){
@@ -23,11 +23,11 @@ Terrain::~Terrain(){
 
 void Terrain::generation(){
     for(int i=0;i<Longeur/2;i++){
-        tab[2][i] = 1;
+        tab[2][i] = '1';
     }
 
     for(int i=(Longeur/2)-1;i<Longeur;i++){
-        tab[3][i] = 1;
+        tab[3][i] = '1';
     }
 }
 

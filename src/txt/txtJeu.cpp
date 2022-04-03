@@ -11,10 +11,10 @@
 void txtAff(WinTXT & win, Jeu & jeu) {
 	win.clear();
     
-    // Affichage des murs et des pastilles
+// Affichage des murs et des pastilles
 	for(int x=0;x<jeu.ter.getX();++x){
 		for(int y=0;y<jeu.ter.getY();++y){
-			win.print(x,y,jeu.ter.getCase(x,y));}}
+			win.print(y,x,jeu.ter.getCase(x,y));}}
 /*
     for(int x=0;x<int(jeu.tabE.size());++x){
         win.print(jeu.tabE[x].PosX(),jeu.tabE[x].PosY(),'e');
@@ -31,10 +31,11 @@ void txtAff(WinTXT & win, Jeu & jeu) {
 void txtBoucle (Jeu & jeu) {
 	// Creation d'une nouvelle fenetre en mode texte
 	// => fenetre de dimension et position (WIDTH,HEIGHT,STARTX,STARTY)
-    WinTXT win (jeu.ter.getX(),jeu.ter.getY());
+    WinTXT win (jeu.ter.getY(),jeu.ter.getX());
 
 	bool ok = true;
 	int c;
+	jeu.ter.generation();
 
 	do {
 	    txtAff(win,jeu);
