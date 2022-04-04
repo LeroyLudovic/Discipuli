@@ -18,11 +18,11 @@ void txtAff(WinTXT & win, Jeu & jeu) {
 			win.print(y,x,jeu.ter.getCase(x,y));}}
 
     for(int x=0;x<int(jeu.tabE.size());++x){
-        win.print(jeu.tabE[x].PosY(),jeu.tabE[x].PosX(),'.');
+        win.print(jeu.tabE[x].PosY(),jeu.tabE[x].PosX(),'!');
     }
 
     for(int x=0;x<int(jeu.tabT.size());++x){
-        win.print(jeu.tabT[x].PosY(),jeu.tabT[x].PosX(),'T');
+        win.print(jeu.tabT[x].PosY(),jeu.tabT[x].PosX(),'#');
     }
 
 	win.print(jeu.curseur.y,jeu.curseur.x,'+');
@@ -39,10 +39,11 @@ void txtBoucle (Jeu & jeu) {
 	bool create = false;
 	int c,d;
 	jeu.ter.generation();
-	int wait = 300;
+	int wait = 500;
 
 	do {
 	    txtAff(win,jeu);
+		
 
         #ifdef _WIN32
         Sleep(1);
@@ -50,19 +51,17 @@ void txtBoucle (Jeu & jeu) {
 		usleep(1000);
         #endif // WIN32
 
-		for(int i=0;i<int(jeu.tabE.size());i++){
-			if(jeu.tabE[i].position.y == jeu.ter.getY()-1){
-				jeu.tabE.erase(jeu.tabE.begin() + i);
-			}
-			if(jeu.tabE[i].vie <= 0){
-				jeu.GainFonds(jeu.tabE[i]);
-				jeu.tabE.erase(jeu.tabE.begin() + i);
-			}
-		}
-
-    	
 		if (wait == 0){
 			
+			for(int i=0;i<int(jeu.tabE.size());i++){
+				if(jeu.tabE[i].position.y == jeu.ter.getY()-1){
+					jeu.tabE.erase(jeu.tabE.begin() + i);
+				}
+				if(jeu.tabE[i].vie <= 0){
+					jeu.GainFonds(jeu.tabE[i]);
+					jeu.tabE.erase(jeu.tabE.begin() + i);
+				}
+			}
 
 			jeu.actionsAutomatiques();
 			
@@ -77,7 +76,7 @@ void txtBoucle (Jeu & jeu) {
 				//debug pos ennemi
 				//cout<<endl<<"Ennemi "<<x+1<<" : "<<jeu.tabE[x].PosX()<<" "<<jeu.tabE[x].PosY()<<endl;
 			}
-			wait = 300;
+			wait = 500;
 		}
 		wait--;
 		if (create == false){
@@ -103,29 +102,30 @@ void txtBoucle (Jeu & jeu) {
 			}
 		}
 		if (create == true){
-			win.draw();
 			d = win.getCh();
 			
-			if (d == 'z'){
-				jeu.curseur.x--;
-			}
-			else if (d == 'q'){
-				jeu.curseur.y--;
-			}
-			else if (d == 's'){
-				jeu.curseur.x++;
-			}
-			else if (d == 'd'){
-				jeu.curseur.y++;
-			}
-			else if (d == 'c'){
-				create = false;
-				jeu.ajoutTour(jeu.curseur,0);
-				jeu.curseur.x = -1;
-				jeu.curseur.y = -1;
+			switch(d){
+				case 'z' :
+					jeu.curseur.x--;
+					break;
+				case 'q' :
+					jeu.curseur.y--;
+					break;
+				case 's' :
+					jeu.curseur.x++;
+					break;
+				case 'd' :
+					jeu.curseur.y++;
+					break;
+				case 'c' :
+					create = false;
+					jeu.ajoutTour(jeu.curseur,0);
+					jeu.curseur.x = -1;
+					jeu.curseur.y = -1;
+					break;
 			}
 		}
-
+	jeu.Infos();
 	} while (ok);
 
 }

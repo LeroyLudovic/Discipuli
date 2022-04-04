@@ -42,6 +42,9 @@ class Jeu{
         void GainFonds(Ennemi);
 
         void actionsAutomatiques ();
+
+        void Infos();
+
         bool actionClavier(const char touche); 
 };
 

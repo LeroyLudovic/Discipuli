@@ -11,7 +11,7 @@
 
 Jeu::Jeu(){
     fonds = 50;
-    vague = 1;
+    vague = 0;
     nbVagueFort = 0;
     curseur.x = -1;
     curseur.y = -1;
@@ -44,43 +44,38 @@ void Jeu::Attaque(Ennemi &E,Tour T){
 }
 
 void Jeu::GainFonds(Ennemi E){
-    int res;
     switch (E.type) {
-        case 1:
-            res = 3;
+        case 0:
+            fonds += 3;
             break;
     }
-    fonds += res;
 }
 
 
 void Jeu::actionsAutomatiques (){
-    Vecteur direction;
-    bool genE = false;
     int reste = vague+1-tabE.size();
 
-    if(int(tabE.size()) == 0 && genE == false){
-        genE = true;
+    if(int(tabE.size()) == 0){
         vague++;
     }
-    else if (tabE.size() > 0 && reste > 0){
-        genE = true; 
-    }
 
-    if(genE == true && reste > 0){
+    if(reste > 0){
         creerVague();
     }
-    
-    cout<<endl<<endl<<genE<<" "<<reste<<" "<<tabE.size();
 
     for(int x=0;x<int(tabT.size());++x){
 		for(int y=0;y<int(tabE.size());++y){
 			if(Range(tabE[y],tabT[x])){ Attaque(tabE[y],tabT[x]); y=int(tabE.size())-1; }	
 		}
 	}
-    cout<<fonds<<endl;
 }
 
+void Jeu::Infos(){
+	cout<<endl<<endl<<"vague : "<<vague<<endl;
+	cout<<"fonds : "<<fonds<<" "<<endl;
+    cout<<"c : creer une tour"<<endl;
+    cout<<"w : fermer le programme"<<endl;
+}
 
 bool Jeu::actionClavier(const char touche){
     if (touche == 'c') {
