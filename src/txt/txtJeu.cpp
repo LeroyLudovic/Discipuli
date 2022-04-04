@@ -19,11 +19,10 @@ void txtAff(WinTXT & win, Jeu & jeu) {
     for(int x=0;x<int(jeu.tabE.size());++x){
         win.print(jeu.tabE[x].PosY(),jeu.tabE[x].PosX(),'E');
     }
-/*
+
     for(int x=0;x<int(jeu.tabT.size());++x){
-        win.print(jeu.tabT[x].PosX(),jeu.tabT[x].PosY(),'T');
+        win.print(jeu.tabT[x].PosY(),jeu.tabT[x].PosX(),'T');
     }
-	*/
 
 	win.draw();
 }
@@ -65,8 +64,8 @@ void txtBoucle (Jeu & jeu) {
 
 		c = win.getCh();
 		switch (c) {
-			case 't':
-				jeu.actionClavier('t');
+			case 'c':
+				jeu.actionClavier('c');
 				break;
 			case 'm':
 				jeu.actionClavier('d');

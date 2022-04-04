@@ -6,6 +6,8 @@
 #include <unistd.h>
 #endif // WIN32
 
+#include <string>
+
 Jeu::Jeu(){
     fonds = 50;
     vague = 1;
@@ -73,7 +75,16 @@ void Jeu::actionsAutomatiques (){
 
 
 bool Jeu::actionClavier(const char touche){
-    if (touche == 't') {
+    if (touche == 'c') {
+        int a,b;
+        cout<<endl<<"quelle coordonné X?"<<endl;
+        cin>>a;
+        cout<<endl<<"quelle coordonné Y?"<<endl;
+        cin>>b;
+        
+        Vecteur v(a,b);
 
+        ajoutTour(v,0);
     }
+    return false;
 }
