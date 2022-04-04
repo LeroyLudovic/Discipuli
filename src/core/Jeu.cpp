@@ -31,11 +31,11 @@ void Jeu::ajoutTour(Vecteur a,int b){
 }
 
 void Jeu::creerVague(){
-    for(int i=0;i<vague+2;i++){
-        Vecteur pos(2,0);
+    //for(int i=0;i<vague+2;i++){
+        Vecteur pos(2,-1);
         Ennemi ad(pos,0);
         tabE.push_back(ad);
-    }
+    //}
 }
 
 void Jeu::Attaque(Ennemi &E,Tour T){
@@ -50,8 +50,17 @@ int Jeu::GainFonds(Ennemi E){
 
 void Jeu::actionsAutomatiques (){
     Vecteur direction;
+    bool genE = false;
+    int reste = vague+2-tabE.size();
 
-    if(int(tabE.size()) == 0){
+    if(int(tabE.size()) == 0 && genE == false){
+        genE = true;
+    }
+    else if (tabE.size() > 0 && reste > 0){
+        genE = true;
+    }
+
+    if(genE == true && reste > 0){
         creerVague();
     }
 
