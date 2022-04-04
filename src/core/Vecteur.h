@@ -16,7 +16,7 @@ class Vecteur{
 
         ~Vecteur();
 
-        const Vecteur operator + (const Vecteur&);
+        const Vecteur& operator + (const Vecteur&);
 
         const Vecteur operator = (const Vecteur&);
 

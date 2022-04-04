@@ -1,9 +1,11 @@
 #include <iostream>
+
 #ifdef _WIN32
 #include <windows.h>
 #else
 #include <unistd.h>
 #endif // WIN32
+
 #include "winTxt.h"
 
 #include "txtJeu.h"
@@ -17,7 +19,7 @@ void txtAff(WinTXT & win, Jeu & jeu) {
 			win.print(y,x,jeu.ter.getCase(x,y));}}
 
     for(int x=0;x<int(jeu.tabE.size());++x){
-        win.print(jeu.tabE[x].PosX(),jeu.tabE[x].PosY(),'E');
+        win.print(jeu.tabE[x].PosY(),jeu.tabE[x].PosX(),'E');
     }
 /*
     for(int x=0;x<int(jeu.tabT.size());++x){
