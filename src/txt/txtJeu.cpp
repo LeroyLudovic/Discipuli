@@ -50,7 +50,7 @@ void txtBoucle (Jeu & jeu) {
 		usleep(1000);
         #endif // WIN32
 
-
+		
 
     	
 		if (wait == 0){
