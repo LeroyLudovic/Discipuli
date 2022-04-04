@@ -49,7 +49,7 @@ void txtBoucle (Jeu & jeu) {
 		if (wait == 0){
 			jeu.actionsAutomatiques();
 
-		//DEPLACEMENT
+		//DEPLACEMENT 
 
 		//cout<<endl<<endl<<"nombre d'ennemi : "<<jeu.tabE.size(); //debug nb ennemis
 			for(int x=0;x<int(jeu.tabE.size());++x){

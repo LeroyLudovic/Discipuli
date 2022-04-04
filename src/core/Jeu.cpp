@@ -57,7 +57,7 @@ void Jeu::actionsAutomatiques (){
         genE = true;
     }
     else if (tabE.size() > 0 && reste > 0){
-        genE = true;
+        genE = true; 
     }
 
     if(genE == true && reste > 0){
