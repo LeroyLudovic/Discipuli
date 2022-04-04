@@ -1,10 +1,5 @@
 #include "Jeu.h"
 
-#ifdef _WIN32
-#include <windows.h>
-#else
-#include <unistd.h>
-#endif // WIN32
 
 Jeu::Jeu(){
     fonds = 50;
@@ -52,11 +47,6 @@ void Jeu::actionsAutomatiques (){
 
     if(int(tabE.size()) < vague+2){
         creerVague();
-        #ifdef _WIN32
-        		Sleep(500);
-		#else
-				usleep(500000);
-        #endif // WIN32
     }
 
     for(int i=0;i<int(tabE.size());i++){
