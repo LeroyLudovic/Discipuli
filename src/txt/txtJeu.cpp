@@ -18,7 +18,7 @@ void txtAff(WinTXT & win, Jeu & jeu) {
 			win.print(y,x,jeu.ter.getCase(x,y));}}
 
     for(int x=0;x<int(jeu.tabE.size());++x){
-        win.print(jeu.tabE[x].PosY(),jeu.tabE[x].PosX(),'E');
+        win.print(jeu.tabE[x].PosY(),jeu.tabE[x].PosX(),'.');
     }
 
     for(int x=0;x<int(jeu.tabT.size());++x){
@@ -62,7 +62,7 @@ void txtBoucle (Jeu & jeu) {
 					jeu.tabE.erase(jeu.tabE.begin() + i);
 				}
 			}
-
+			
 			jeu.actionsAutomatiques();
 			
 
