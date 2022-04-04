@@ -43,9 +43,14 @@ void Jeu::Attaque(Ennemi &E,Tour T){
     E.vie -= T.degat;
 }
 
-int Jeu::GainFonds(Ennemi E){
-    int res = 5*(vague + 1);
-    return res;
+void Jeu::GainFonds(Ennemi E){
+    int res;
+    switch (E.type) {
+        case 1:
+            res = 3;
+            break;
+    }
+    fonds += res;
 }
 
 

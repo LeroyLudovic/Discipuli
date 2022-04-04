@@ -38,8 +38,8 @@ class Jeu{
         bool Range(Ennemi,Tour);
 
         void Attaque(Ennemi&,Tour);
-        
-        int GainFonds(Ennemi);
+
+        void GainFonds(Ennemi);
 
         void actionsAutomatiques ();
         bool actionClavier(const char touche); 

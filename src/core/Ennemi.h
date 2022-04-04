@@ -7,11 +7,12 @@ class Ennemi {
 
     private :
 
-    unsigned int type;
+
     float vitesse;
 
     public :
 
+    unsigned int type;
     Vecteur position;
     double vie;
 
