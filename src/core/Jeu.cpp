@@ -1,5 +1,10 @@
 #include "Jeu.h"
 
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif // WIN32
 
 Jeu::Jeu(){
     fonds = 50;
@@ -26,10 +31,11 @@ void Jeu::ajoutTour(Vecteur a,int b){
 }
 
 void Jeu::creerVague(){
-
-    Vecteur pos(2,0);
-    Ennemi ad(pos,0);
-    tabE.push_back(ad);
+    for(int i=0;i<vague+2;i++){
+        Vecteur pos(2,0);
+        Ennemi ad(pos,0);
+        tabE.push_back(ad);
+    }
 }
 
 void Jeu::Attaque(Ennemi &E,Tour T){
@@ -45,14 +51,14 @@ int Jeu::GainFonds(Ennemi E){
 void Jeu::actionsAutomatiques (){
     Vecteur direction;
 
-    if(int(tabE.size()) < vague+2){
+    if(int(tabE.size()) == 0){
         creerVague();
     }
 
     for(int i=0;i<int(tabE.size());i++){
-        //if(tabE[i].position.y == ter.getY()){
+        if(tabE[i].position.y == ter.getY()-1){
             tabE.erase(tabE.begin() + i);
-        //}
+        }
     }
 }
 

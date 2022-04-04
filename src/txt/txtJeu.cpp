@@ -59,9 +59,9 @@ void txtBoucle (Jeu & jeu) {
 
 
 			#ifdef _WIN32
-        		Sleep(500);
+        		Sleep(200);
 			#else
-				usleep(500000);
+				usleep(200000);
         	#endif // WIN32
 
             jeu.tabE[x].Deplacement(direction);
