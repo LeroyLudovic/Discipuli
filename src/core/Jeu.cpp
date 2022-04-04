@@ -1,4 +1,5 @@
 #include "Jeu.h"
+#include "../txt/winTxt.h"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -12,18 +13,12 @@ Jeu::Jeu(){
     fonds = 50;
     vague = 1;
     nbVagueFort = 0;
+    curseur.x = -1;
+    curseur.y = -1;
 }
 
 Jeu::~Jeu(){
     
-}
-
-void Jeu::creerTour(){
-    bool create = false;
-
-    while(create == false){
-
-    }
 }
 
 void Jeu::ajoutTour(Vecteur a,int b){
@@ -33,11 +28,9 @@ void Jeu::ajoutTour(Vecteur a,int b){
 }
 
 void Jeu::creerVague(){
-    for(int i=0;i<vague+2;i++){
-        Vecteur pos(2,0);
+        Vecteur pos(2,-1);
         Ennemi ad(pos,0);
         tabE.push_back(ad);
-    }
 }
 
 bool Jeu::Range(Ennemi E,Tour T){
@@ -68,10 +61,12 @@ void Jeu::actionsAutomatiques (){
         genE = true; 
     }
 
-    if(int(tabE.size()) == 0){
+    if(genE == true && reste > 0){
         creerVague();
     }
     
+    cout<<endl<<endl<<genE<<" "<<reste<<" "<<tabE.size();
+
     for(int x=0;x<int(tabT.size());++x){
 		for(int y=0;y<int(tabE.size());++y){
 			if(Range(tabE[y],tabT[x])){ Attaque(tabE[y],tabT[x]); }	
@@ -82,15 +77,7 @@ void Jeu::actionsAutomatiques (){
 
 bool Jeu::actionClavier(const char touche){
     if (touche == 'c') {
-        int a,b;
-        cout<<endl<<"quelle coordonné X?"<<endl;
-        cin>>a;
-        cout<<endl<<"quelle coordonné Y?"<<endl;
-        cin>>b;
         
-        Vecteur v(a,b);
-
-        ajoutTour(v,0);
     }
     return false;
 }

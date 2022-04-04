@@ -5,6 +5,7 @@
 #include <unistd.h>
 #endif // WIN32
 #include "winTxt.h"
+#include "../core/Vecteur.h"
 
 #include "txtJeu.h"
 
@@ -24,6 +25,8 @@ void txtAff(WinTXT & win, Jeu & jeu) {
         win.print(jeu.tabT[x].PosY(),jeu.tabT[x].PosX(),'T');
     }
 
+	win.print(jeu.curseur.y,jeu.curseur.x,'+');
+
 	win.draw();
 }
 
@@ -33,7 +36,8 @@ void txtBoucle (Jeu & jeu) {
     WinTXT win (jeu.ter.getY(),jeu.ter.getX());
 
 	bool ok = true;
-	int c;
+	bool create = false;
+	int c,d;
 	jeu.ter.generation();
 	int wait = 300;
 
@@ -48,15 +52,17 @@ void txtBoucle (Jeu & jeu) {
 
 
 
-    	for(int i=0;i<int(jeu.tabE.size());i++){
-        	if(jeu.tabE[i].position.y == jeu.ter.getY()-1){
-        	    jeu.tabE.erase(jeu.tabE.begin() + i);
-        	}
-        	if(jeu.tabE[i].vie <= 0){
-        	    jeu.tabE.erase(jeu.tabE.begin() + i);
-        	}
-    	}
+    	
 		if (wait == 0){
+			for(int i=0;i<int(jeu.tabE.size());i++){
+				if(jeu.tabE[i].position.y == jeu.ter.getY()-1){
+					jeu.tabE.erase(jeu.tabE.begin() + i);
+				}
+				if(jeu.tabE[i].vie <= 0){
+					jeu.tabE.erase(jeu.tabE.begin() + i);
+				}
+			}
+
 			jeu.actionsAutomatiques();
 			
 
@@ -73,24 +79,50 @@ void txtBoucle (Jeu & jeu) {
 			wait = 300;
 		}
 		wait--;
-
-		c = win.getCh();
-		switch (c) {
-			case 'c':
-				jeu.actionClavier('c');
-				break;
-			case 'm':
-				jeu.actionClavier('d');
-				break;
-			case 'l':
-				jeu.actionClavier('h');
-				break;
-			case 'o':
-				jeu.actionClavier('b');
-				break;
-			case 'q':
-				ok = false;
-				break;
+		if (create == false){
+			c = win.getCh();
+			switch (c) {
+				case 'c':
+					create = true;
+					jeu.curseur.x = 0;
+					jeu.curseur.y = 0;
+					break;
+				case 'r':
+					jeu.actionClavier('r');
+					break;
+				case 'e':
+					jeu.actionClavier('e');
+					break;
+				case 'a':
+					jeu.actionClavier('a');
+					break;
+				case 'w':
+					ok = false;
+					break;
+			}
+		}
+		if (create == true){
+			win.draw();
+			d = win.getCh();
+			
+			if (d == 'z'){
+				jeu.curseur.x--;
+			}
+			else if (d == 'q'){
+				jeu.curseur.y--;
+			}
+			else if (d == 's'){
+				jeu.curseur.x++;
+			}
+			else if (d == 'd'){
+				jeu.curseur.y++;
+			}
+			else if (d == 'c'){
+				create = false;
+				jeu.ajoutTour(jeu.curseur,0);
+				jeu.curseur.x = -1;
+				jeu.curseur.y = -1;
+			}
 		}
 
 	} while (ok);

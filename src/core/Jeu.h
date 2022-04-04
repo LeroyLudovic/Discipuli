@@ -23,12 +23,11 @@ class Jeu{
         Terrain ter;
         vector<Ennemi> tabE;
         vector<Tour> tabT;
+        Vecteur curseur;
 
         Jeu();
 
         ~Jeu();
-
-        void creerTour();
 
         void ajoutTour(Vecteur,int);
 
