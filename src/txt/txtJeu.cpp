@@ -67,7 +67,7 @@ void txtBoucle (Jeu & jeu) {
 			//debug pos ennemi
 			cout<<endl;
 			cout<<"Ennemi "<<x+1<<" : "<<jeu.tabE[x].PosX()<<" "<<jeu.tabE[x].PosY()<<endl;
-			cout<<"direction : "<<direction;
+			cout<<"direction : "<<direction<<" "<<jeu.tabE[x].position;
         }
 
 

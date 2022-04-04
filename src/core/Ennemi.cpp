@@ -29,7 +29,7 @@ void Ennemi::DevienFort(){
 }
 
 void Ennemi::Deplacement(Vecteur v){
-    position = position + (v);
+    position = position + v;
 }
 
 void Ennemi::BoostVitesse(float n){

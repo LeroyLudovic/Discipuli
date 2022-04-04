@@ -18,7 +18,7 @@ void Jeu::ajoutTour(Vecteur a,int b){
 
 void Jeu::creerVague(){
     for(int i=0;i<vague+2;i++){
-        Vecteur pos(0,2);
+        Vecteur pos(2,0);
         Ennemi ad(pos,0);
         tabE.push_back(ad);
     }
