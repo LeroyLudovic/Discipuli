@@ -46,7 +46,7 @@ void txtBoucle (Jeu & jeu) {
 		usleep(1000);
         #endif // WIN32
 
-
+		
 
     	for(int i=0;i<int(jeu.tabE.size());i++){
         	if(jeu.tabE[i].position.y == jeu.ter.getY()-1){
