@@ -13,6 +13,7 @@ Jeu::Jeu(){
     fonds = 50;
     vague = 0;
     nbVagueFort = 0;
+    genE = false;
     curseur.x = -1;
     curseur.y = -1;
 }
@@ -55,12 +56,16 @@ void Jeu::GainFonds(Ennemi E){
 void Jeu::actionsAutomatiques (){
     int reste = vague+1-tabE.size();
 
-    if(int(tabE.size()) == 0){
-        vague++;
+    if(reste > 0 && genE == true){
+        creerVague();
     }
 
-    if(reste > 0){
-        creerVague();
+    if(int(tabE.size()) == 0 && genE == false){
+        genE = true;
+        vague++;
+    }
+    else if (reste == 0 && genE == true) {
+        genE = false;
     }
 
     for(int x=0;x<int(tabT.size());++x){

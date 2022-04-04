@@ -17,6 +17,7 @@ class Jeu{
         int fonds;
         int vague;  
         int nbVagueFort;
+        bool genE;
 
     public :
 
