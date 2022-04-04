@@ -50,9 +50,9 @@ void Jeu::actionsAutomatiques (){
     }
 
     for(int i=0;i<int(tabE.size());i++){
-        if(tabE[i].position.y == ter.getY()){
+        //if(tabE[i].position.y == ter.getY()){
             tabE.erase(tabE.begin() + i);
-        }
+        //}
     }
 }
 
@@ -61,4 +61,4 @@ bool Jeu::actionClavier(const char touche){
     if (touche == 't') {
 
     }
-} 
+}
