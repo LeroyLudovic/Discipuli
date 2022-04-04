@@ -40,6 +40,12 @@ void Jeu::creerVague(){
     }
 }
 
+bool Jeu::Range(Ennemi E,Tour T){
+    if(E.PosX()  <= T.PosX() + T.portee && E.PosX() >= T.PosX() - T.portee &&
+        E.PosY()  <= T.PosY() + T.portee && E.PosY()  >= T.PosY() - T.portee){return true;}
+    return false;
+}
+
 void Jeu::Attaque(Ennemi &E,Tour T){
     E.vie -= T.degat;
 }
@@ -65,12 +71,12 @@ void Jeu::actionsAutomatiques (){
     if(int(tabE.size()) == 0){
         creerVague();
     }
-
-    for(int i=0;i<int(tabE.size());i++){
-        if(tabE[i].position.y == ter.getY()-1){
-            tabE.erase(tabE.begin() + i);
-        }
-    }
+    
+    for(int x=0;x<int(tabT.size());++x){
+		for(int y=0;y<int(tabE.size());++y){
+			if(Range(tabE[y],tabT[x])){ Attaque(tabE[y],tabT[x]); }	
+		}
+	}
 }
 
 

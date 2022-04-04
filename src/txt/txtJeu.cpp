@@ -45,8 +45,20 @@ void txtBoucle (Jeu & jeu) {
 		#else
 		usleep(1000);
         #endif // WIN32
+
+
+
+    	for(int i=0;i<int(jeu.tabE.size());i++){
+        	if(jeu.tabE[i].position.y == jeu.ter.getY()-1){
+        	    jeu.tabE.erase(jeu.tabE.begin() + i);
+        	}
+        	if(jeu.tabE[i].vie <= 0){
+        	    jeu.tabE.erase(jeu.tabE.begin() + i);
+        	}
+    	}
 		if (wait == 0){
 			jeu.actionsAutomatiques();
+			
 
 		//DEPLACEMENT 
 

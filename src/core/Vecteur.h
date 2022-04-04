@@ -20,6 +20,8 @@ class Vecteur{
 
         const Vecteur operator = (const Vecteur&);
 
+        const Vecteur operator - (const int&);
+
         const Vecteur operator * (const int&);
         
         friend std::ostream& operator << (std::ostream&, const Vecteur&);

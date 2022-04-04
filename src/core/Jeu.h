@@ -36,6 +36,8 @@ class Jeu{
 
         void Examen();
 
+        bool Range(Ennemi,Tour);
+        
         void Attaque(Ennemi&,Tour);
 
         int GainFonds(Ennemi);
