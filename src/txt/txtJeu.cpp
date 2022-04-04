@@ -36,40 +36,32 @@ void txtBoucle (Jeu & jeu) {
 	bool ok = true;
 	int c;
 	jeu.ter.generation();
+	int wait = 300;
 
 	do {
 	    txtAff(win,jeu);
 
         #ifdef _WIN32
-        Sleep(100);
+        Sleep(1);
 		#else
-		usleep(100000);
+		usleep(1000);
         #endif // WIN32
-
-		jeu.actionsAutomatiques();
+		if (wait == 0){
+			jeu.actionsAutomatiques();
 
 		//DEPLACEMENT
 
-		cout<<endl<<endl<<"nombre d'ennemi : "<<jeu.tabE.size(); //debug nb ennemis
+		//cout<<endl<<endl<<"nombre d'ennemi : "<<jeu.tabE.size(); //debug nb ennemis
+			for(int x=0;x<int(jeu.tabE.size());++x){
+				Vecteur direction = jeu.ter.prochaineCase(jeu.tabE[x].position);
+				jeu.tabE[x].Deplacement(direction);
 
-        for(int x=0;x<int(jeu.tabE.size());++x){
-            Vecteur direction = jeu.ter.prochaineCase(jeu.tabE[x].position);
-
-
-			#ifdef _WIN32
-        		Sleep(200);
-			#else
-				usleep(200000);
-        	#endif // WIN32
-
-            jeu.tabE[x].Deplacement(direction);
-
-			//debug pos ennemi
-			cout<<endl;
-			cout<<"Ennemi "<<x+1<<" : "<<jeu.tabE[x].PosX()<<" "<<jeu.tabE[x].PosY()<<endl;
-			cout<<"direction : "<<direction<<" "<<jeu.tabE[x].position;
-        }
-
+				//debug pos ennemi
+				//cout<<endl<<"Ennemi "<<x+1<<" : "<<jeu.tabE[x].PosX()<<" "<<jeu.tabE[x].PosY()<<endl;
+			}
+			wait = 300;
+		}
+		wait--;
 
 		c = win.getCh();
 		switch (c) {
