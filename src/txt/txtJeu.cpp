@@ -1,11 +1,9 @@
 #include <iostream>
-
 #ifdef _WIN32
 #include <windows.h>
 #else
 #include <unistd.h>
 #endif // WIN32
-
 #include "winTxt.h"
 
 #include "txtJeu.h"
@@ -75,8 +73,8 @@ void txtBoucle (Jeu & jeu) {
 
 		c = win.getCh();
 		switch (c) {
-			case 'k':
-				jeu.actionClavier('g');
+			case 't':
+				jeu.actionClavier('t');
 				break;
 			case 'm':
 				jeu.actionClavier('d');
