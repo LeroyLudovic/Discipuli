@@ -15,13 +15,12 @@ Vecteur::~Vecteur (){
     //std::cout<<"Vecteur supprimé"<<std::endl;
 }
 
-const Vecteur Vecteur::operator + (const Vecteur& op){
-    Vecteur res;    
+const Vecteur& Vecteur::operator + (const Vecteur& op){
 
-    res.x = res.x + op.x;
-    res.y = res.y + op.y;
+    x = x + op.x;
+    y = y + op.y;
 
-    return res;
+    return *this;
 }
 
 const Vecteur Vecteur::operator = (const Vecteur& op){   
