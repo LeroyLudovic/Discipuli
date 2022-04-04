@@ -28,6 +28,8 @@ class Jeu{
 
         ~Jeu();
 
+        void creerTour();
+
         void ajoutTour(Vecteur,int);
 
         void creerVague();
