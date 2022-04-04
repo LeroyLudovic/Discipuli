@@ -50,6 +50,8 @@ int Jeu::GainFonds(Ennemi E){
 
 void Jeu::actionsAutomatiques (){
     Vecteur direction;
+    int 
+    bool newVague;
 
     if(int(tabE.size()) == 0){
         creerVague();
