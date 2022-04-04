@@ -11,6 +11,14 @@ Jeu::~Jeu(){
     
 }
 
+void Jeu::creerTour(){
+    bool create = false;
+
+    while(create == false){
+
+    }
+}
+
 void Jeu::ajoutTour(Vecteur a,int b){
     Tour t(a,b);
     tabT.push_back(t);
@@ -50,5 +58,7 @@ void Jeu::actionsAutomatiques (){
 
 
 bool Jeu::actionClavier(const char touche){
-    
+    if (touche == 't') {
+
+    }
 } 
