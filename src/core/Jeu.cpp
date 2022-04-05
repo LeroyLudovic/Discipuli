@@ -13,6 +13,7 @@ Jeu::Jeu(){
     fonds = 50;
     vague = 0;
     nbVagueFort = 0;
+    diplome = 5;
     genE = false;
     curseur.x = -1;
     curseur.y = -1;
@@ -77,6 +78,7 @@ void Jeu::actionsAutomatiques (){
 
 void Jeu::Infos(){
 	cout<<endl<<endl<<"vague : "<<vague<<endl;
+    cout<<"Diplome : "<<diplome<<" "<<endl;
 	cout<<"fonds : "<<fonds<<" "<<endl;
     cout<<"c : creer une tour"<<endl;
     cout<<"w : fermer le programme"<<endl;
