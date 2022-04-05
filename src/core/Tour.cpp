@@ -20,6 +20,12 @@ Tour::~Tour(){
 }
 
 void Tour::Amelioration(){
+    switch (type)
+    {
+    case 0 :
+        degat*=1.5;
+        portee+=1;
+    }
 }
 
 int Tour::Vendre(){
