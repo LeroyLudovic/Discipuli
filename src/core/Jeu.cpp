@@ -24,9 +24,11 @@ Jeu::~Jeu(){
 }
 
 void Jeu::ajoutTour(Vecteur a,int b){
-    Tour t(a,b);
-    tabT.push_back(t);
-    fonds-=50;
+    if(fonds>=50){
+        Tour t(a,b);
+        tabT.push_back(t);
+        fonds-=50;
+    }
 }
 
 void Jeu::creerVague(){
@@ -48,7 +50,7 @@ void Jeu::Attaque(Ennemi &E,Tour T){
 void Jeu::GainFonds(Ennemi E){
     switch (E.type) {
         case 0:
-            fonds += 3;
+            fonds += 15;
             break;
     }
 }
@@ -63,6 +65,9 @@ void Jeu::actionsAutomatiques (){
 
     if(int(tabE.size()) == 0 && genE == false){
         genE = true;
+        for(int y=0;y<int(tabE.size());++y){
+			tabE[y].lvlUp();
+		}
         vague++;
     }
     else if (reste == 0 && genE == true) {
@@ -71,7 +76,7 @@ void Jeu::actionsAutomatiques (){
 
     for(int x=0;x<int(tabT.size());++x){
 		for(int y=0;y<int(tabE.size());++y){
-			if(Range(tabE[y],tabT[x])){ Attaque(tabE[y],tabT[x]); y=int(tabE.size())-1; }	
+			if(Range(tabE[y],tabT[x])){ Attaque(tabE[y],tabT[x]); y=int(tabE.size()); }	
 		}
 	}
 }

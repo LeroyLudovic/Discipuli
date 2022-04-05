@@ -33,8 +33,8 @@ Ennemi.o: src/core/Ennemi.h src/core/Ennemi.cpp
 Vecteur.o: src/core/Vecteur.h src/core/Vecteur.cpp
 			g++ -g -Wall -c src/core/Vecteur.cpp
 
-clean:
+clear:
 		rm *.o
 
-veryclean: clean
+veryclear: clear
 		rm *.out

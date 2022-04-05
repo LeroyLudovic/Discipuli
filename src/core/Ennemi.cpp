@@ -18,6 +18,10 @@ Ennemi::~Ennemi(){
 
 }
 
+void Ennemi::lvlUp(){
+    vie *= 1.1;
+}
+
 void Ennemi::DevienFort(){
     int test = rand() % 100 + 1;
     if (test <= 1) {

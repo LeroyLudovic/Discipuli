@@ -22,6 +22,8 @@ class Ennemi {
 
     void DevienFort();
 
+    void lvlUp();
+
     void Deplacement (Vecteur v);
 
     void BoostVitesse(float n);
