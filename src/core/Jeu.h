@@ -33,6 +33,8 @@ class Jeu{
 
         void ajoutTour(Vecteur,int);
 
+        bool DevienFort();
+
         void creerVague();
 
         void Examen();

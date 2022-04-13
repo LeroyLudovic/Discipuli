@@ -31,9 +31,21 @@ void Jeu::ajoutTour(Vecteur a,int b){
     }
 }
 
+bool Jeu::DevienFort(){
+    bool fort;
+    int test = rand() % 100 + 1;
+    if (test <= 1) {
+        fort = true;
+    }
+    else {
+        fort = false;
+    }
+    return fort;
+}
+
 void Jeu::creerVague(){
         Vecteur pos(2,-1);
-        Ennemi ad(pos,0);
+        Ennemi ad(pos,0,DevienFort());
         tabE.push_back(ad);
 }
 
@@ -66,7 +78,7 @@ void Jeu::actionsAutomatiques (){
     if(int(tabE.size()) == 0 && genE == false){
         genE = true;
         for(int y=0;y<int(tabE.size());++y){
-			tabE[y].lvlUp();
+			tabE[y].lvlUp(vague);
 		}
         vague++;
     }

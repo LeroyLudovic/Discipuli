@@ -1,67 +1,49 @@
+all: executable.out
 
-CORE = core/Pacman.cpp core/Terrain.cpp core/Jeu.cpp core/Fantome.cpp
+#executable.out: mainTxt.o txtJeu.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o
+#			g++ -g mainTxt.o txtJeu.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o -o executable.out
 
-SRCS_TXT = $(CORE) txt/txtJeu.cpp txt/winTxt.cpp txt/main_txt.cpp
-FINAL_TARGET_TXT = pacman_txt
-#DEFINE_TXT = -DJEU_TXT
+#main_sdl.o: src/Sdl/main_sdl.cpp src/Sdl/sdlJeu.h
+#			g++ -g -Wall -c src/Sdl/main_sdl.cpp
 
-SRCS_SDL = $(CORE) Sdl/sdlJeu.cpp Sdl/main_sdl.cpp
-FINAL_TARGET_SDL = pacman_sdl
-#DEFINE_SDL = -DJEU_SDL
+#sdlJeu.o: src/Sdl/sdlJeu.h src/Sdl/sdlJeu.cpp
+#			g++ -g -Wall -c src/Sdl/sdlJeu.cpp
 
-ifeq ($(OS),Windows_NT)
-	INCLUDE_DIR_SDL = 	-Isrc/SDL2 \
-                        -Iextern/SDL2_mingw-cb20/SDL2-2.0.12/x86_64-w64-mingw32/include/SDL2 \
-						-Iextern/SDL2_mingw-cb20/SDL2_ttf-2.0.15/x86_64-w64-mingw32/include/SDL2 \
-						-Iextern/SDL2_mingw-cb20/SDL2_image-2.0.5/x86_64-w64-mingw32/include/SDL2 \
-						-Iextern/SDL2_mingw-cb20/SDL2_mixer-2.0.4/x86_64-w64-mingw32/include/SDL2
+executable.out: mainTxt.o txtJeu.o winTxt.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o
+			g++ -g mainTxt.o txtJeu.o winTxt.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o -o executable.out
 
-	LIBS_SDL = -Lextern \
-			-Lextern/SDL2_mingw-cb20/SDL2-2.0.12/x86_64-w64-mingw32/lib \
-			-Lextern/SDL2_mingw-cb20/SDL2_ttf-2.0.15/x86_64-w64-mingw32/lib \
-			-Lextern/SDL2_mingw-cb20/SDL2_image-2.0.5/x86_64-w64-mingw32/lib \
-			-Lextern/SDL2_mingw-cb20/SDL2_mixer-2.0.4/x86_64-w64-mingw32/lib \
-			-lmingw32 -lSDL2main -lSDL2.dll -lSDL2_ttf.dll -lSDL2_image.dll -lSDL2_mixer.dll
+mainTxt.o: src/txt/mainTxt.cpp src/txt/txtJeu.h src/txt/winTxt.h
+			g++ -g -Wall -c src/txt/mainTxt.cpp
 
-else
-	INCLUDE_DIR_SDL = -I/usr/include/SDL2
-	LIBS_SDL = -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -lGL
-endif
+txtJeu.o: src/txt/txtJeu.h src/txt/txtJeu.cpp src/txt/winTxt.h
+			g++ -g -Wall -c src/txt/txtJeu.cpp
 
-CC					= g++
-LD 					= g++
-LDFLAGS  			=
-CPPFLAGS 			= -Wall -ggdb   #-O2   # pour optimiser
-OBJ_DIR 			= obj
-SRC_DIR 			= src
-BIN_DIR 			= bin
-INCLUDE_DIR			= -Isrc -Isrc/core -Isrc/sdl2 -Itxt
+winTxt.o: src/txt/winTxt.h src/txt/winTxt.cpp
+			g++ -g -Wall -c src/txt/winTxt.cpp
 
-default: make_dir $(BIN_DIR)/$(FINAL_TARGET_TXT) $(BIN_DIR)/$(FINAL_TARGET_SDL)
+#executable.out: Main.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o
+#			g++ -g Main.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o -o executable.out
 
-make_dir:
-ifeq ($(OS),Windows_NT)
-	if not exist $(OBJ_DIR) mkdir $(OBJ_DIR) $(OBJ_DIR)\txt $(OBJ_DIR)\sdl2 $(OBJ_DIR)\core
-else
-	test -d $(OBJ_DIR) || mkdir -p $(OBJ_DIR) $(OBJ_DIR)/txt $(OBJ_DIR)/sdl2 $(OBJ_DIR)/sdl2/imgui $(OBJ_DIR)/core
-endif
+Jeu.o: src/core/Jeu.h src/core/Jeu.cpp src/core/Vecteur.h src/core/Terrain.h src/core/Tour.h src/core/Ennemi.h 
+			g++ -g -Wall -c src/core/Jeu.cpp
 
-$(BIN_DIR)/$(FINAL_TARGET_TXT): $(SRCS_TXT:%.cpp=$(OBJ_DIR)/%.o)
-	$(LD) $+ -o $@ $(LDFLAGS)
+#Main.o: src/core/Main.cpp src/core/Terrain.h src/core/Vecteur.h src/core/Jeu.h
+#			g++ -g -Wall -c src/core/Main.cpp
 
-$(BIN_DIR)/$(FINAL_TARGET_SDL): $(SRCS_SDL:%.cpp=$(OBJ_DIR)/%.o)
-	$(LD) $+ -o $@ $(LDFLAGS) $(LIBS_SDL)
+Terrain.o: src/core/Terrain.h src/core/Terrain.cpp src/core/Vecteur.h
+			g++ -g -Wall -c src/core/Terrain.cpp
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CC) -c $(CPPFLAGS) $(INCLUDE_DIR_SDL) $(INCLUDE_DIR) $< -o $@
+Tour.o: src/core/Tour.h src/core/Tour.cpp src/core/Vecteur.h
+			g++ -g -Wall -c src/core/Tour.cpp
 
-docu: doc/pacman.doxy
-	cd doc ; doxygen pacman.doxy
+Ennemi.o: src/core/Ennemi.h src/core/Ennemi.cpp
+			g++ -g -Wall -c src/core/Ennemi.cpp
 
-clean:
-ifeq ($(OS),Windows_NT)
-	del /f $(OBJ_DIR)\txt\*.o $(OBJ_DIR)\sdl2\*.o $(OBJ_DIR)\core\*.o $(BIN_DIR)\$(FINAL_TARGET_TXT).exe $(BIN_DIR)\$(FINAL_TARGET_SDL).exe
-else
-	rm -rf $(OBJ_DIR) $(BIN_DIR)/$(FINAL_TARGET_TXT) $(BIN_DIR)/$(FINAL_TARGET_SDL) doc/html
-endif
+Vecteur.o: src/core/Vecteur.h src/core/Vecteur.cpp
+			g++ -g -Wall -c src/core/Vecteur.cpp
 
+clear:
+		rm *.o
+
+veryclear: clear
+		rm *.out

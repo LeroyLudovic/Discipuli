@@ -16,13 +16,11 @@ class Ennemi {
     Vecteur position;
     double vie;
 
-    Ennemi(Vecteur, int);
+    Ennemi(Vecteur, int, bool);
 
     ~Ennemi();
 
-    void DevienFort();
-
-    void lvlUp();
+    void lvlUp(int vague);
 
     void Deplacement (Vecteur v);
 
