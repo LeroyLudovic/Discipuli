@@ -148,30 +148,30 @@ SDLSimple::SDLSimple () : jeu() {
     renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
 
     // IMAGES
-    im_Sol.loadFromFile("../Data/sol.png",renderer);
-    im_Chemin.loadFromFile("../Data/chemin.png",renderer);
+    im_Sol.loadFromFile("Data/Sol.png",renderer);
+    im_Chemin.loadFromFile("Data/Chemin.png",renderer);
 
-    im_Tour1.loadFromFile("../Data/tour1.png",renderer);
-    im_Tour2.loadFromFile("../Data/tour2.png",renderer);
-    im_Tour3.loadFromFile("../Data/tour3.png",renderer);
-    im_Tour4.loadFromFile("../Data/tour4.png",renderer);
+    im_Tour1.loadFromFile("Data/Math.png",renderer);
+    im_Tour2.loadFromFile("Data/Sport.png",renderer);
+    im_Tour3.loadFromFile("Data/Musique.png",renderer);
+    im_Tour4.loadFromFile("Data/Histoire.png",renderer);
 
-    im_Ennemi1.loadFromFile("../Data/ennemi1.png",renderer);
-    im_Ennemi2.loadFromFile("../Data/ennemi2.png",renderer);
-    im_Ennemi3.loadFromFile("../Data/ennemi3.png",renderer);
-    im_Ennemi4.loadFromFile("../Data/ennemi4.png",renderer);
+    im_Ennemi1.loadFromFile("Data/Intello.png",renderer);
+    im_Ennemi2.loadFromFile("Data/Steve.png",renderer);
+    im_Ennemi3.loadFromFile("Data/Normi.png",renderer);
+    im_Ennemi4.loadFromFile("Data/Ines.png",renderer);
 
     // FONTS
-    font = TTF_OpenFont("data/DejaVuSansCondensed.ttf",50);
+    font = TTF_OpenFont("Data/DejaVuSansCondensed.ttf",50);
     if (font == nullptr)
-        font = TTF_OpenFont("../data/DejaVuSansCondensed.ttf",50);
+        font = TTF_OpenFont("../Data/DejaVuSansCondensed.ttf",50);
     if (font == nullptr) {
             cout << "Failed to load DejaVuSansCondensed.ttf! SDL_TTF Error: " << TTF_GetError() << endl; 
             SDL_Quit(); 
             exit(1);
 	}
 	font_color.r = 50;font_color.g = 50;font_color.b = 255;
-	font_im.setSurface(TTF_RenderText_Solid(font,"Pacman",font_color));
+	font_im.setSurface(TTF_RenderText_Solid(font,"DiscipuliIIIIIiIiIiIiiIiIIIii",font_color));
 	font_im.loadFromCurrentSurface(renderer);
 
     // SONS
@@ -256,7 +256,7 @@ void SDLSimple::sdlBoucle () {
 
 		// tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
 		while (SDL_PollEvent(&events)) {
-			/*if (events.type == SDL_QUIT) quit = true;           // Si l'utilisateur a clique sur la croix de fermeture
+			if (events.type == SDL_QUIT) quit = true;           // Si l'utilisateur a clique sur la croix de fermeture
 			else if (events.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
                 bool mangePastille = false;
 				switch (events.key.keysym.scancode) {
@@ -280,7 +280,7 @@ void SDLSimple::sdlBoucle () {
 				}
 				//if ((withSound) && (mangePastille))
                 //    Mix_PlayChannel(-1,sound,0);
-			}*/
+			}
 		}
 
 		// on affiche le jeu sur le buffer cach�
