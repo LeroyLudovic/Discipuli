@@ -26,9 +26,9 @@ class Ennemi {
 
     void BoostVitesse(float n);
 
-    int PosX();
+    int getX();
 
-    int PosY();
+    int getY();
 
 };
 

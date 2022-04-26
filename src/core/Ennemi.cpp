@@ -55,10 +55,10 @@ void Ennemi::BoostVitesse(float n){
     vitesse = vitesse * n; 
 }
 
-int Ennemi::PosX(){
+int Ennemi::getX(){
     return position.x;
 }
 
-int Ennemi::PosY(){
+int Ennemi::getY(){
     return position.y;
 }
