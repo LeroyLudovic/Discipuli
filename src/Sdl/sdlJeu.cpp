@@ -102,6 +102,7 @@ void Image::setSurface(SDL_Surface * surf) {m_surface = surf;}
 
 SDLSimple::SDLSimple () : jeu() {
     // Initialisation de la SDL
+    /*
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         cout << "Erreur lors de l'initialisation de la SDL : " << SDL_GetError() << endl;
         SDL_Quit();
@@ -119,7 +120,7 @@ SDLSimple::SDLSimple () : jeu() {
         cout << "SDL_image could not initialize! SDL_image Error: " << IMG_GetError() << endl;
         SDL_Quit();
         exit(1);
-    }
+    }*/
 /*
     if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
     {
@@ -197,7 +198,7 @@ SDLSimple::~SDLSimple () {
     SDL_Quit();
 }
 
-void SDLSimple::sdlAff (Jeu jeu) {
+void SDLSimple::sdlAff () {
 	//Remplir l'écran de blanc
     SDL_SetRenderDrawColor(renderer, 230, 240, 255, 255);
     SDL_RenderClear(renderer);
@@ -283,7 +284,7 @@ void SDLSimple::sdlBoucle () {
 		}
 
 		// on affiche le jeu sur le buffer cach�
-		sdlAff(jeu);
+		sdlAff();
 
 		// on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)
         SDL_RenderPresent(renderer);

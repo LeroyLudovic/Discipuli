@@ -1,9 +1,16 @@
 SDL= -I usr/include/SDL2
 
+LIBS_SDL = -Lextern \
+			-Lextern/SDL2_mingw-cb20/SDL2-2.0.12/x86_64-w64-mingw32/lib \
+			-Lextern/SDL2_mingw-cb20/SDL2_ttf-2.0.15/x86_64-w64-mingw32/lib \
+			-Lextern/SDL2_mingw-cb20/SDL2_image-2.0.5/x86_64-w64-mingw32/lib \
+			-Lextern/SDL2_mingw-cb20/SDL2_mixer-2.0.4/x86_64-w64-mingw32/lib \
+			-lmingw32 -lSDL2main -lSDL2.dll -lSDL2_ttf.dll -lSDL2_image.dll -lSDL2_mixer.dll
+
 all: executable.out
 
 executable.out: mainSdl.o sdlJeu.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o
-			g++ -g mainSdl.o sdlJeu.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o -o executable.out
+			g++ -g mainSdl.o sdlJeu.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o -o executable.out $(LIBS_SDL)
 
 mainSdl.o: src/Sdl/mainSdl.cpp src/core/Jeu.h
 			g++ -g -Wall -c src/Sdl/mainSdl.cpp $(SDL)
