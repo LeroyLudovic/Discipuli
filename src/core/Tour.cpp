@@ -11,7 +11,6 @@ Tour::Tour(Vecteur v,int t){
         vitesse = 1.0;
         portee = 1;
         prix = 50;
-        typeT = type;
         break;
     }
 }
