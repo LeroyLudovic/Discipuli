@@ -53,10 +53,10 @@ int Tour::Vendre(){
     return 0;
 }
 
-int Tour::PosX(){
+int Tour::getX(){
     return position.x;
 }
 
-int Tour::PosY(){
+int Tour::getY(){
     return position.y;
 }
