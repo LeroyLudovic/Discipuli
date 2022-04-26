@@ -102,7 +102,7 @@ void Image::setSurface(SDL_Surface * surf) {m_surface = surf;}
 
 SDLSimple::SDLSimple () : jeu() {
     // Initialisation de la SDL
-    /*
+
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         cout << "Erreur lors de l'initialisation de la SDL : " << SDL_GetError() << endl;
         SDL_Quit();
@@ -120,8 +120,8 @@ SDLSimple::SDLSimple () : jeu() {
         cout << "SDL_image could not initialize! SDL_image Error: " << IMG_GetError() << endl;
         SDL_Quit();
         exit(1);
-    }*/
-/*
+    }
+
     if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
     {
         cout << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << endl;
@@ -130,7 +130,7 @@ SDLSimple::SDLSimple () : jeu() {
         withSound = false;
     }
     else withSound = true;
-*/
+
 	int dimx, dimy;
 	dimx = jeu.ter.getX();
 	dimy = jeu.ter.getY();
@@ -175,22 +175,22 @@ SDLSimple::SDLSimple () : jeu() {
 	font_im.loadFromCurrentSurface(renderer);
 
     // SONS
-    /*
+    
     if (withSound)
     {
-        sound = Mix_LoadWAV("data/son.wav");
+        /*sound = Mix_LoadWAV("data/son.wav");
         if (sound == nullptr) 
             sound = Mix_LoadWAV("../data/son.wav");
         if (sound == nullptr) {
                 cout << "Failed to load son.wav! SDL_mixer Error: " << Mix_GetError() << endl; 
                 SDL_Quit();
                 exit(1);
-        }
-    }*/
+        }*/
+    }
 }
 
 SDLSimple::~SDLSimple () {
-    //if (withSound) Mix_Quit();
+    if (withSound) Mix_Quit();
     TTF_CloseFont(font);
     TTF_Quit();
     SDL_DestroyRenderer(renderer);
