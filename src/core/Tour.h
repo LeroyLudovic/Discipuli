@@ -9,11 +9,11 @@ class Tour {
     private :
 
     Vecteur position;
-    int type; 
     int prix;
 
     public :
 
+    unsigned int type; 
     int degat;
     float vitesse;
     int portee;

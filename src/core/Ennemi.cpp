@@ -6,11 +6,32 @@ Ennemi::Ennemi(Vecteur v, int t, bool fort){
     position = v;
     switch (t){
         case 0 :
+            vie = 200;
+            vitesse = 1;
+            if (fort){
+                vie *= 2.5;
+                vitesse *= 1;
+            }
+        case 1 :
+            vie = 50;
+            vitesse = 3;
+            if (fort){
+                vie *= 1;
+                vitesse *= 2;
+            }
+        case 2 :
             vie = 100;
             vitesse = 1;
             if (fort){
                 vie *= 2;
                 vitesse *= 2;
+            }
+        case 3 :
+            vie = 50;
+            vitesse = 1;
+            if (fort){
+                vie *= 1.5;
+                vitesse *= 1.5;
             }
             break;
     }
