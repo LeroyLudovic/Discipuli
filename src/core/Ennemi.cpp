@@ -12,6 +12,7 @@ Ennemi::Ennemi(Vecteur v, int t, bool fort){
                 vie *= 2.5;
                 vitesse *= 1;
             }
+            break;
         case 1 :
             vie = 50;
             vitesse = 3;
@@ -19,6 +20,7 @@ Ennemi::Ennemi(Vecteur v, int t, bool fort){
                 vie *= 1;
                 vitesse *= 2;
             }
+            break;
         case 2 :
             vie = 100;
             vitesse = 1;
@@ -26,6 +28,7 @@ Ennemi::Ennemi(Vecteur v, int t, bool fort){
                 vie *= 2;
                 vitesse *= 2;
             }
+            break;
         case 3 :
             vie = 50;
             vitesse = 1;
