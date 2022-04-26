@@ -18,11 +18,11 @@ void txtAff(WinTXT & win, Jeu & jeu) {
 			win.print(y,x,jeu.ter.getCase(x,y));}}
 
     for(int x=0;x<int(jeu.tabE.size());++x){
-        win.print(jeu.tabE[x].PosY(),jeu.tabE[x].PosX(),'!');
+        win.print(jeu.tabE[x].getY(),jeu.tabE[x].getX(),'!');
     }
 
     for(int x=0;x<int(jeu.tabT.size());++x){
-        win.print(jeu.tabT[x].PosY(),jeu.tabT[x].PosX(),'#');
+        win.print(jeu.tabT[x].getY(),jeu.tabT[x].getX(),'#');
     }
 
 	win.print(jeu.curseur.y,jeu.curseur.x,'+');
@@ -79,7 +79,7 @@ void txtBoucle (Jeu & jeu) {
 				jeu.tabE[x].Deplacement(direction);
 
 				//debug pos ennemi
-				//cout<<endl<<"Ennemi "<<x+1<<" : "<<jeu.tabE[x].PosX()<<" "<<jeu.tabE[x].PosY()<<endl;
+				//cout<<endl<<"Ennemi "<<x+1<<" : "<<jeu.tabE[x].getX()<<" "<<jeu.tabE[x].getY()<<endl;
 			}
 			wait = 500;
 		}
