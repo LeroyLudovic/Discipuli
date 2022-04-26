@@ -1,4 +1,4 @@
-SDL= -I usr/include/SDL2/SDL.h
+SDL= -I usr/include/SDL2
 
 all: executable.out
 
@@ -9,7 +9,7 @@ mainSdl.o: src/Sdl/mainSdl.cpp src/core/Jeu.h
 			g++ -g -Wall -c src/Sdl/mainSdl.cpp $(SDL)
 
 sdlJeu.o: src/Sdl/sdlJeu.h src/Sdl/sdlJeu.cpp
-			g++ -g -Wall -c src/Sdl/SdlJeu.cpp $(SDL)
+			g++ -g -Wall -c src/Sdl/sdlJeu.cpp $(SDL)
 
 Jeu.o: src/core/Jeu.h src/core/Jeu.cpp src/core/Vecteur.h src/core/Terrain.h src/core/Tour.h src/core/Ennemi.h 
 			g++ -g -Wall -c src/core/Jeu.cpp $(SDL)

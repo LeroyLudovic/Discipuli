@@ -1,12 +1,11 @@
 #ifndef _SDLJEU_H
 #define _SDLJEU_H
 
-#include <SDL.h>
-#include <SDL_ttf.h>
-#include <SDL_image.h>
-#include <SDL_mixer.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_image.h>
 
-#include "Jeu.h"
+#include "../core/Jeu.h"
 
 //! \brief Pour g�rer une image avec SDL2
 class Image {
@@ -45,7 +44,6 @@ private :
     Image font_im;
     SDL_Color font_color;
 
-    Mix_Chunk * sound;
     bool withSound;
 
     Image im_pacman;

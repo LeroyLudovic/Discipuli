@@ -118,7 +118,7 @@ SDLSimple::SDLSimple () : jeu() {
         SDL_Quit();
         exit(1);
     }
-
+/*
     if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
     {
         cout << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << endl;
@@ -127,10 +127,10 @@ SDLSimple::SDLSimple () : jeu() {
         withSound = false;
     }
     else withSound = true;
-
+*/
 	int dimx, dimy;
-	dimx = jeu.getConstTerrain().getDimX();
-	dimy = jeu.getConstTerrain().getDimY();
+	dimx = jeu.ter.getX();
+	dimy = jeu.ter.getY();
 	dimx = dimx * TAILLE_SPRITE;
 	dimy = dimy * TAILLE_SPRITE;
 
@@ -145,10 +145,18 @@ SDLSimple::SDLSimple () : jeu() {
     renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
 
     // IMAGES
-    im_pacman.loadFromFile("data/pacman.png",renderer);
-    im_mur.loadFromFile("data/mur.png",renderer);
-    im_pastille.loadFromFile("data/pastille.png",renderer);
-    im_fantome.loadFromFile("data/fantome.png",renderer);
+    im_Sol.loadFromFile("data/pacman.png",renderer);
+    im_Chemin.loadFromFile("data/pacman.png",renderer);
+
+    im_Tour1.loadFromFile("data/pacman.png",renderer);
+    im_Tour2.loadFromFile("data/pacman.png",renderer);
+    im_Tour3.loadFromFile("data/pacman.png",renderer);
+    im_Tour4.loadFromFile("data/pacman.png",renderer);
+
+    im_Ennemi1.loadFromFile("data/pacman.png",renderer);
+    im_Ennemi2.loadFromFile("data/pacman.png",renderer);
+    im_Ennemi3.loadFromFile("data/pacman.png",renderer);
+    im_Ennemi4.loadFromFile("data/pacman.png",renderer);
 
     // FONTS
     font = TTF_OpenFont("data/DejaVuSansCondensed.ttf",50);
@@ -164,6 +172,7 @@ SDLSimple::SDLSimple () : jeu() {
 	font_im.loadFromCurrentSurface(renderer);
 
     // SONS
+    /*
     if (withSound)
     {
         sound = Mix_LoadWAV("data/son.wav");
@@ -174,11 +183,11 @@ SDLSimple::SDLSimple () : jeu() {
                 SDL_Quit();
                 exit(1);
         }
-    }
+    }*/
 }
 
 SDLSimple::~SDLSimple () {
-    if (withSound) Mix_Quit();
+    //if (withSound) Mix_Quit();
     TTF_CloseFont(font);
     TTF_Quit();
     SDL_DestroyRenderer(renderer);
@@ -192,14 +201,14 @@ void SDLSimple::sdlAff () {
     SDL_RenderClear(renderer);
 
 	int x,y;
-	const Terrain& ter = jeu.getConstTerrain();
-	const Pacman& pac = jeu.getConstPacman();
-	const Fantome& fan = jeu.getConstFantome();
+	const Terrain& ter = jeu.ter;
+	//const Tour& tour[] = jeu.getConstPacman();
+	//const Ennemi& enn[] = jeu.getConstFantome();
 
     // Afficher les sprites des murs et des pastilles
-	for (x=0;x<ter.getDimX();++x)
-		for (y=0;y<ter.getDimY();++y)
-			if (ter.getXY(x,y)=='#')
+	for (x=0;x<ter.getX();++x)
+		for (y=0;y<ter.getY();++y)
+			if (ter.getCase(x,y)=='#')
 				im_mur.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
 			else if (ter.getXY(x,y)=='.')
 				im_pastille.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
@@ -256,8 +265,8 @@ void SDLSimple::sdlBoucle () {
                     break;
 				default: break;
 				}
-				if ((withSound) && (mangePastille))
-                    Mix_PlayChannel(-1,sound,0);
+				/*if ((withSound) && (mangePastille))
+                    Mix_PlayChannel(-1,sound,0);*/
 			}
 		}
 
