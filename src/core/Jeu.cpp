@@ -50,8 +50,8 @@ void Jeu::creerVague(){
 }
 
 bool Jeu::Range(Ennemi E,Tour T){
-    if(E.PosX()  <= T.PosX() + T.portee && E.PosX() >= T.PosX() - T.portee &&
-        E.PosY()  <= T.PosY() + T.portee && E.PosY()  >= T.PosY() - T.portee){return true;}
+    if(E.getX()  <= T.getX() + T.portee && E.getX() >= T.getX() - T.portee &&
+        E.getY()  <= T.getY() + T.portee && E.getY()  >= T.getY() - T.portee){return true;}
     return false;
 }
 
