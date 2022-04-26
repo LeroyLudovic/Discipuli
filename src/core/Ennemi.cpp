@@ -11,6 +11,7 @@ Ennemi::Ennemi(Vecteur v, int t, bool fort){
             if (fort){
                 vie *= 2;
                 vitesse *= 2;
+                typeE = type;
             }
             break;
     }

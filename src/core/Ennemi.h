@@ -9,6 +9,7 @@ class Ennemi {
 
 
     float vitesse;
+    unsigned int typeE;
 
     public :
 

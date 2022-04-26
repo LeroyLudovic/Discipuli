@@ -46,10 +46,16 @@ private :
 
     bool withSound;
 
-    Image im_pacman;
-    Image im_mur;
-    Image im_pastille;
-    Image im_fantome;
+    Image im_Tour1;
+    Image im_Tour2;
+    Image im_Tour3;
+    Image im_Tour4;
+    Image im_Sol;
+    Image im_Chemin;
+    Image im_Ennemi1;
+    Image im_Ennemi2;
+    Image im_Ennemi3;
+    Image im_Ennemi4;
 
     bool souris;
     bool touche;

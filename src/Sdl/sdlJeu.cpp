@@ -3,6 +3,8 @@
 #include "sdlJeu.h"
 #include <stdlib.h>
 
+#include "../core/Jeu.h"
+
 #include <iostream>
 using namespace std;
 
@@ -135,7 +137,7 @@ SDLSimple::SDLSimple () : jeu() {
 	dimy = dimy * TAILLE_SPRITE;
 
     // Creation de la fenetre
-    window = SDL_CreateWindow("Pacman", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimx, dimy, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow("test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimx, dimy, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (window == nullptr) {
         cout << "Erreur lors de la creation de la fenetre : " << SDL_GetError() << endl; 
         SDL_Quit(); 
@@ -145,18 +147,18 @@ SDLSimple::SDLSimple () : jeu() {
     renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
 
     // IMAGES
-    im_Sol.loadFromFile("data/pacman.png",renderer);
-    im_Chemin.loadFromFile("data/pacman.png",renderer);
+    im_Sol.loadFromFile("../Data/sol.png",renderer);
+    im_Chemin.loadFromFile("../Data/chemin.png",renderer);
 
-    im_Tour1.loadFromFile("data/pacman.png",renderer);
-    im_Tour2.loadFromFile("data/pacman.png",renderer);
-    im_Tour3.loadFromFile("data/pacman.png",renderer);
-    im_Tour4.loadFromFile("data/pacman.png",renderer);
+    im_Tour1.loadFromFile("../Data/tour1.png",renderer);
+    im_Tour2.loadFromFile("../Data/tour2.png",renderer);
+    im_Tour3.loadFromFile("../Data/tour3.png",renderer);
+    im_Tour4.loadFromFile("../Data/tour4.png",renderer);
 
-    im_Ennemi1.loadFromFile("data/pacman.png",renderer);
-    im_Ennemi2.loadFromFile("data/pacman.png",renderer);
-    im_Ennemi3.loadFromFile("data/pacman.png",renderer);
-    im_Ennemi4.loadFromFile("data/pacman.png",renderer);
+    im_Ennemi1.loadFromFile("../Data/ennemi1.png",renderer);
+    im_Ennemi2.loadFromFile("../Data/ennemi2.png",renderer);
+    im_Ennemi3.loadFromFile("../Data/ennemi3.png",renderer);
+    im_Ennemi4.loadFromFile("../Data/ennemi4.png",renderer);
 
     // FONTS
     font = TTF_OpenFont("data/DejaVuSansCondensed.ttf",50);
@@ -201,7 +203,7 @@ void SDLSimple::sdlAff () {
     SDL_RenderClear(renderer);
 
 	int x,y;
-	const Terrain& ter = jeu.ter;
+	Terrain& ter = jeu.ter;
 	//const Tour& tour[] = jeu.getConstPacman();
 	//const Ennemi& enn[] = jeu.getConstFantome();
 
@@ -209,15 +211,25 @@ void SDLSimple::sdlAff () {
 	for (x=0;x<ter.getX();++x)
 		for (y=0;y<ter.getY();++y)
 			if (ter.getCase(x,y)=='#')
-				im_mur.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-			else if (ter.getXY(x,y)=='.')
-				im_pastille.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+				im_Sol.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+			else if (ter.getCase(x,y)=='.')
+				im_Chemin.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
 
-	// Afficher le sprite de Pacman
-	im_pacman.draw(renderer,pac.getX()*TAILLE_SPRITE,pac.getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+	// Afficher le sprite de tours
+    for (int i = 0 ; i < Jeu.tabT.size() ; i++) {
+        if (Jeu.tabT[i].typeT == 1) im_Tour1.draw(renderer,Jeu.tabT[i].getX()*TAILLE_SPRITE,Jeu.tabT[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+        if (Jeu.tabT[i].typeT == 2) im_Tour2.draw(renderer,Jeu.tabT[i].getX()*TAILLE_SPRITE,Jeu.tabT[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+        if (Jeu.tabT[i].typeT == 3) im_Tour3.draw(renderer,Jeu.tabT[i].getX()*TAILLE_SPRITE,Jeu.tabT[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+        if (Jeu.tabT[i].typeT == 4) im_Tour4.draw(renderer,Jeu.tabT[i].getX()*TAILLE_SPRITE,Jeu.tabT[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+    }
 
 	// Afficher le sprite du Fantome
-	im_fantome.draw(renderer,fan.getX()*TAILLE_SPRITE,fan.getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+    for (int i = 0 ; i < Jeu.tabE.size() ; i++) {
+	    if (Jeu.tabE[i].typeE == 1) im_Ennemi1.draw(renderer,tabE[i].getX()*TAILLE_SPRITE,Jeu.tabE[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+	    if (Jeu.tabE[i].typeE == 2) im_Ennemi2.draw(renderer,tabE[i].getX()*TAILLE_SPRITE,Jeu.tabE[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+	    if (Jeu.tabE[i].typeE == 3) im_Ennemi3.draw(renderer,tabE[i].getX()*TAILLE_SPRITE,Jeu.tabE[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+	    if (Jeu.tabE[i].typeE == 4) im_Ennemi4.draw(renderer,tabE[i].getX()*TAILLE_SPRITE,Jeu.tabE[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+    }
 
     // Ecrire un titre par dessus
     SDL_Rect positionTitre;
