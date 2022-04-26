@@ -1,67 +1,33 @@
+SDL= -I usr/include/SDL2/SDL.h
 
-CORE = src/core/Ennemi.cpp src/core/Terrain.cpp src/core/Jeu.cpp src/core/Tour.cpp src/core/Vecteur.cpp
+all: executable.out
 
-SRCS_TXT = $(CORE) src/txt/txtJeu.cpp src/txt/winTxt.cpp src/txt/main_txt.cpp
-FINAL_TARGET_TXT = Discipuli_txt
-#DEFINE_TXT = -DJEU_TXT
+executable.out: mainSdl.o sdlJeu.o txtJeu.o winTxt.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o
+			g++ -g mainTxt.o txtJeu.o winTxt.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o -o executable.out
 
-SRCS_SDL = $(CORE) src/Sdl/sdlJeu.cpp src/Sdl/main_sdl.cpp
-FINAL_TARGET_SDL = Discipuli_sdl
-#DEFINE_SDL = -DJEU_SDL
+mainSdl.o: src/Sdl/mainSdl.cpp src/core/Jeu.h
+			g++ -g -Wall -c src/Sdl/mainSdl.cpp $(SDL)
 
-ifeq ($(OS),Windows_NT)
-	INCLUDE_DIR_SDL = 	-Isrc/SDL2 \
-                        -Iextern/SDL2_mingw-cb20/SDL2-2.0.12/x86_64-w64-mingw32/include/SDL2 \
-						-Iextern/SDL2_mingw-cb20/SDL2_ttf-2.0.15/x86_64-w64-mingw32/include/SDL2 \
-						-Iextern/SDL2_mingw-cb20/SDL2_image-2.0.5/x86_64-w64-mingw32/include/SDL2 \
-						-Iextern/SDL2_mingw-cb20/SDL2_mixer-2.0.4/x86_64-w64-mingw32/include/SDL2
+sdlJeu.o: src/Sdl/sdlJeu.h src/Sdl/sdlJeu.cpp
+			g++ -g -Wall -c src/Sdl/SdlJeu.cpp $(SDL)
 
-	LIBS_SDL = -Lextern \
-			-Lextern/SDL2_mingw-cb20/SDL2-2.0.12/x86_64-w64-mingw32/lib \
-			-Lextern/SDL2_mingw-cb20/SDL2_ttf-2.0.15/x86_64-w64-mingw32/lib \
-			-Lextern/SDL2_mingw-cb20/SDL2_image-2.0.5/x86_64-w64-mingw32/lib \
-			-Lextern/SDL2_mingw-cb20/SDL2_mixer-2.0.4/x86_64-w64-mingw32/lib \
-			-lmingw32 -lSDL2main -lSDL2.dll -lSDL2_ttf.dll -lSDL2_image.dll -lSDL2_mixer.dll
+Jeu.o: src/core/Jeu.h src/core/Jeu.cpp src/core/Vecteur.h src/core/Terrain.h src/core/Tour.h src/core/Ennemi.h 
+			g++ -g -Wall -c src/core/Jeu.cpp $(SDL)
 
-else
-	INCLUDE_DIR_SDL = -I/usr/include/SDL2
-	LIBS_SDL = -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -lGL
-endif
+Terrain.o: src/core/Terrain.h src/core/Terrain.cpp src/core/Vecteur.h
+			g++ -g -Wall -c src/core/Terrain.cpp $(SDL)
 
-CC					= g++
-LD 					= g++
-LDFLAGS  			=
-CPPFLAGS 			= -Wall -ggdb   #-O2   # pour optimiser
-OBJ_DIR 			= obj
-SRC_DIR 			= src
-BIN_DIR 			= bin
-INCLUDE_DIR			= -Isrc -Isrc/core -Isrc/sdl2 -Itxt
+Tour.o: src/core/Tour.h src/core/Tour.cpp src/core/Vecteur.h
+			g++ -g -Wall -c src/core/Tour.cpp $(SDL)
 
-default: make_dir $(BIN_DIR)/$(FINAL_TARGET_TXT) $(BIN_DIR)/$(FINAL_TARGET_SDL)
+Ennemi.o: src/core/Ennemi.h src/core/Ennemi.cpp
+			g++ -g -Wall -c src/core/Ennemi.cpp $(SDL)
 
-make_dir:
-ifeq ($(OS),Windows_NT)
-	if not exist $(OBJ_DIR) mkdir $(OBJ_DIR) $(OBJ_DIR)\txt $(OBJ_DIR)\sdl2 $(OBJ_DIR)\core
-else
-	test -d $(OBJ_DIR) || mkdir -p $(OBJ_DIR) $(OBJ_DIR)/txt $(OBJ_DIR)/sdl2 $(OBJ_DIR)/sdl2/imgui $(OBJ_DIR)/core
-endif
+Vecteur.o: src/core/Vecteur.h src/core/Vecteur.cpp
+			g++ -g -Wall -c src/core/Vecteur.cpp $(SDL)
 
-$(BIN_DIR)/$(FINAL_TARGET_TXT): $(SRCS_TXT:%.cpp=$(OBJ_DIR)/%.o)
-	$(LD) $+ -o $@ $(LDFLAGS)
+clear:
+		rm *.o
 
-$(BIN_DIR)/$(FINAL_TARGET_SDL): $(SRCS_SDL:%.cpp=$(OBJ_DIR)/%.o)
-	$(LD) $+ -o $@ $(LDFLAGS) $(LIBS_SDL)
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CC) -c $(CPPFLAGS) $(INCLUDE_DIR_SDL) $(INCLUDE_DIR) $< -o $@
-
-docu: doc/pacman.doxy
-	cd doc ; doxygen pacman.doxy
-
-clean:
-ifeq ($(OS),Windows_NT)
-	del /f $(OBJ_DIR)\txt\*.o $(OBJ_DIR)\sdl2\*.o $(OBJ_DIR)\core\*.o $(BIN_DIR)\$(FINAL_TARGET_TXT).exe $(BIN_DIR)\$(FINAL_TARGET_SDL).exe
-else
-	rm -rf $(OBJ_DIR) $(BIN_DIR)/$(FINAL_TARGET_TXT) $(BIN_DIR)/$(FINAL_TARGET_SDL) doc/html
-endif
-
+veryclear: clear
+		rm *.out
