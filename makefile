@@ -2,8 +2,8 @@ SDL= -I usr/include/SDL2
 
 all: executable.out
 
-executable.out: mainSdl.o sdlJeu.o txtJeu.o winTxt.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o
-			g++ -g mainTxt.o txtJeu.o winTxt.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o -o executable.out
+executable.out: mainSdl.o sdlJeu.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o
+			g++ -g mainSdl.o sdlJeu.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o -o executable.out
 
 mainSdl.o: src/Sdl/mainSdl.cpp src/core/Jeu.h
 			g++ -g -Wall -c src/Sdl/mainSdl.cpp $(SDL)

@@ -197,7 +197,7 @@ SDLSimple::~SDLSimple () {
     SDL_Quit();
 }
 
-void SDLSimple::sdlAff () {
+void SDLSimple::sdlAff (Jeu jeu) {
 	//Remplir l'écran de blanc
     SDL_SetRenderDrawColor(renderer, 230, 240, 255, 255);
     SDL_RenderClear(renderer);
@@ -216,19 +216,19 @@ void SDLSimple::sdlAff () {
 				im_Chemin.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
 
 	// Afficher le sprite de tours
-    for (int i = 0 ; i < Jeu.tabT.size() ; i++) {
-        if (Jeu.tabT[i].typeT == 1) im_Tour1.draw(renderer,Jeu.tabT[i].getX()*TAILLE_SPRITE,Jeu.tabT[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-        if (Jeu.tabT[i].typeT == 2) im_Tour2.draw(renderer,Jeu.tabT[i].getX()*TAILLE_SPRITE,Jeu.tabT[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-        if (Jeu.tabT[i].typeT == 3) im_Tour3.draw(renderer,Jeu.tabT[i].getX()*TAILLE_SPRITE,Jeu.tabT[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-        if (Jeu.tabT[i].typeT == 4) im_Tour4.draw(renderer,Jeu.tabT[i].getX()*TAILLE_SPRITE,Jeu.tabT[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+    for (int i = 0 ; i < int(jeu.tabT.size()) ; i++) { 
+        if (jeu.tabT[i].type == 1) im_Tour1.draw(renderer,jeu.tabT[i].getX()*TAILLE_SPRITE,jeu.tabT[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+        if (jeu.tabT[i].type == 2) im_Tour2.draw(renderer,jeu.tabT[i].getX()*TAILLE_SPRITE,jeu.tabT[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+        if (jeu.tabT[i].type == 3) im_Tour3.draw(renderer,jeu.tabT[i].getX()*TAILLE_SPRITE,jeu.tabT[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+        if (jeu.tabT[i].type == 4) im_Tour4.draw(renderer,jeu.tabT[i].getX()*TAILLE_SPRITE,jeu.tabT[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
     }
 
 	// Afficher le sprite du Fantome
-    for (int i = 0 ; i < Jeu.tabE.size() ; i++) {
-	    if (Jeu.tabE[i].typeE == 1) im_Ennemi1.draw(renderer,tabE[i].getX()*TAILLE_SPRITE,Jeu.tabE[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-	    if (Jeu.tabE[i].typeE == 2) im_Ennemi2.draw(renderer,tabE[i].getX()*TAILLE_SPRITE,Jeu.tabE[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-	    if (Jeu.tabE[i].typeE == 3) im_Ennemi3.draw(renderer,tabE[i].getX()*TAILLE_SPRITE,Jeu.tabE[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-	    if (Jeu.tabE[i].typeE == 4) im_Ennemi4.draw(renderer,tabE[i].getX()*TAILLE_SPRITE,Jeu.tabE[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+    for (int i = 0 ; i < int(jeu.tabE.size()) ; i++) {
+	    if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getX()*TAILLE_SPRITE,jeu.tabE[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+	    if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getX()*TAILLE_SPRITE,jeu.tabE[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+	    if (jeu.tabE[i].type == 3) im_Ennemi3.draw(renderer,jeu.tabE[i].getX()*TAILLE_SPRITE,jeu.tabE[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+	    if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getX()*TAILLE_SPRITE,jeu.tabE[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
     }
 
     // Ecrire un titre par dessus
@@ -255,7 +255,7 @@ void SDLSimple::sdlBoucle () {
 
 		// tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
 		while (SDL_PollEvent(&events)) {
-			if (events.type == SDL_QUIT) quit = true;           // Si l'utilisateur a clique sur la croix de fermeture
+			/*if (events.type == SDL_QUIT) quit = true;           // Si l'utilisateur a clique sur la croix de fermeture
 			else if (events.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
                 bool mangePastille = false;
 				switch (events.key.keysym.scancode) {
@@ -277,13 +277,13 @@ void SDLSimple::sdlBoucle () {
                     break;
 				default: break;
 				}
-				/*if ((withSound) && (mangePastille))
-                    Mix_PlayChannel(-1,sound,0);*/
-			}
+				//if ((withSound) && (mangePastille))
+                //    Mix_PlayChannel(-1,sound,0);
+			}*/
 		}
 
 		// on affiche le jeu sur le buffer cach�
-		sdlAff();
+		sdlAff(jeu);
 
 		// on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)
         SDL_RenderPresent(renderer);

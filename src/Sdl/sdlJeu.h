@@ -64,7 +64,7 @@ public :
     SDLSimple ();
     ~SDLSimple ();
     void sdlBoucle ();
-    void sdlAff ();
+    void sdlAff (Jeu jeu);
 
 };
 
