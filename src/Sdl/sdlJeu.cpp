@@ -8,7 +8,7 @@
 #include <iostream>
 using namespace std;
 
-const int TAILLE_SPRITE = 32;
+const int TAILLE_SPRITE = 64;
 
 float temps () {
     return float(SDL_GetTicks()) / CLOCKS_PER_SEC;  // conversion des ms en secondes en divisant par 1000
@@ -138,7 +138,7 @@ SDLSimple::SDLSimple () : jeu() {
 	dimy = dimy * TAILLE_SPRITE;
 
     // Creation de la fenetre
-    window = SDL_CreateWindow("test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimx, dimy, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow("test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimy, dimx*2, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (window == nullptr) {
         cout << "Erreur lors de la creation de la fenetre : " << SDL_GetError() << endl; 
         SDL_Quit(); 
@@ -208,40 +208,42 @@ void SDLSimple::sdlAff () {
 	//const Tour& tour[] = jeu.getConstPacman();
 	//const Ennemi& enn[] = jeu.getConstFantome();
 
-    // Afficher les sprites des murs et des pastilles
+    // Afficher les sprites du sol et du chemin
 	for (x=0;x<ter.getX();++x)
 		for (y=0;y<ter.getY();++y)
-			if (ter.getCase(x,y)=='#')
-				im_Sol.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-			else if (ter.getCase(x,y)=='.')
-				im_Chemin.draw(renderer,x*TAILLE_SPRITE,y*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+			if (ter.getCase(x,y)=='O')
+				im_Sol.draw(renderer,y*TAILLE_SPRITE,x*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+			else if (ter.getCase(x,y)==' ')
+				im_Chemin.draw(renderer,y*TAILLE_SPRITE,x*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
 
 	// Afficher le sprite de tours
     for (int i = 0 ; i < int(jeu.tabT.size()) ; i++) { 
-        if (jeu.tabT[i].type == 1) im_Tour1.draw(renderer,jeu.tabT[i].getX()*TAILLE_SPRITE,jeu.tabT[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-        if (jeu.tabT[i].type == 2) im_Tour2.draw(renderer,jeu.tabT[i].getX()*TAILLE_SPRITE,jeu.tabT[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-        if (jeu.tabT[i].type == 3) im_Tour3.draw(renderer,jeu.tabT[i].getX()*TAILLE_SPRITE,jeu.tabT[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-        if (jeu.tabT[i].type == 4) im_Tour4.draw(renderer,jeu.tabT[i].getX()*TAILLE_SPRITE,jeu.tabT[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+        if (jeu.tabT[i].type == 0) im_Tour1.draw(renderer,jeu.tabT[i].getY()*TAILLE_SPRITE,jeu.tabT[i].getX()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+        if (jeu.tabT[i].type == 2) im_Tour2.draw(renderer,jeu.tabT[i].getY()*TAILLE_SPRITE,jeu.tabT[i].getX()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+        if (jeu.tabT[i].type == 3) im_Tour3.draw(renderer,jeu.tabT[i].getY()*TAILLE_SPRITE,jeu.tabT[i].getX()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+        if (jeu.tabT[i].type == 4) im_Tour4.draw(renderer,jeu.tabT[i].getY()*TAILLE_SPRITE,jeu.tabT[i].getX()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
     }
 
 	// Afficher le sprite du Fantome
     for (int i = 0 ; i < int(jeu.tabE.size()) ; i++) {
-	    if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getX()*TAILLE_SPRITE,jeu.tabE[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-	    if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getX()*TAILLE_SPRITE,jeu.tabE[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-	    if (jeu.tabE[i].type == 3) im_Ennemi3.draw(renderer,jeu.tabE[i].getX()*TAILLE_SPRITE,jeu.tabE[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-	    if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getX()*TAILLE_SPRITE,jeu.tabE[i].getY()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+	    if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+	    if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+	    if (jeu.tabE[i].type == 0) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+	    if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
     }
 
     // Ecrire un titre par dessus
     SDL_Rect positionTitre;
-    positionTitre.x = 270;positionTitre.y = 49;positionTitre.w = 100;positionTitre.h = 30;
+    positionTitre.x = 270;positionTitre.y = 490;positionTitre.w = 100;positionTitre.h = 30; 
     SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&positionTitre);
 
 }
 
 void SDLSimple::sdlBoucle () {
+    jeu.ter.generation();
     SDL_Event events;
 	bool quit = false;
+    int wait = 50;
 
     Uint32 t = SDL_GetTicks(), nt;
 
@@ -253,6 +255,31 @@ void SDLSimple::sdlBoucle () {
             jeu.actionsAutomatiques();
             t = nt;
         }
+
+        for(int i=0;i<int(jeu.tabE.size());i++){
+				if(jeu.tabE[i].position.y == jeu.ter.getY()-1){
+					jeu.diplome--;
+					jeu.tabE.erase(jeu.tabE.begin() + i);
+				}
+				if(jeu.tabE[i].vie <= 0){
+					jeu.GainFonds(jeu.tabE[i]);
+					jeu.tabE.erase(jeu.tabE.begin() + i);
+				}
+			}
+		
+		if(jeu.diplome<0){quit=true;}
+
+        if (wait == 0){
+            for(int x=0;x<int(jeu.tabE.size());++x){
+                Vecteur direction = jeu.ter.prochaineCase(jeu.tabE[x].position);
+                jeu.tabE[x].Deplacement(direction);
+
+                //debug pos ennemi
+                //cout<<endl<<"Ennemi "<<x+1<<" : "<<jeu.tabE[x].getX()<<" "<<jeu.tabE[x].getY()<<endl;
+            }
+            wait = 50;
+		}
+		wait--;
 
 		// tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
 		while (SDL_PollEvent(&events)) {
