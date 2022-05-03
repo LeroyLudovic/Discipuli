@@ -62,7 +62,7 @@ void Jeu::Attaque(Ennemi &E,Tour T){
 
 void Jeu::GainFonds(Ennemi E){
     switch (E.type) {
-        case 0:
+        case 1:
             fonds += 15;
             break;
         case 2:
