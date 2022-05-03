@@ -123,7 +123,6 @@ bool Jeu::actionClavier(const char touche){
 bool Jeu::actionSouris(const char souris){
     switch(souris) {
         case 'g' :
-            
             break;
     }
     return false;
