@@ -25,10 +25,12 @@ Jeu::~Jeu(){
 }
 
 void Jeu::ajoutTour(Vecteur a,int b){
-    if(fonds>=50){
-        Tour t(a,b);
-        tabT.push_back(t);
-        fonds-=50;
+    if (ter.getCase(a.x,a.y) == 'O') {
+        if(fonds>=50){
+            Tour t(a,b);
+            tabT.push_back(t);
+            fonds-=50;
+        }
     }
 }
 

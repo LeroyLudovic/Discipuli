@@ -138,7 +138,7 @@ SDLSimple::SDLSimple () : jeu() {
 	dimy = dimy * TAILLE_SPRITE;
 
     // Creation de la fenetre
-    window = SDL_CreateWindow("test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimy, dimx*2, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow("test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimy, dimx, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (window == nullptr) {
         cout << "Erreur lors de la creation de la fenetre : " << SDL_GetError() << endl; 
         SDL_Quit(); 
@@ -165,9 +165,6 @@ SDLSimple::SDLSimple () : jeu() {
     im_Argent.loadFromFile("Data/Argent.png",renderer);
     im_Diplome.loadFromFile("Data/Diplome.png",renderer);
 
-    im_Argent.draw(renderer,90,270+decalage,TAILLE_SPRITE*2,TAILLE_SPRITE);
-    im_Diplome.draw(renderer,90,370+decalage,TAILLE_SPRITE*2,TAILLE_SPRITE);
-
     // FONTS
     font = TTF_OpenFont("Data/DejaVuSansCondensed.ttf",50);
     if (font == nullptr)
@@ -178,7 +175,7 @@ SDLSimple::SDLSimple () : jeu() {
             exit(1);
 	}
 	font_color.r = 50;font_color.g = 50;font_color.b = 255;
-	font_im.setSurface(TTF_RenderText_Solid(font,"DiscipuliIIIIIiIiIiIiiIiIIIii",font_color));
+	font_im.setSurface(TTF_RenderText_Solid(font,"Discipuli",font_color));
 	font_im.loadFromCurrentSurface(renderer);
 
     // SONS
@@ -232,7 +229,7 @@ void SDLSimple::sdlAff () {
 
 	// Afficher le sprite du Fantome
     for (int i = 0 ; i < int(jeu.tabE.size()) ; i++) {
-        float mov = (5*(jeu.tabE[i].chargement/jeu.tabE[i].vitesse))/100*TAILLE_SPRITE;
+        float mov = (5*jeu.tabE[i].vitesse*(jeu.tabE[i].chargement/jeu.tabE[i].vitesse))/100*TAILLE_SPRITE;
         if (ter.getCase(jeu.tabE[i].getX(),jeu.tabE[i].getY()+1) == ' ') {
             if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE+mov,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE+mov,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
@@ -252,6 +249,9 @@ void SDLSimple::sdlAff () {
             if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
         }
     }
+
+    im_Argent.draw(renderer,90,270+decalage,TAILLE_SPRITE*2,TAILLE_SPRITE);
+    im_Diplome.draw(renderer,90,370+decalage,TAILLE_SPRITE*2,TAILLE_SPRITE);
 
     // Ecrire un titre par dessus
     SDL_Rect positionTitre;
@@ -282,7 +282,6 @@ void SDLSimple::sdlBoucle () {
 
             SDL_GetMouseState(&hx, &hy);
 
-            
             nt = SDL_GetTicks();
             if (nt-t>1000) {
                 jeu.actionsAutomatiques();
@@ -293,26 +292,6 @@ void SDLSimple::sdlBoucle () {
                     if(jeu.tabE[i].position.y == jeu.ter.getY()-1){
                      jeu.diplome--;
                      jeu.tabE.erase(jeu.tabE.begin() + i);
-                    }
-                }
-                
-                SDL_GetMouseState(&hx, &hy);
-
-                
-                nt = SDL_GetTicks();
-                if (nt-t>500) {
-                    jeu.actionsAutomatiques();
-                    t = nt;
-                }
-
-                for(int i=0;i<int(jeu.tabE.size());i++){
-                    if(jeu.tabE[i].position.y == jeu.ter.getY()-1){
-                        jeu.diplome--;
-                        jeu.tabE.erase(jeu.tabE.begin() + i);
-                    }
-                    if(jeu.tabE[i].vie <= 0){
-                        jeu.GainFonds(jeu.tabE[i]);
-                        jeu.tabE.erase(jeu.tabE.begin() + i);
                     }
                 }
                 

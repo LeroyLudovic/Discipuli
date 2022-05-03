@@ -13,14 +13,14 @@ using namespace std;
 
 class Jeu{
 
-    private :
-        int fonds;
-        int vague;  
+    private : 
         int nbVagueFort;
         bool genE;
 
     public :
 
+        int fonds;
+        int vague; 
         int tourSel;
         int diplome;
         Terrain ter;
