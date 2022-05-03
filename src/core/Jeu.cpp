@@ -10,7 +10,7 @@
 #include <string>
 
 Jeu::Jeu(){
-    tourSel=0;
+    tourSel = 1;
     fonds = 50;
     vague = 0;
     nbVagueFort = 0;
