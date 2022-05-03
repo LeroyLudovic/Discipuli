@@ -12,7 +12,7 @@
 void txtAff(WinTXT & win, Jeu & jeu) {
 	win.clear();
     
-// Affichage des murs et des pastilles
+// Affichage du terrain
 	for(int x=0;x<jeu.ter.getX();++x){
 		for(int y=0;y<jeu.ter.getY();++y){
 			win.print(y,x,jeu.ter.getCase(x,y));}}

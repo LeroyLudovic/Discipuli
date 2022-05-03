@@ -6,7 +6,7 @@ Ennemi::Ennemi(Vecteur v, int t, bool fort){
     position = v;
     chargement = 0;
     switch (t){
-        case 0 :
+        case 1 :
             vie = 200;
             vitesse = 1;
             if (fort){
@@ -14,7 +14,7 @@ Ennemi::Ennemi(Vecteur v, int t, bool fort){
                 vitesse *= 1;
             }
             break;
-        case 1 :
+        case 2 :
             vie = 50;
             vitesse = 3;
             if (fort){
@@ -22,7 +22,7 @@ Ennemi::Ennemi(Vecteur v, int t, bool fort){
                 vitesse *= 2;
             }
             break;
-        case 2 :
+        case 3 :
             vie = 100;
             vitesse = 1;
             if (fort){
@@ -30,7 +30,7 @@ Ennemi::Ennemi(Vecteur v, int t, bool fort){
                 vitesse *= 2;
             }
             break;
-        case 3 :
+        case 4 :
             vie = 50;
             vitesse = 1;
             if (fort){

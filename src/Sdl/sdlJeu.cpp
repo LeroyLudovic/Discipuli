@@ -217,7 +217,7 @@ void SDLSimple::sdlAff () {
 
 	// Afficher le sprite de tours
     for (int i = 0 ; i < int(jeu.tabT.size()) ; i++) { 
-        if (jeu.tabT[i].type == 0) im_Tour1.draw(renderer,jeu.tabT[i].getY()*TAILLE_SPRITE,jeu.tabT[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
+        if (jeu.tabT[i].type == 1) im_Tour1.draw(renderer,jeu.tabT[i].getY()*TAILLE_SPRITE,jeu.tabT[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
         if (jeu.tabT[i].type == 2) im_Tour2.draw(renderer,jeu.tabT[i].getY()*TAILLE_SPRITE,jeu.tabT[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
         if (jeu.tabT[i].type == 3) im_Tour3.draw(renderer,jeu.tabT[i].getY()*TAILLE_SPRITE,jeu.tabT[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
         if (jeu.tabT[i].type == 4) im_Tour4.draw(renderer,jeu.tabT[i].getY()*TAILLE_SPRITE,jeu.tabT[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
@@ -229,19 +229,19 @@ void SDLSimple::sdlAff () {
         if (ter.getCase(jeu.tabE[i].getX(),jeu.tabE[i].getY()+1) == ' ') {
             if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE+mov,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE+mov,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
-            if (jeu.tabE[i].type == 0) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE+mov,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
+            if (jeu.tabE[i].type == 3) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE+mov,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE+mov,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
         }
         else if (ter.getCase(jeu.tabE[i].getX()-1,jeu.tabE[i].getY()) == ' ') {
             if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage-mov,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage-mov,TAILLE_SPRITE,TAILLE_SPRITE);
-            if (jeu.tabE[i].type == 0) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage-mov,TAILLE_SPRITE,TAILLE_SPRITE);
+            if (jeu.tabE[i].type == 3) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage-mov,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage-mov,TAILLE_SPRITE,TAILLE_SPRITE);
         }
         else if (ter.getCase(jeu.tabE[i].getX()+1,jeu.tabE[i].getY()) == ' ') {
             if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
-            if (jeu.tabE[i].type == 0) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
+            if (jeu.tabE[i].type == 3) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
         }
     }
@@ -277,7 +277,7 @@ void SDLSimple::sdlBoucle () {
 
         
         nt = SDL_GetTicks();
-        if (nt-t>500) {
+        if (nt-t>1000) {
             jeu.actionsAutomatiques();
             t = nt;
         }
@@ -340,6 +340,7 @@ void SDLSimple::sdlBoucle () {
 
 		// on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)
         SDL_RenderPresent(renderer);
-        delta = 0;}OldT = SDL_GetTicks();
+        delta = 0;}
+        OldT = SDL_GetTicks();
 	}
 }
