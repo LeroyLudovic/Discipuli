@@ -206,8 +206,6 @@ void SDLSimple::sdlAff () {
 	int x,y;
     int decalage = 80;
 	Terrain& ter = jeu.ter;
-	//const Tour& tour[] = jeu.getConstPacman();
-	//const Ennemi& enn[] = jeu.getConstFantome();
 
     // Afficher les sprites du sol et du chemin
 	for (x=0;x<ter.getX();++x)
@@ -227,10 +225,25 @@ void SDLSimple::sdlAff () {
 
 	// Afficher le sprite du Fantome
     for (int i = 0 ; i < int(jeu.tabE.size()) ; i++) {
-	    if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
-	    if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
-	    if (jeu.tabE[i].type == 0) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
-	    if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
+        float mov = (5*(jeu.tabE[i].chargement/jeu.tabE[i].vitesse))/100*TAILLE_SPRITE;
+        if (ter.getCase(jeu.tabE[i].getX(),jeu.tabE[i].getY()+1) == ' ') {
+            if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE+mov,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
+            if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE+mov,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
+            if (jeu.tabE[i].type == 0) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE+mov,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
+            if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE+mov,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
+        }
+        else if (ter.getCase(jeu.tabE[i].getX()-1,jeu.tabE[i].getY()) == ' ') {
+            if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage-mov,TAILLE_SPRITE,TAILLE_SPRITE);
+            if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage-mov,TAILLE_SPRITE,TAILLE_SPRITE);
+            if (jeu.tabE[i].type == 0) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage-mov,TAILLE_SPRITE,TAILLE_SPRITE);
+            if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage-mov,TAILLE_SPRITE,TAILLE_SPRITE);
+        }
+        else if (ter.getCase(jeu.tabE[i].getX()+1,jeu.tabE[i].getY()) == ' ') {
+            if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
+            if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
+            if (jeu.tabE[i].type == 0) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
+            if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
+        }
     }
 
     // Ecrire un titre par dessus
@@ -261,6 +274,7 @@ void SDLSimple::sdlBoucle () {
         
 
         SDL_GetMouseState(&hx, &hy);
+
         
         nt = SDL_GetTicks();
         if (nt-t>500) {
@@ -269,15 +283,15 @@ void SDLSimple::sdlBoucle () {
         }
 
         for(int i=0;i<int(jeu.tabE.size());i++){
-				if(jeu.tabE[i].position.y == jeu.ter.getY()-1){
-					jeu.diplome--;
-					jeu.tabE.erase(jeu.tabE.begin() + i);
-				}
-				if(jeu.tabE[i].vie <= 0){
-					jeu.GainFonds(jeu.tabE[i]);
-					jeu.tabE.erase(jeu.tabE.begin() + i);
-				}
-			}
+            if(jeu.tabE[i].position.y == jeu.ter.getY()-1){
+                jeu.diplome--;
+                jeu.tabE.erase(jeu.tabE.begin() + i);
+            }
+            if(jeu.tabE[i].vie <= 0){
+                jeu.GainFonds(jeu.tabE[i]);
+                jeu.tabE.erase(jeu.tabE.begin() + i);
+            }
+        }
 		
 		if(jeu.diplome<0){quit=true;}
 
@@ -314,7 +328,7 @@ void SDLSimple::sdlBoucle () {
                 case SDL_SCANCODE_A:
                     quit = true;
                     break;
-				default: break;
+				default: break; 
 				}
 				if ((withSound) && (pauseTour)){}
                     //Mix_PlayChannel(-1,sound,0);
