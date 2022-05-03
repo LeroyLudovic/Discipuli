@@ -51,6 +51,8 @@ class Jeu{
         void Infos();
 
         bool actionClavier(const char touche); 
+
+        bool actionSouris(const char souris);
 };
 
 #endif

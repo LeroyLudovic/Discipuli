@@ -72,7 +72,6 @@ void Jeu::GainFonds(Ennemi E){
 void Jeu::actionsAutomatiques (){
     int reste = vague+1-tabE.size();
 
-    std::cout<<tourSel<<std::endl;
     if(reste > 0 && genE == true){
         creerVague();
     }
@@ -118,5 +117,14 @@ bool Jeu::actionClavier(const char touche){
 				tourSel=3;
 				break;
 	}
+    return false;
+}
+
+bool Jeu::actionSouris(const char souris){
+    switch(souris) {
+        case 'g' :
+            
+            break;
+    }
     return false;
 }
