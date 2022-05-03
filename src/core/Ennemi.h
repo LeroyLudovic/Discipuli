@@ -6,11 +6,11 @@
 class Ennemi {
 
     private :
+
+    public :
     
     float vitesse;
     float chargement;
-
-    public :
 
 
     unsigned int type;
