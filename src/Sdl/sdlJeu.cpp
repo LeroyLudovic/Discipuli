@@ -302,7 +302,6 @@ void SDLSimple::sdlBoucle () {
                 if(jeu.diplome<0){quit=true;}
 
                     for(int x=0;x<int(jeu.tabE.size());++x){
-                        cout << "vie " << x << " : " << jeu.tabE[x].vie << endl;
                         bool dep = jeu.tabE[x].Charg();
                         if(dep){
                             Vecteur direction = jeu.ter.prochaineCase(jeu.tabE[x].position);
