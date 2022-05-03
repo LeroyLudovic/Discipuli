@@ -45,9 +45,9 @@ bool Jeu::DevienFort(){
 }
 
 void Jeu::creerVague(){
-        Vecteur pos(2,-1);
-        Ennemi ad(pos,0,DevienFort());
-        tabE.push_back(ad);
+    Vecteur pos(2,-1);
+    Ennemi ad(pos,2,DevienFort());
+    tabE.push_back(ad);
 }
 
 bool Jeu::Range(Ennemi E,Tour T){
