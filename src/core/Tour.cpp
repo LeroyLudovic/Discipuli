@@ -6,25 +6,25 @@ Tour::Tour(Vecteur v,int t){
     position = v;
     switch (t)
     {
-    case 0 :    
+    case 1 :    
         degat = 50;
         vitesse = 3.0;
         portee = 2;
         prix = 50;
         break;
-    case 1 :    
+    case 2 :    
         degat = 200;
         vitesse = 1.0;
         portee = 2;
         prix = 65;
         break;
-    case 2 :    
+    case 3 :    
         degat = 100;
         vitesse = 1.0;
         portee = 3;
         prix = 55;
         break;
-    case 3 :    
+    case 4 :    
         degat = 0;
         vitesse = 0.5;
         portee = 1;

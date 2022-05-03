@@ -105,16 +105,16 @@ void Jeu::Infos(){
 bool Jeu::actionClavier(const char touche){
     switch(touche) {
 		case 'a' :
-				tourSel=0;
-				break;
-		case 'z' :
 				tourSel=1;
 				break;
-		case 'e' :
+		case 'z' :
 				tourSel=2;
 				break;
-		case 'r' :
+		case 'e' :
 				tourSel=3;
+				break;
+		case 'r' :
+				tourSel=4;
 				break;
 	}
     return false;
