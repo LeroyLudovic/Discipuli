@@ -65,6 +65,16 @@ void Jeu::GainFonds(Ennemi E){
         case 0:
             fonds += 15;
             break;
+        case 2:
+            fonds += 15;
+            break;
+        case 3:
+            fonds += 15;
+            break;
+        case 4:
+            fonds += 15;
+            break;
+
     }
 }
 

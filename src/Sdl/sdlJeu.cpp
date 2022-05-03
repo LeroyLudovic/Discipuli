@@ -161,6 +161,13 @@ SDLSimple::SDLSimple () : jeu() {
     im_Ennemi3.loadFromFile("Data/Normi.png",renderer);
     im_Ennemi4.loadFromFile("Data/Ines.png",renderer);
 
+
+    im_Argent.loadFromFile("Data/Argent.png",renderer);
+    im_Diplome.loadFromFile("Data/Diplome.png",renderer);
+
+    im_Argent.draw(renderer,90,270+decalage,TAILLE_SPRITE*2,TAILLE_SPRITE);
+    im_Diplome.draw(renderer,90,370+decalage,TAILLE_SPRITE*2,TAILLE_SPRITE);
+
     // FONTS
     font = TTF_OpenFont("Data/DejaVuSansCondensed.ttf",50);
     if (font == nullptr)
@@ -200,7 +207,7 @@ SDLSimple::~SDLSimple () {
 
 void SDLSimple::sdlAff () {
 	//Remplir l'écran de blanc
-    SDL_SetRenderDrawColor(renderer, 230, 240, 255, 255);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     SDL_RenderClear(renderer);
 
 	int x,y;
