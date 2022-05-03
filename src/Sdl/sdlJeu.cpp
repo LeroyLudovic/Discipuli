@@ -289,15 +289,20 @@ void SDLSimple::sdlBoucle () {
             }
 
                 for(int i=0;i<int(jeu.tabE.size());i++){
-                    if(jeu.tabE[i].position.y == jeu.ter.getY()-1){
-                     jeu.diplome--;
-                     jeu.tabE.erase(jeu.tabE.begin() + i);
-                    }
-                }
+				if(jeu.tabE[i].position.y == jeu.ter.getY()-1){
+					jeu.diplome--;
+					jeu.tabE.erase(jeu.tabE.begin() + i);
+				}
+				if(jeu.tabE[i].vie <= 0){
+					jeu.GainFonds(jeu.tabE[i]);
+					jeu.tabE.erase(jeu.tabE.begin() + i);
+				}
+			}
                 
                 if(jeu.diplome<0){quit=true;}
 
                     for(int x=0;x<int(jeu.tabE.size());++x){
+                        cout << "vie " << x << " : " << jeu.tabE[x].vie << endl;
                         bool dep = jeu.tabE[x].Charg();
                         if(dep){
                             Vecteur direction = jeu.ter.prochaineCase(jeu.tabE[x].position);
