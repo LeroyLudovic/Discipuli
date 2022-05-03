@@ -6,9 +6,9 @@
 class Terrain{
     private :
 
-        const int Largeur = 5;
-        const int Longeur = 20;
-        char tab[5][20];
+        const int Largeur = 10;
+        const int Longeur = 40;
+        char tab[10][40];
     
     public :
 

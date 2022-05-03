@@ -8,7 +8,7 @@
 #include <iostream>
 using namespace std;
 
-const int TAILLE_SPRITE = 64;
+const int TAILLE_SPRITE = 48;
 
 float temps () {
     return float(SDL_GetTicks()) / CLOCKS_PER_SEC;  // conversion des ms en secondes en divisant par 1000
