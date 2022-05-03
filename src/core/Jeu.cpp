@@ -84,6 +84,7 @@ void Jeu::GainFonds(Ennemi E){
 void Jeu::actionsAutomatiques (){
     int reste = vague+1-tabE.size();
 
+
     if(reste > 0 && genE == true){
         creerVague();
     }
@@ -98,6 +99,9 @@ void Jeu::actionsAutomatiques (){
     else if (reste == 0 && genE == true) {
         genE = false;
     }
+
+    for(int y=0;y<int(tabE.size());++y){
+			std::cout<<tabE[y].vie<<std::endl; }	
 
     for(int x=0;x<int(tabT.size());++x){
 		for(int y=0;y<int(tabE.size());++y){

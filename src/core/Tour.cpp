@@ -8,7 +8,7 @@ Tour::Tour(Vecteur v,int t){
     {
     case 1 :    
         degat = 50;
-        vitesse = 3.0;
+        vitesse = 5.0;
         portee = 2;
         prix = 50;
         break;
