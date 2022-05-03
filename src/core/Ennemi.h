@@ -6,11 +6,12 @@
 class Ennemi {
 
     private :
-
-
+    
     float vitesse;
+    float chargement;
 
     public :
+
 
     unsigned int type;
     Vecteur position;
@@ -21,6 +22,8 @@ class Ennemi {
     ~Ennemi();
 
     void lvlUp(int vague);
+
+    bool Charg();
 
     void Deplacement (Vecteur v);
 

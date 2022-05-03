@@ -204,6 +204,7 @@ void SDLSimple::sdlAff () {
     SDL_RenderClear(renderer);
 
 	int x,y;
+    int decalage = 80;
 	Terrain& ter = jeu.ter;
 	//const Tour& tour[] = jeu.getConstPacman();
 	//const Ennemi& enn[] = jeu.getConstFantome();
@@ -212,24 +213,24 @@ void SDLSimple::sdlAff () {
 	for (x=0;x<ter.getX();++x)
 		for (y=0;y<ter.getY();++y)
 			if (ter.getCase(x,y)=='O')
-				im_Sol.draw(renderer,y*TAILLE_SPRITE,x*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+				im_Sol.draw(renderer,y*TAILLE_SPRITE,x*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
 			else if (ter.getCase(x,y)==' ')
-				im_Chemin.draw(renderer,y*TAILLE_SPRITE,x*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+				im_Chemin.draw(renderer,y*TAILLE_SPRITE,x*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
 
 	// Afficher le sprite de tours
     for (int i = 0 ; i < int(jeu.tabT.size()) ; i++) { 
-        if (jeu.tabT[i].type == 0) im_Tour1.draw(renderer,jeu.tabT[i].getY()*TAILLE_SPRITE,jeu.tabT[i].getX()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-        if (jeu.tabT[i].type == 2) im_Tour2.draw(renderer,jeu.tabT[i].getY()*TAILLE_SPRITE,jeu.tabT[i].getX()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-        if (jeu.tabT[i].type == 3) im_Tour3.draw(renderer,jeu.tabT[i].getY()*TAILLE_SPRITE,jeu.tabT[i].getX()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-        if (jeu.tabT[i].type == 4) im_Tour4.draw(renderer,jeu.tabT[i].getY()*TAILLE_SPRITE,jeu.tabT[i].getX()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+        if (jeu.tabT[i].type == 0) im_Tour1.draw(renderer,jeu.tabT[i].getY()*TAILLE_SPRITE,jeu.tabT[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
+        if (jeu.tabT[i].type == 2) im_Tour2.draw(renderer,jeu.tabT[i].getY()*TAILLE_SPRITE,jeu.tabT[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
+        if (jeu.tabT[i].type == 3) im_Tour3.draw(renderer,jeu.tabT[i].getY()*TAILLE_SPRITE,jeu.tabT[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
+        if (jeu.tabT[i].type == 4) im_Tour4.draw(renderer,jeu.tabT[i].getY()*TAILLE_SPRITE,jeu.tabT[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
     }
 
 	// Afficher le sprite du Fantome
     for (int i = 0 ; i < int(jeu.tabE.size()) ; i++) {
-	    if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-	    if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-	    if (jeu.tabE[i].type == 0) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
-	    if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE,TAILLE_SPRITE,TAILLE_SPRITE);
+	    if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
+	    if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
+	    if (jeu.tabE[i].type == 0) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
+	    if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
     }
 
     // Ecrire un titre par dessus
@@ -243,13 +244,21 @@ void SDLSimple::sdlBoucle () {
     jeu.ter.generation();
     SDL_Event events;
 	bool quit = false;
-    int wait = 50;
+
+    unsigned int NewT = SDL_GetTicks();
+    unsigned int OldT = SDL_GetTicks();
+    double delta = 0;
 
     Uint32 t = SDL_GetTicks(), nt;
 
 	// tant que ce n'est pas la fin ...
 	while (!quit) {
+        NewT=SDL_GetTicks();
+        delta += NewT - OldT;
 
+        if(delta > 1000/60){std::cout << "fps: " << 1000 / delta << std::endl;
+        
+        
         nt = SDL_GetTicks();
         if (nt-t>500) {
             jeu.actionsAutomatiques();
@@ -269,17 +278,16 @@ void SDLSimple::sdlBoucle () {
 		
 		if(jeu.diplome<0){quit=true;}
 
-        if (wait == 0){
             for(int x=0;x<int(jeu.tabE.size());++x){
-                Vecteur direction = jeu.ter.prochaineCase(jeu.tabE[x].position);
-                jeu.tabE[x].Deplacement(direction);
+                bool dep = jeu.tabE[x].Charg();
+                if(dep){
+                    Vecteur direction = jeu.ter.prochaineCase(jeu.tabE[x].position);
+                    jeu.tabE[x].Deplacement(direction);
+                }
 
                 //debug pos ennemi
                 //cout<<endl<<"Ennemi "<<x+1<<" : "<<jeu.tabE[x].getX()<<" "<<jeu.tabE[x].getY()<<endl;
             }
-            wait = 50;
-		}
-		wait--;
 
 		// tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
 		while (SDL_PollEvent(&events)) {
@@ -315,5 +323,6 @@ void SDLSimple::sdlBoucle () {
 
 		// on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)
         SDL_RenderPresent(renderer);
+        delta = 0;}OldT = SDL_GetTicks();
 	}
 }

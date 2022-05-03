@@ -4,6 +4,7 @@
 Ennemi::Ennemi(Vecteur v, int t, bool fort){
     type = t;
     position = v;
+    chargement = 0;
     switch (t){
         case 0 :
             vie = 200;
@@ -48,6 +49,15 @@ Ennemi::~Ennemi(){
 
 void Ennemi::lvlUp(int vague){
     vie = vie*(1+vague/10);
+}
+
+bool Ennemi::Charg(){
+    chargement+=vitesse;
+    if(chargement > 20){
+        chargement = 0;
+        return true;
+    }
+    return false;
 }
 
 void Ennemi::Deplacement(Vecteur v){
