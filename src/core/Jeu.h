@@ -21,6 +21,7 @@ class Jeu{
 
     public :
 
+        int tourSel;
         int diplome;
         Terrain ter;
         vector<Ennemi> tabE;

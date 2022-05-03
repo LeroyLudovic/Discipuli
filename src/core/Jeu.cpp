@@ -10,6 +10,7 @@
 #include <string>
 
 Jeu::Jeu(){
+    tourSel=0;
     fonds = 50;
     vague = 0;
     nbVagueFort = 0;
@@ -71,6 +72,7 @@ void Jeu::GainFonds(Ennemi E){
 void Jeu::actionsAutomatiques (){
     int reste = vague+1-tabE.size();
 
+    std::cout<<tourSel<<std::endl;
     if(reste > 0 && genE == true){
         creerVague();
     }
@@ -102,8 +104,19 @@ void Jeu::Infos(){
 }
 
 bool Jeu::actionClavier(const char touche){
-    if (touche == 'c') {
-        
-    }
+    switch(touche) {
+		case 'a' :
+				tourSel=0;
+				break;
+		case 'z' :
+				tourSel=1;
+				break;
+		case 'e' :
+				tourSel=2;
+				break;
+		case 'r' :
+				tourSel=3;
+				break;
+	}
     return false;
 }

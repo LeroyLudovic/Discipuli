@@ -244,7 +244,8 @@ void SDLSimple::sdlBoucle () {
     jeu.ter.generation();
     SDL_Event events;
 	bool quit = false;
-
+    int hx, hy;
+   
     unsigned int NewT = SDL_GetTicks();
     unsigned int OldT = SDL_GetTicks();
     double delta = 0;
@@ -256,8 +257,10 @@ void SDLSimple::sdlBoucle () {
         NewT=SDL_GetTicks();
         delta += NewT - OldT;
 
-        if(delta > 1000/60){std::cout << "fps: " << 1000 / delta << std::endl;
+        if(delta > 1000/60){
         
+
+        SDL_GetMouseState(&hx, &hy);
         
         nt = SDL_GetTicks();
         if (nt-t>500) {
@@ -293,28 +296,28 @@ void SDLSimple::sdlBoucle () {
 		while (SDL_PollEvent(&events)) {
 			if (events.type == SDL_QUIT) quit = true;           // Si l'utilisateur a clique sur la croix de fermeture
 			else if (events.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
-                bool mangePastille = false;
+                bool pauseTour = false;
 				switch (events.key.keysym.scancode) {
-				case SDL_SCANCODE_UP:
-					mangePastille = jeu.actionClavier('b');    // car Y inverse
+				case SDL_SCANCODE_Q:
+					pauseTour = jeu.actionClavier('a');    // car Y inverse
 					break;
-				case SDL_SCANCODE_DOWN:
-					mangePastille = jeu.actionClavier('h');     // car Y inverse
+				case SDL_SCANCODE_W:
+					pauseTour = jeu.actionClavier('z');     // car Y inverse
 					break;
-				case SDL_SCANCODE_LEFT:
-					mangePastille = jeu.actionClavier('g');
+				case SDL_SCANCODE_E:
+					pauseTour = jeu.actionClavier('e');
 					break;
-				case SDL_SCANCODE_RIGHT:
-					mangePastille = jeu.actionClavier('d');
+				case SDL_SCANCODE_R:
+					pauseTour = jeu.actionClavier('r');
 					break;
                 case SDL_SCANCODE_ESCAPE:
-                case SDL_SCANCODE_Q:
+                case SDL_SCANCODE_A:
                     quit = true;
                     break;
 				default: break;
 				}
-				//if ((withSound) && (mangePastille))
-                //    Mix_PlayChannel(-1,sound,0);
+				if ((withSound) && (pauseTour)){}
+                    //Mix_PlayChannel(-1,sound,0);
 			}
 		}
 
