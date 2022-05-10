@@ -169,11 +169,11 @@ SDLSimple::SDLSimple () : jeu() {
     im_Diplome.loadFromFile("Data/Diplome.png",renderer);
 
     // FONTS
-    font = TTF_OpenFont("Data/DejaVuSansCondensed.ttf",50);
+    font = TTF_OpenFont("Data/alagard.ttf",70);
     if (font == nullptr)
-        font = TTF_OpenFont("../Data/DejaVuSansCondensed.ttf",50);
+        font = TTF_OpenFont("../Data/alagard.ttf",70);
     if (font == nullptr) {
-            cout << "Failed to load DejaVuSansCondensed.ttf! SDL_TTF Error: " << TTF_GetError() << endl; 
+            cout << "Failed to load alagard.ttf! SDL_TTF Error: " << TTF_GetError() << endl; 
             SDL_Quit(); 
             exit(1);
 	}
@@ -247,7 +247,7 @@ void SDLSimple::sdlAff () {
             if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 3) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
-            if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
+            if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);            
         }
     }
 
@@ -260,7 +260,7 @@ void SDLSimple::sdlAff () {
     im_Tour4.draw(renderer,725,525+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
 
     // Ecrire le nombre de vie
-    font_color.r = 50;font_color.g = 50;font_color.b = 255;
+    font_color.r = 50;font_color.g = 255;font_color.b = 255;font_color.a = 255;
     ostringstream d,m;
     d << jeu.diplome;
     SDL_Surface* TextSurface = TTF_RenderText_Solid(font,d.str().c_str(),font_color);
@@ -277,7 +277,7 @@ void SDLSimple::sdlAff () {
 	font_im.setSurface(TTF_RenderText_Solid(font,m.str().c_str(),font_color));
     font_im.loadFromCurrentSurface(renderer);
     SDL_Rect NbArgent;
-    NbArgent.x = 91;NbArgent.y = 607;NbArgent.w = TextSurface->w;NbArgent.h = TextSurface->h; 
+    NbArgent.x = 95;NbArgent.y = 607;NbArgent.w = TextSurface->w;NbArgent.h = TextSurface->h; 
     SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbArgent);
     SDL_FreeSurface(TextSurface);
 
@@ -286,19 +286,19 @@ void SDLSimple::sdlAff () {
 	font_im.setSurface(TTF_RenderText_Solid(font,"Discipuli",font_color));
     font_im.loadFromCurrentSurface(renderer);
     SDL_Rect Titre;
-    Titre.x = 1872/2-120;Titre.y = 9;Titre.w = TextSurface->w;Titre.h = TextSurface->h;
+    Titre.x = 1872/2-160;Titre.y = 9;Titre.w = TextSurface->w;Titre.h = TextSurface->h;
     SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&Titre);
     SDL_FreeSurface(TextSurface);
 
-    font = TTF_OpenFont("Data/DejaVuSansCondensed.ttf",25);
-    TextSurface = TTF_RenderText_Solid(font,"A         Z        E         R",font_color);
-	font_im.setSurface(TTF_RenderText_Solid(font,"A         Z        E         R",font_color));
+    font = TTF_OpenFont("Data/alagard.ttf",25);
+    TextSurface = TTF_RenderText_Solid(font,"A        Z        E       R",font_color);
+	font_im.setSurface(TTF_RenderText_Solid(font,"A        Z        E       R",font_color));
     font_im.loadFromCurrentSurface(renderer);
     SDL_Rect Touches;
     Touches.x = 515;Touches.y = 570;Touches.w = TextSurface->w;Touches.h = TextSurface->h;
     SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&Touches);
     SDL_FreeSurface(TextSurface);
-    font = TTF_OpenFont("Data/DejaVuSansCondensed.ttf",50);
+    font = TTF_OpenFont("Data/alagard.ttf",70);
 
 }
 
