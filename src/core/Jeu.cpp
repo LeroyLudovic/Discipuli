@@ -147,9 +147,11 @@ void Jeu::actionsAutomatiques (){
     }	
 
     for(int x=0;x<int(tabT.size());++x){
-		for(int y=0;y<int(tabE.size());++y){
-			if(Range(tabE[y],tabT[x]) && tabT[x].Charg()){ Attaque(tabE[y],tabT[x]); if(tabT[x].type != 3){y=int(tabE.size());}}	
-		}
+        if(tabT[x].Charg()){
+            for(int y=0;y<int(tabE.size());++y){
+                if(Range(tabE[y],tabT[x])){ Attaque(tabE[y],tabT[x]); if(tabT[x].type != 3){y=int(tabE.size());}}	
+            }
+        }
 	}
     std::cout<<vague<<std::endl;
 }

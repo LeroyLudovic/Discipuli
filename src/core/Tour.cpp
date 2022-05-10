@@ -9,19 +9,19 @@ Tour::Tour(Vecteur v,int t){
     {
     case 1 :    
         degat = 50;
-        vitesse = 5.0;
+        vitesse = 3;
         portee = 2;
         prix = 50;
         break;
     case 2 :    
         degat = 200;
-        vitesse = 1.0;
+        vitesse = 1;
         portee = 2;
         prix = 65;
         break;
     case 3 :    
-        degat = 100;
-        vitesse = 1.0;
+        degat = 20;
+        vitesse = 2.0;
         portee = 3;
         prix = 55;
         break;
@@ -49,10 +49,12 @@ void Tour::Amelioration(){
 
 bool Tour::Charg(){
     chargement+=vitesse;
-    if(chargement > 100){
+    if(chargement > 70){
         chargement = 0;
+        std::cout<<chargement<<std::endl;
         return true;
     }
+    std::cout<<chargement;
     return false;
 }
 
