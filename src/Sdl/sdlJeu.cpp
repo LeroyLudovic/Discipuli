@@ -2,6 +2,9 @@
 #include <time.h>
 #include "sdlJeu.h"
 #include <stdlib.h>
+#include <string.h>
+#include <sstream>
+ 
 
 #include "../core/Jeu.h"
 
@@ -138,7 +141,7 @@ SDLSimple::SDLSimple () : jeu() {
 	dimy = dimy * TAILLE_SPRITE;
 
     // Creation de la fenetre
-    window = SDL_CreateWindow("test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimy, dimx, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow("test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimy, dimx*2, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (window == nullptr) {
         cout << "Erreur lors de la creation de la fenetre : " << SDL_GetError() << endl; 
         SDL_Quit(); 
@@ -175,7 +178,9 @@ SDLSimple::SDLSimple () : jeu() {
             exit(1);
 	}
 	font_color.r = 50;font_color.g = 50;font_color.b = 255;
-	font_im.setSurface(TTF_RenderText_Solid(font,"Discipuli",font_color));
+    ostringstream s;
+    s << jeu.diplome;
+	font_im.setSurface(TTF_RenderText_Solid(font,s.str().c_str(),font_color));
 	font_im.loadFromCurrentSurface(renderer);
 
     // SONS
@@ -276,6 +281,7 @@ void SDLSimple::sdlBoucle () {
 	while (!quit) {
         NewT=SDL_GetTicks();
         delta += NewT - OldT;
+        s << jeu.diplome;
 
         if(delta > 1000/60){
         
@@ -300,7 +306,9 @@ void SDLSimple::sdlBoucle () {
 			}
                 
                 if(jeu.diplome<0){quit=true;}
-
+                if(jeu.diplome=<3){ ostringstream s;
+                                    s << jeu.diplome;
+	                               font_im.setSurface(TTF_RenderText_Solid(font,s.str().c_str(),font_color));}
                     for(int x=0;x<int(jeu.tabE.size());++x){
                         cout << "vie " << x << " : " << jeu.tabE[x].vie << endl;
                         bool dep = jeu.tabE[x].Charg();
