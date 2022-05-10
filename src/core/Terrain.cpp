@@ -84,7 +84,7 @@ Vecteur Terrain::prochaineCase(Vecteur v){
     if(test.x > v.x){
         if(tab[v.x + 1][v.y] == ' '){Vecteur a(1,0);return a;}
     }else{
-        if(tab[v.x - 1][v.y] == ' '){Vecteur a(1,0);return a;}
+        if(tab[v.x - 1][v.y] == ' '){Vecteur a(-1,0);return a;}
     }
     Vecteur n(0,0);
     return n;
