@@ -50,6 +50,7 @@ bool Jeu::DevienFort(){
 void Jeu::creerVague(){
     Vecteur pos(ter.depart,-1);
     Ennemi ad(pos,2,DevienFort());
+    ad.lvlUp(vague);
     tabE.push_back(ad);
 }
 
@@ -90,13 +91,8 @@ void Jeu::actionsAutomatiques (){
         creerVague();
     }
 
-    if(int(tabE.size()) == 0 && genE == false){
+    if(tabE.size() == 0 && genE == false){
         genE = true;
-        for(int y=0;y<int(tabE.size());++y){
-			tabE[y].lvlUp(vague);
-            std::cout<<tabE[y].vie<<' ';
-		}
-        std::cout<<std::endl;
         kill = 0;
         vague++;
     }
