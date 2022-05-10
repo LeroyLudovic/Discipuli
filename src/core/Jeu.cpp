@@ -55,16 +55,16 @@ void Jeu::creerVague(int a){
     tabE.push_back(ad);
     switch (a) {
         case '1' :
-            delaiInv = 100;
+            delaiInv = 1000;
             break;
         case '2' :
-            delaiInv = 100;
+            delaiInv = 1000;
             break;
         case '3' :
-            delaiInv = 100;
+            delaiInv = 1000;
             break;
         case '4' :
-            delaiInv = 100;
+            delaiInv = 1000;
             break;
     }
 }
@@ -102,8 +102,11 @@ void Jeu::actionsAutomatiques (){
     int reste = vague+1-(kill+tabE.size());
 
 
-    if(reste > 0 && genE == true){
+    if(reste > 0 && genE == true && delaiInv <= 0){
         creerVague(2);
+    }
+    if(reste > 0 && genE == true && delaiInv > 0){
+        delaiInv--;
     }
 
     if(tabE.size() == 0 && genE == false){
