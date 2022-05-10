@@ -254,7 +254,12 @@ void SDLSimple::sdlAff () {
     im_Argent.draw(renderer,50,520+decalage,TAILLE_SPRITE*4,TAILLE_SPRITE*1.5);
     im_Diplome.draw(renderer,50,670+decalage,TAILLE_SPRITE*4,TAILLE_SPRITE*1.5);
 
-    // Ecrire un titre par dessus
+    im_Tour1.draw(renderer,500,525+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
+    im_Tour2.draw(renderer,575,525+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
+    im_Tour3.draw(renderer,650,525+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
+    im_Tour4.draw(renderer,725,525+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
+
+    // Ecrire le nombre de vie
     font_color.r = 50;font_color.g = 50;font_color.b = 255;
     ostringstream d,m;
     d << jeu.diplome;
@@ -266,7 +271,7 @@ void SDLSimple::sdlAff () {
     SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbDiplome);
     SDL_FreeSurface(TextSurface);
 
-
+    // Ecrire la quantité d'argent
     m << jeu.fonds;
     TextSurface = TTF_RenderText_Solid(font,m.str().c_str(),font_color);
 	font_im.setSurface(TTF_RenderText_Solid(font,m.str().c_str(),font_color));
@@ -276,6 +281,7 @@ void SDLSimple::sdlAff () {
     SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbArgent);
     SDL_FreeSurface(TextSurface);
 
+    // Ecrire le titre
     TextSurface = TTF_RenderText_Solid(font,"Discipuli",font_color);
 	font_im.setSurface(TTF_RenderText_Solid(font,"Discipuli",font_color));
     font_im.loadFromCurrentSurface(renderer);
@@ -283,6 +289,16 @@ void SDLSimple::sdlAff () {
     Titre.x = 1872/2-120;Titre.y = 9;Titre.w = TextSurface->w;Titre.h = TextSurface->h;
     SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&Titre);
     SDL_FreeSurface(TextSurface);
+
+    font = TTF_OpenFont("Data/DejaVuSansCondensed.ttf",25);
+    TextSurface = TTF_RenderText_Solid(font,"A         Z        E         R",font_color);
+	font_im.setSurface(TTF_RenderText_Solid(font,"A         Z        E         R",font_color));
+    font_im.loadFromCurrentSurface(renderer);
+    SDL_Rect Touches;
+    Touches.x = 515;Touches.y = 570;Touches.w = TextSurface->w;Touches.h = TextSurface->h;
+    SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&Touches);
+    SDL_FreeSurface(TextSurface);
+    font = TTF_OpenFont("Data/DejaVuSansCondensed.ttf",50);
 
 }
 
