@@ -217,7 +217,7 @@ void SDLSimple::sdlAff () {
     // Afficher les sprites du sol et du chemin
 	for (x=0;x<ter.getX();++x)
 		for (y=0;y<ter.getY();++y)
-			if (ter.getCase(x,y)=='O')
+			if (ter.getCase(x,y)=='O' || ter.getCase(x,y)=='#')
 				im_Sol.draw(renderer,y*TAILLE_SPRITE,x*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
 			else if (ter.getCase(x,y)==' ')
 				im_Chemin.draw(renderer,y*TAILLE_SPRITE,x*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
@@ -310,7 +310,6 @@ void SDLSimple::sdlAff () {
             im_Cadre.draw(renderer,570,520+decalage,TAILLE_SPRITE*1.2,TAILLE_SPRITE*1.2);
             break;
         case 3 :
-
             im_Cadre.draw(renderer,645,520+decalage,TAILLE_SPRITE*1.2,TAILLE_SPRITE*1.2);
             break;
         case 4 :
