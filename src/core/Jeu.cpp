@@ -15,6 +15,7 @@ Jeu::Jeu(){
     vague = 0;
     nbVagueFort = 0;
     diplome = 5;
+    kill = 0;
     genE = false;
     curseur.x = -1;
     curseur.y = -1;
@@ -82,8 +83,7 @@ void Jeu::GainFonds(Ennemi E){
 
 
 void Jeu::actionsAutomatiques (){
-    int dif;
-    int reste = vague+1-tabE.size();
+    int reste = vague+1-(kill+tabE.size());
 
 
     if(reste > 0 && genE == true){
@@ -95,6 +95,7 @@ void Jeu::actionsAutomatiques (){
         for(int y=0;y<int(tabE.size());++y){
 			tabE[y].lvlUp(vague);
 		}
+        kill = 0;
         vague++;
     }
     else if (reste == 0 && genE == true) {

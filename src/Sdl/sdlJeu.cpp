@@ -325,6 +325,7 @@ void SDLSimple::sdlBoucle () {
 				}
 				if(jeu.tabE[i].vie <= 0){
 					jeu.GainFonds(jeu.tabE[i]);
+                    jeu.kill += 1;
 					jeu.tabE.erase(jeu.tabE.begin() + i);
 				}
 			}

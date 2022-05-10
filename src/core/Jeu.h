@@ -19,6 +19,7 @@ class Jeu{
 
     public :
 
+        int kill;
         int fonds;
         int vague; 
         int tourSel;
