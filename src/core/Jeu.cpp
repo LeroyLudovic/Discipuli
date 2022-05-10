@@ -47,7 +47,7 @@ bool Jeu::DevienFort(){
 }
 
 void Jeu::creerVague(){
-    Vecteur pos(2,-1);
+    Vecteur pos(ter.depart,-1);
     Ennemi ad(pos,2,DevienFort());
     tabE.push_back(ad);
 }
@@ -82,6 +82,7 @@ void Jeu::GainFonds(Ennemi E){
 
 
 void Jeu::actionsAutomatiques (){
+    int dif;
     int reste = vague+1-tabE.size();
 
 
@@ -105,6 +106,7 @@ void Jeu::actionsAutomatiques (){
 			if(Range(tabE[y],tabT[x])){ Attaque(tabE[y],tabT[x]); y=int(tabE.size()); }	
 		}
 	}
+    std::cout<<vague<<std::endl;
 }
 
 void Jeu::Infos(){

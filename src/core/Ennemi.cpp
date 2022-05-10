@@ -48,7 +48,7 @@ Ennemi::~Ennemi(){
 }
 
 void Ennemi::lvlUp(int vague){
-    vie = vie*(1+vague/10);
+    vie += vague;
 }
 
 bool Ennemi::Charg(){

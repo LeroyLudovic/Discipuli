@@ -20,6 +20,7 @@ const char m_terrain1[10][38] = {
 };
 
 Terrain::Terrain(){
+    depart = 0;
     for(int x=0;x<Largeur;++x)
 		for(int y=0;y<Longeur;++y)
 			tab[x][y] = 'O';
@@ -36,10 +37,10 @@ void Terrain::generation(){
     int avcY = 0;
     int val;
     int lon;
-    int dif = 0 ;
 
     val = rand() % 8 + 1;
     tab[val][0] = ' ';
+    depart = val;
     avcY = val;
 
     while(avcX < 37){
