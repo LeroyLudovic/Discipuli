@@ -4,6 +4,7 @@
 Tour::Tour(Vecteur v,int t){
     type = t;
     position = v;
+    chargement = 0;
     switch (t)
     {
     case 1 :    
@@ -44,6 +45,15 @@ void Tour::Amelioration(){
         degat*=1.5;
         portee+=1;
     }
+}
+
+bool Tour::Charg(){
+    chargement+=vitesse;
+    if(chargement > 100){
+        chargement = 0;
+        return true;
+    }
+    return false;
 }
 
 int Tour::Vendre(){

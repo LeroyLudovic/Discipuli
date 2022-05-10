@@ -10,6 +10,7 @@ class Tour {
 
     Vecteur position;
     int prix;
+    float chargement;
 
     public :
 
@@ -23,6 +24,8 @@ class Tour {
     ~Tour();
 
     void Amelioration();
+
+    bool Charg();
 
     int Vendre();
 
