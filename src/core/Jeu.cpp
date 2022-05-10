@@ -16,6 +16,7 @@ Jeu::Jeu(){
     nbVagueFort = 0;
     diplome = 5;
     kill = 0;
+    delaiInv = 0;
     genE = false;
     curseur.x = -1;
     curseur.y = -1;
@@ -47,11 +48,25 @@ bool Jeu::DevienFort(){
     return fort;
 }
 
-void Jeu::creerVague(){
+void Jeu::creerVague(int a){
     Vecteur pos(ter.depart,-1);
-    Ennemi ad(pos,2,DevienFort());
+    Ennemi ad(pos,a,DevienFort());
     ad.lvlUp(vague);
     tabE.push_back(ad);
+    switch (a) {
+        case '1' :
+            delaiInv = 100;
+            break;
+        case '2' :
+            delaiInv = 100;
+            break;
+        case '3' :
+            delaiInv = 100;
+            break;
+        case '4' :
+            delaiInv = 100;
+            break;
+    }
 }
 
 bool Jeu::Range(Ennemi E,Tour T){
@@ -88,7 +103,7 @@ void Jeu::actionsAutomatiques (){
 
 
     if(reste > 0 && genE == true){
-        creerVague();
+        creerVague(2);
     }
 
     if(tabE.size() == 0 && genE == false){

@@ -24,6 +24,7 @@ class Jeu{
         int vague; 
         int tourSel;
         int diplome;
+        int delaiInv;
         Terrain ter;
         vector<Ennemi> tabE;
         vector<Tour> tabT;
@@ -37,7 +38,7 @@ class Jeu{
 
         bool DevienFort();
 
-        void creerVague();
+        void creerVague(int);
 
         void Examen();
 
