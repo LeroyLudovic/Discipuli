@@ -230,20 +230,24 @@ void SDLSimple::sdlAff () {
 
 	// Afficher le sprite du Fantome
     for (int i = 0 ; i < int(jeu.tabE.size()) ; i++) {
+        bool up,down;
         float mov = (5*jeu.tabE[i].vitesse*(jeu.tabE[i].chargement/jeu.tabE[i].vitesse))/100*TAILLE_SPRITE;
         if (ter.getCase(jeu.tabE[i].getX(),jeu.tabE[i].getY()+1) == ' ') {
+            up = down = false;
             if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE+mov,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE+mov,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 3) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE+mov,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE+mov,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
         }
-        else if (ter.getCase(jeu.tabE[i].getX()-1,jeu.tabE[i].getY()) == ' ') {
+        else if (ter.getCase(jeu.tabE[i].getX()-1,jeu.tabE[i].getY()) == ' ' && up == false) {
+            down == true;
             if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage-mov,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage-mov,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 3) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage-mov,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage-mov,TAILLE_SPRITE,TAILLE_SPRITE);
         }
-        else if (ter.getCase(jeu.tabE[i].getX()+1,jeu.tabE[i].getY()) == ' ') {
+        else if (ter.getCase(jeu.tabE[i].getX()+1,jeu.tabE[i].getY()) == ' ' && down == false) {
+            up == true;
             if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 3) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
@@ -274,6 +278,14 @@ void SDLSimple::sdlAff () {
     SDL_Rect NbArgent;
     NbArgent.x = 91;NbArgent.y = 607;NbArgent.w = TextSurface->w;NbArgent.h = TextSurface->h; 
     SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbArgent);
+    SDL_FreeSurface(TextSurface);
+
+    TextSurface = TTF_RenderText_Solid(font,"Discipuli",font_color);
+	font_im.setSurface(TTF_RenderText_Solid(font,"Discipuli",font_color));
+    font_im.loadFromCurrentSurface(renderer);
+    SDL_Rect Titre;
+    Titre.x = 1872/2-120;Titre.y = 9;Titre.w = TextSurface->w;Titre.h = TextSurface->h;
+    SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&Titre);
     SDL_FreeSurface(TextSurface);
 
 }
