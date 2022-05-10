@@ -28,12 +28,39 @@ Jeu::~Jeu(){
 
 void Jeu::ajoutTour(Vecteur a,int b){
     if (ter.getCase(a.x,a.y) == 'O') {
-        if(fonds>=50){
-            Tour t(a,b);
-            tabT.push_back(t);
-            fonds-=50;
-            ter.tab[a.x][a.y] = '#';
+        switch (tourSel){
+            case 1 :
+                if(fonds>=50){
+                Tour t(a,b);
+                tabT.push_back(t);
+                fonds-=50;
+                ter.tab[a.x][a.y] = '#';}
+                break;
+            case 2 :
+                if(fonds>=65){
+                Tour t(a,b);
+                tabT.push_back(t);
+                fonds-=65;
+                ter.tab[a.x][a.y] = '#';}
+                break;
+            case 3 :
+                if(fonds>=55){
+                Tour t(a,b);
+                tabT.push_back(t);
+                fonds-=55;
+                ter.tab[a.x][a.y] = '#';}
+                break;
+            case 4 :
+                if(fonds>=75){
+                Tour t(a,b);
+                tabT.push_back(t);
+                fonds-=75;
+                ter.tab[a.x][a.y] = '#';}
+                break;
         }
+    }
+    else if (ter.getCase(a.x,a.y) == '#'){
+        
     }
 }
 
