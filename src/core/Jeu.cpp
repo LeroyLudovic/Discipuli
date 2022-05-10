@@ -94,7 +94,9 @@ void Jeu::actionsAutomatiques (){
         genE = true;
         for(int y=0;y<int(tabE.size());++y){
 			tabE[y].lvlUp(vague);
+            std::cout<<tabE[y].vie<<' ';
 		}
+        std::cout<<std::endl;
         kill = 0;
         vague++;
     }
