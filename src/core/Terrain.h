@@ -12,6 +12,8 @@ class Terrain{
     
     public :
 
+        int depart;
+
         Terrain();
 
         ~Terrain();

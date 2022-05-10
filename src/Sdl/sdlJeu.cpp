@@ -310,7 +310,6 @@ void SDLSimple::sdlBoucle () {
                                     s << jeu.diplome;
 	                               font_im.setSurface(TTF_RenderText_Solid(font,s.str().c_str(),font_color));}
                     for(int x=0;x<int(jeu.tabE.size());++x){
-                        cout << "vie " << x << " : " << jeu.tabE[x].vie << endl;
                         bool dep = jeu.tabE[x].Charg();
                         if(dep){
                             Vecteur direction = jeu.ter.prochaineCase(jeu.tabE[x].position);

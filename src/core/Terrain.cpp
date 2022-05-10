@@ -1,6 +1,8 @@
 #include "Terrain.h"
 
 #include <iostream>
+#include <stdlib.h>
+#include <time.h> 
 using namespace std;
 
 const char m_terrain1[10][40] = {
