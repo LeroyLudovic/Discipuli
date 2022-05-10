@@ -59,6 +59,7 @@ private :
     Image im_Ennemi4;
     Image im_Argent;
     Image im_Diplome;
+    Image im_Cadre;
 
     bool souris;
     bool touche;

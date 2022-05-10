@@ -168,6 +168,8 @@ SDLSimple::SDLSimple () : jeu() {
     im_Argent.loadFromFile("Data/Argent.png",renderer);
     im_Diplome.loadFromFile("Data/Diplome.png",renderer);
 
+    im_Cadre.loadFromFile("Data/Cadre.png",renderer);
+
     // FONTS
     font = TTF_OpenFont("Data/alagard.ttf",70);
     if (font == nullptr)
@@ -260,7 +262,7 @@ void SDLSimple::sdlAff () {
     im_Tour4.draw(renderer,725,525+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
 
     // Ecrire le nombre de vie
-    font_color.r = 50;font_color.g = 255;font_color.b = 255;font_color.a = 255;
+    font_color.r = 255;font_color.g = 0;font_color.b = 0;font_color.a = 255;
     ostringstream d,m;
     d << jeu.diplome;
     SDL_Surface* TextSurface = TTF_RenderText_Solid(font,d.str().c_str(),font_color);
@@ -291,14 +293,30 @@ void SDLSimple::sdlAff () {
     SDL_FreeSurface(TextSurface);
 
     font = TTF_OpenFont("Data/alagard.ttf",25);
-    TextSurface = TTF_RenderText_Solid(font,"A        Z        E       R",font_color);
-	font_im.setSurface(TTF_RenderText_Solid(font,"A        Z        E       R",font_color));
+    TextSurface = TTF_RenderText_Solid(font,"A        Z       E        R",font_color);
+	font_im.setSurface(TTF_RenderText_Solid(font,"A        Z       E        R",font_color));
     font_im.loadFromCurrentSurface(renderer);
     SDL_Rect Touches;
     Touches.x = 515;Touches.y = 570;Touches.w = TextSurface->w;Touches.h = TextSurface->h;
     SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&Touches);
     SDL_FreeSurface(TextSurface);
     font = TTF_OpenFont("Data/alagard.ttf",70);
+
+    switch(jeu.tourSel){
+        case 1 :
+            im_Cadre.draw(renderer,495,520+decalage,TAILLE_SPRITE*1.2,TAILLE_SPRITE*1.2);
+            break;
+        case 2 :
+            im_Cadre.draw(renderer,570,520+decalage,TAILLE_SPRITE*1.2,TAILLE_SPRITE*1.2);
+            break;
+        case 3 :
+
+            im_Cadre.draw(renderer,645,520+decalage,TAILLE_SPRITE*1.2,TAILLE_SPRITE*1.2);
+            break;
+        case 4 :
+            im_Cadre.draw(renderer,720,520+decalage,TAILLE_SPRITE*1.2,TAILLE_SPRITE*1.2);
+            break;
+    }
 
 }
 
