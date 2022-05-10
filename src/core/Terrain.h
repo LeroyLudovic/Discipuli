@@ -7,8 +7,8 @@ class Terrain{
     private :
 
         const int Largeur = 10;
-        const int Longeur = 40;
-        char tab[10][40];
+        const int Longeur = 38;
+        char tab[10][38];
     
     public :
 
