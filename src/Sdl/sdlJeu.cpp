@@ -251,19 +251,30 @@ void SDLSimple::sdlAff () {
         }
     }
 
-    im_Argent.draw(renderer,90,270+decalage,TAILLE_SPRITE*2,TAILLE_SPRITE);
-    im_Diplome.draw(renderer,90,370+decalage,TAILLE_SPRITE*2,TAILLE_SPRITE);
+    im_Argent.draw(renderer,50,520+decalage,TAILLE_SPRITE*4,TAILLE_SPRITE*1.5);
+    im_Diplome.draw(renderer,50,670+decalage,TAILLE_SPRITE*4,TAILLE_SPRITE*1.5);
 
     // Ecrire un titre par dessus
     font_color.r = 50;font_color.g = 50;font_color.b = 255;
-    ostringstream s;
-    s << jeu.diplome;
-	font_im.setSurface(TTF_RenderText_Solid(font,s.str().c_str(),font_color));
+    ostringstream d,m;
+    d << jeu.diplome;
+    SDL_Surface* TextSurface = TTF_RenderText_Solid(font,d.str().c_str(),font_color);
+	font_im.setSurface(TTF_RenderText_Solid(font,d.str().c_str(),font_color));
 	font_im.loadFromCurrentSurface(renderer);
+    SDL_Rect NbDiplome;
+    NbDiplome.x = 160;NbDiplome.y = 757;NbDiplome.w = TextSurface->w;NbDiplome.h = TextSurface->h;
+    SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbDiplome);
+    SDL_FreeSurface(TextSurface);
 
-    SDL_Rect positionTitre;
-    positionTitre.x = 270;positionTitre.y = 490;positionTitre.w = 50;positionTitre.h = 100; 
-    SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&positionTitre);
+
+    m << jeu.fonds;
+    TextSurface = TTF_RenderText_Solid(font,m.str().c_str(),font_color);
+	font_im.setSurface(TTF_RenderText_Solid(font,m.str().c_str(),font_color));
+    font_im.loadFromCurrentSurface(renderer);
+    SDL_Rect NbArgent;
+    NbArgent.x = 91;NbArgent.y = 607;NbArgent.w = TextSurface->w;NbArgent.h = TextSurface->h; 
+    SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbArgent);
+    SDL_FreeSurface(TextSurface);
 
 }
 
