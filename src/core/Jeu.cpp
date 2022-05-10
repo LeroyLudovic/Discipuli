@@ -11,7 +11,7 @@
 
 Jeu::Jeu(){
     tourSel = 1;
-    fonds = 50;
+    fonds = 800;
     vague = 0;
     nbVagueFort = 0;
     diplome = 5;
@@ -131,7 +131,7 @@ void Jeu::actionsAutomatiques (){
 
 
     if(reste > 0 && genE == true && delaiInv <= 0){
-        creerVague(3);
+        creerVague(rand() % 4 +1);
     }
     if(reste > 0 && genE == true && delaiInv > 0){
         delaiInv--;
@@ -148,7 +148,7 @@ void Jeu::actionsAutomatiques (){
 
     for(int x=0;x<int(tabT.size());++x){
 		for(int y=0;y<int(tabE.size());++y){
-			if(Range(tabE[y],tabT[x]) && tabT[x].Charg()){ Attaque(tabE[y],tabT[x]); y=int(tabE.size()); }	
+			if(Range(tabE[y],tabT[x]) && tabT[x].Charg()){ Attaque(tabE[y],tabT[x]); if(tabT[x].type != 3){y=int(tabE.size());}}	
 		}
 	}
     std::cout<<vague<<std::endl;
