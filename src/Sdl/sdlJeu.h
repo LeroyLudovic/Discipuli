@@ -60,6 +60,7 @@ private :
     Image im_Argent;
     Image im_Diplome;
     Image im_Cadre;
+    Image im_SourisSel;
 
     bool souris;
     bool touche;

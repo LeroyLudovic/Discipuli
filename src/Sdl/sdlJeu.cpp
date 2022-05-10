@@ -169,6 +169,7 @@ SDLSimple::SDLSimple () : jeu() {
     im_Diplome.loadFromFile("Data/Diplome.png",renderer);
 
     im_Cadre.loadFromFile("Data/Cadre.png",renderer);
+    im_SourisSel.loadFromFile("Data/Cadre.png",renderer);
 
     // FONTS
     font = TTF_OpenFont("Data/alagard.ttf",70);
@@ -300,6 +301,47 @@ void SDLSimple::sdlAff () {
     Touches.x = 515;Touches.y = 570;Touches.w = TextSurface->w;Touches.h = TextSurface->h;
     SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&Touches);
     SDL_FreeSurface(TextSurface);
+
+    TextSurface = TTF_RenderText_Solid(font,"Prix :",font_color);
+    font_im.setSurface(TTF_RenderText_Solid(font,"Prix :",font_color));
+    font_im.loadFromCurrentSurface(renderer);
+    SDL_Rect Prix;
+    Prix.x = 415;Prix.y = 670;Prix.w = TextSurface->w;Prix.h = TextSurface->h;
+    SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&Prix);
+    SDL_FreeSurface(TextSurface);
+
+    TextSurface = TTF_RenderText_Solid(font,"50",font_color);
+    font_im.setSurface(TTF_RenderText_Solid(font,"50",font_color));
+    font_im.loadFromCurrentSurface(renderer);
+    SDL_Rect P1;
+    P1.x = 510;P1.y = 670;P1.w = TextSurface->w;P1.h = TextSurface->h;
+    SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&P1);
+    SDL_FreeSurface(TextSurface);
+
+    TextSurface = TTF_RenderText_Solid(font,"65",font_color);
+    font_im.setSurface(TTF_RenderText_Solid(font,"65",font_color));
+    font_im.loadFromCurrentSurface(renderer);
+    SDL_Rect P2;
+    P2.x = 585;P2.y = 670;P2.w = TextSurface->w;P2.h = TextSurface->h;
+    SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&P2);
+    SDL_FreeSurface(TextSurface);
+
+    TextSurface = TTF_RenderText_Solid(font,"55",font_color);
+    font_im.setSurface(TTF_RenderText_Solid(font,"55",font_color));
+    font_im.loadFromCurrentSurface(renderer);
+    SDL_Rect P3;
+    P3.x = 660;P3.y = 670;P3.w = TextSurface->w;P3.h = TextSurface->h;
+    SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&P3);
+    SDL_FreeSurface(TextSurface);
+
+    TextSurface = TTF_RenderText_Solid(font,"75",font_color);
+    font_im.setSurface(TTF_RenderText_Solid(font,"75",font_color));
+    font_im.loadFromCurrentSurface(renderer);
+    SDL_Rect P4;
+    P4.x = 735;P4.y = 670;P4.w = TextSurface->w;P4.h = TextSurface->h;
+    SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&P4);
+    SDL_FreeSurface(TextSurface);
+
     font = TTF_OpenFont("Data/alagard.ttf",70);
 
     switch(jeu.tourSel){
@@ -411,6 +453,9 @@ void SDLSimple::sdlBoucle () {
             
             // on affiche le jeu sur le buffer cach�
             sdlAff();
+            if (int(hx / TAILLE_SPRITE) >= 0 && int(hx / TAILLE_SPRITE) <= 37 && int((hy-80) / TAILLE_SPRITE) >= 0 && int((hy-80) / TAILLE_SPRITE) <= 9){
+                im_SourisSel.draw(renderer,int(hx / TAILLE_SPRITE)*TAILLE_SPRITE,int((hy-80) / TAILLE_SPRITE)*TAILLE_SPRITE+80,TAILLE_SPRITE,TAILLE_SPRITE);
+            }
 
             // on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)
             SDL_RenderPresent(renderer);
