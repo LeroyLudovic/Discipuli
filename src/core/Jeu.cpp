@@ -53,18 +53,18 @@ void Jeu::creerVague(int a){
     Ennemi ad(pos,a,DevienFort());
     ad.lvlUp(vague);
     tabE.push_back(ad);
-    switch (a) {
-        case '1' :
-            delaiInv = 1000;
+    switch(a){
+        case 1 :
+            delaiInv = 40;
             break;
-        case '2' :
-            delaiInv = 1000;
+        case 2 :
+            delaiInv = 10;
             break;
-        case '3' :
-            delaiInv = 1000;
+        case 3 :
+            delaiInv = 30;
             break;
-        case '4' :
-            delaiInv = 1000;
+        case 4 :
+            delaiInv = 8;
             break;
     }
 }
@@ -103,7 +103,7 @@ void Jeu::actionsAutomatiques (){
 
 
     if(reste > 0 && genE == true && delaiInv <= 0){
-        creerVague(2);
+        creerVague(3);
     }
     if(reste > 0 && genE == true && delaiInv > 0){
         delaiInv--;
