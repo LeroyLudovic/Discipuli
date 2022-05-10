@@ -281,7 +281,6 @@ void SDLSimple::sdlBoucle () {
 	while (!quit) {
         NewT=SDL_GetTicks();
         delta += NewT - OldT;
-        s << jeu.diplome;
 
         if(delta > 1000/60){
         
@@ -306,9 +305,6 @@ void SDLSimple::sdlBoucle () {
 			}
                 
                 if(jeu.diplome<0){quit=true;}
-                if(jeu.diplome=<3){ ostringstream s;
-                                    s << jeu.diplome;
-	                               font_im.setSurface(TTF_RenderText_Solid(font,s.str().c_str(),font_color));}
                     for(int x=0;x<int(jeu.tabE.size());++x){
                         bool dep = jeu.tabE[x].Charg();
                         if(dep){
@@ -342,6 +338,7 @@ void SDLSimple::sdlBoucle () {
                             pauseTour = jeu.actionSouris('g');
                             break;
                         case SDL_SCANCODE_ESCAPE:
+                            break;
                         case SDL_SCANCODE_A:
                             quit = true;
                             break;
