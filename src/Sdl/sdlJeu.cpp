@@ -177,11 +177,7 @@ SDLSimple::SDLSimple () : jeu() {
             SDL_Quit(); 
             exit(1);
 	}
-	font_color.r = 50;font_color.g = 50;font_color.b = 255;
-    ostringstream s;
-    s << jeu.diplome;
-	font_im.setSurface(TTF_RenderText_Solid(font,s.str().c_str(),font_color));
-	font_im.loadFromCurrentSurface(renderer);
+	
 
     // SONS
     
@@ -259,8 +255,14 @@ void SDLSimple::sdlAff () {
     im_Diplome.draw(renderer,90,370+decalage,TAILLE_SPRITE*2,TAILLE_SPRITE);
 
     // Ecrire un titre par dessus
+    font_color.r = 50;font_color.g = 50;font_color.b = 255;
+    ostringstream s;
+    s << jeu.diplome;
+	font_im.setSurface(TTF_RenderText_Solid(font,s.str().c_str(),font_color));
+	font_im.loadFromCurrentSurface(renderer);
+
     SDL_Rect positionTitre;
-    positionTitre.x = 270;positionTitre.y = 490;positionTitre.w = 100;positionTitre.h = 30; 
+    positionTitre.x = 270;positionTitre.y = 490;positionTitre.w = 50;positionTitre.h = 100; 
     SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&positionTitre);
 
 }
