@@ -3,6 +3,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h> 
+#include <ctime>
 using namespace std;
 
 const char m_terrain1[10][40] = {
@@ -30,13 +31,9 @@ Terrain::~Terrain(){
 }
 
 void Terrain::generation(){
-    for(int i=0;i<Longeur/2;i++){
-        tab[2][i] = ' ';
-    }
-
-    for(int i=(Longeur/2)-1;i<Longeur;i++){
-        tab[3][i] = ' ';
-    }
+    int val;
+    val = rand() % 8 + 1;
+    tab[val][0];
 }
 
 Vecteur Terrain::prochaineCase(Vecteur v){
