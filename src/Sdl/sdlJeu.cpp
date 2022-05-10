@@ -215,6 +215,10 @@ void SDLSimple::sdlAff () {
     int decalage = 80;
 	Terrain& ter = jeu.ter;
 
+    ostringstream d,m,v;
+    SDL_Surface* TextSurface;
+    font = TTF_OpenFont("Data/alagard.ttf",25);
+
     // Afficher les sprites du sol et du chemin
 	for (x=0;x<ter.getX();++x)
 		for (y=0;y<ter.getY();++y)
@@ -239,18 +243,51 @@ void SDLSimple::sdlAff () {
             if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE+mov,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 3) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE+mov,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE+mov,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage,TAILLE_SPRITE,TAILLE_SPRITE);
+
+            v << jeu.tabE[i].vie;
+            TextSurface = TTF_RenderText_Solid(font,v.str().c_str(),font_color);
+            font_im.setSurface(TTF_RenderText_Solid(font,v.str().c_str(),font_color));
+            font_im.loadFromCurrentSurface(renderer);
+            SDL_Rect eVie;
+            eVie.x = jeu.tabE[i].getY()*TAILLE_SPRITE+mov;eVie.y = jeu.tabE[i].getX()*TAILLE_SPRITE+decalage;eVie.w = TextSurface->w;eVie.h = TextSurface->h; 
+            SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&eVie);
+            SDL_FreeSurface(TextSurface);
+            v.str("");
+            v.clear();
         }
         else if (ter.prochaineCase(jeu.tabE[i].position).x == -1) {
             if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage-mov,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage-mov,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 3) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage-mov,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage-mov,TAILLE_SPRITE,TAILLE_SPRITE);
+            
+            v << jeu.tabE[i].vie;
+            TextSurface = TTF_RenderText_Solid(font,v.str().c_str(),font_color);
+            font_im.setSurface(TTF_RenderText_Solid(font,v.str().c_str(),font_color));
+            font_im.loadFromCurrentSurface(renderer);
+            SDL_Rect eVie;
+            eVie.x = jeu.tabE[i].getY()*TAILLE_SPRITE;eVie.y = jeu.tabE[i].getX()*TAILLE_SPRITE+decalage-mov;eVie.w = TextSurface->w;eVie.h = TextSurface->h; 
+            SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&eVie);
+            SDL_FreeSurface(TextSurface);
+            v.str("");
+            v.clear();
         }
         else if (ter.prochaineCase(jeu.tabE[i].position).x == 1) {
             if (jeu.tabE[i].type == 1) im_Ennemi1.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 2) im_Ennemi2.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 3) im_Ennemi3.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);
             if (jeu.tabE[i].type == 4) im_Ennemi4.draw(renderer,jeu.tabE[i].getY()*TAILLE_SPRITE,jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov,TAILLE_SPRITE,TAILLE_SPRITE);            
+
+            v << jeu.tabE[i].vie;
+            TextSurface = TTF_RenderText_Solid(font,v.str().c_str(),font_color);
+            font_im.setSurface(TTF_RenderText_Solid(font,v.str().c_str(),font_color));
+            font_im.loadFromCurrentSurface(renderer);
+            SDL_Rect eVie;
+            eVie.x = jeu.tabE[i].getY()*TAILLE_SPRITE;eVie.y = jeu.tabE[i].getX()*TAILLE_SPRITE+decalage+mov;eVie.w = TextSurface->w;eVie.h = TextSurface->h; 
+            SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&eVie);
+            SDL_FreeSurface(TextSurface);
+            v.str("");
+            v.clear();
         }
     }
 
@@ -264,9 +301,9 @@ void SDLSimple::sdlAff () {
 
     // Ecrire le nombre de vie
     font_color.r = 255;font_color.g = 0;font_color.b = 0;font_color.a = 255;
-    ostringstream d,m;
+    font = TTF_OpenFont("Data/alagard.ttf",70);
     d << jeu.diplome;
-    SDL_Surface* TextSurface = TTF_RenderText_Solid(font,d.str().c_str(),font_color);
+    TextSurface = TTF_RenderText_Solid(font,d.str().c_str(),font_color);
 	font_im.setSurface(TTF_RenderText_Solid(font,d.str().c_str(),font_color));
 	font_im.loadFromCurrentSurface(renderer);
     SDL_Rect NbDiplome;
@@ -341,6 +378,9 @@ void SDLSimple::sdlAff () {
     P4.x = 735;P4.y = 670;P4.w = TextSurface->w;P4.h = TextSurface->h;
     SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&P4);
     SDL_FreeSurface(TextSurface);
+
+    for(int i = 0 ; i < int(jeu.tabE.size()) ; i++){
+    }
 
     font = TTF_OpenFont("Data/alagard.ttf",70);
 
