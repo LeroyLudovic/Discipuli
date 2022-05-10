@@ -8,10 +8,10 @@ class Terrain{
 
         const int Largeur = 10;
         const int Longeur = 38;
-        char tab[10][38];
     
     public :
 
+        char tab[10][38];
         int depart;
 
         Terrain();

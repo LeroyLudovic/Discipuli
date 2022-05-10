@@ -32,6 +32,7 @@ void Jeu::ajoutTour(Vecteur a,int b){
             Tour t(a,b);
             tabT.push_back(t);
             fonds-=50;
+            ter.tab[a.x][a.y] = '#';
         }
     }
 }
