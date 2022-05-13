@@ -2,10 +2,10 @@ SDL= -I/usr/include/SDL2
 
 LIBS_SDL = -lSDL2main -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer
 
-all: executable.out
+all: Discipuli.out
 
-executable.out: mainSdl.o sdlJeu.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o
-			g++ -g mainSdl.o sdlJeu.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o -o executable.out $(LIBS_SDL)
+Discipuli.out: mainSdl.o sdlJeu.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o
+			g++ -g mainSdl.o sdlJeu.o Jeu.o Terrain.o Tour.o Ennemi.o Vecteur.o -o Discipuli.out $(LIBS_SDL)
 
 mainSdl.o: src/Sdl/mainSdl.cpp src/core/Jeu.h
 			g++ -g -Wall -c src/Sdl/mainSdl.cpp $(SDL)

@@ -141,12 +141,21 @@ SDLSimple::SDLSimple () : jeu() {
 	dimy = dimy * TAILLE_SPRITE;
 
     // Creation de la fenetre
-    window = SDL_CreateWindow("test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimy, dimx*2, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow("Discipuli", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, dimy, dimx*2, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (window == nullptr) {
         cout << "Erreur lors de la creation de la fenetre : " << SDL_GetError() << endl; 
         SDL_Quit(); 
         exit(1);
     }
+	SDL_Surface* icon;
+    icon = SDL_LoadBMP("Data/icon.bmp");
+
+    if (icon)
+	{
+		SDL_SetColorKey(icon, true, SDL_MapRGB(icon->format, 0, 0, 0));
+		SDL_SetWindowIcon(window, icon);
+		SDL_FreeSurface(icon);
+	}
 
     renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
 
@@ -170,6 +179,7 @@ SDLSimple::SDLSimple () : jeu() {
     im_Argent.loadFromFile("Data/Argent.png",renderer);
     im_Diplome.loadFromFile("Data/Diplome.png",renderer);
 
+    im_CadrePlein.loadFromFile("Data/CadrePlein.png",renderer);
     im_Cadre.loadFromFile("Data/Cadre.png",renderer);
     im_SourisSel.loadFromFile("Data/Cadre.png",renderer);
 
@@ -211,9 +221,32 @@ SDLSimple::~SDLSimple () {
 void SDLSimple::sdlAffMenu () {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     SDL_RenderClear(renderer);
+    SDL_Surface* TextSurface;
 
     im_FondMenu.draw(renderer,0,0,1920,1080);
+    im_CadrePlein.draw(renderer,1872/2-(TAILLE_SPRITE*9.6)/2,420,TAILLE_SPRITE*9.6,TAILLE_SPRITE*2.4);
+    im_CadrePlein.draw(renderer,1872/2-(TAILLE_SPRITE*9.6)/2,280,TAILLE_SPRITE*9.6,TAILLE_SPRITE*2.4);
 
+    font_color.r = 255;font_color.g = 255;font_color.b = 255;
+    font = TTF_OpenFont("Data/alagard.ttf",150);
+
+    TextSurface = TTF_RenderText_Solid(font,"Discipuli",font_color);
+	font_im.setSurface(TTF_RenderText_Solid(font,"Discipuli",font_color));
+    font_im.loadFromCurrentSurface(renderer);
+    SDL_Rect Titre;
+    Titre.x = 1872/2-300;Titre.y = 100;Titre.w = TextSurface->w;Titre.h = TextSurface->h; 
+    SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&Titre);
+    SDL_FreeSurface(TextSurface);
+    
+    font_color.r = 0;font_color.g = 0;font_color.b = 0;
+
+    TextSurface = TTF_RenderText_Solid(font,"Discipuli",font_color);
+	font_im.setSurface(TTF_RenderText_Solid(font,"Discipuli",font_color));
+    font_im.loadFromCurrentSurface(renderer);
+    SDL_Rect Titre2;
+    Titre2.x = 1872/2-290;Titre2.y = 90;Titre2.w = TextSurface->w;Titre2.h = TextSurface->h; 
+    SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&Titre2);
+    SDL_FreeSurface(TextSurface);
 }
 
 void SDLSimple::sdlAffJeu () {
