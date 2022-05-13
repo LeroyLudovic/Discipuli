@@ -151,6 +151,8 @@ SDLSimple::SDLSimple () : jeu() {
     renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
 
     // IMAGES
+    im_FondMenu.loadFromFile("Data/Menu.png",renderer);
+
     im_Sol.loadFromFile("Data/Sol.png",renderer);
     im_Chemin.loadFromFile("Data/Chemin.png",renderer);
 
@@ -206,7 +208,15 @@ SDLSimple::~SDLSimple () {
     SDL_Quit();
 }
 
-void SDLSimple::sdlAff () {
+void SDLSimple::sdlAffMenu () {
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+    SDL_RenderClear(renderer);
+
+    im_FondMenu.draw(renderer,0,0,1920,1080);
+
+}
+
+void SDLSimple::sdlAffJeu () {
 	//Remplir l'écran de blanc
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     SDL_RenderClear(renderer);
@@ -215,7 +225,7 @@ void SDLSimple::sdlAff () {
     int decalage = 80;
 	Terrain& ter = jeu.ter;
 
-    ostringstream d,m,v;
+    ostringstream d,m,v,vag;
     SDL_Surface* TextSurface;
     font = TTF_OpenFont("Data/alagard.ttf",25);
 
@@ -331,6 +341,23 @@ void SDLSimple::sdlAff () {
     SDL_FreeSurface(TextSurface);
 
     font = TTF_OpenFont("Data/alagard.ttf",25);
+    TextSurface = TTF_RenderText_Solid(font,"Vague :",font_color);
+	font_im.setSurface(TTF_RenderText_Solid(font,"Vague :",font_color));
+    font_im.loadFromCurrentSurface(renderer);
+    SDL_Rect Vague;
+    Vague.x = 20;Vague.y = 50;Vague.w = TextSurface->w;Vague.h = TextSurface->h;
+    SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&Vague);
+    SDL_FreeSurface(TextSurface);
+
+    vag << jeu.vague;
+    TextSurface = TTF_RenderText_Solid(font,vag.str().c_str(),font_color);
+	font_im.setSurface(TTF_RenderText_Solid(font,vag.str().c_str(),font_color));
+    font_im.loadFromCurrentSurface(renderer);
+    SDL_Rect vagF;
+    vagF.x = 120;vagF.y = 50;vagF.w = TextSurface->w;vagF.h = TextSurface->h; 
+    SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&vagF);
+    SDL_FreeSurface(TextSurface);
+    
     TextSurface = TTF_RenderText_Solid(font,"A        Z       E        R",font_color);
 	font_im.setSurface(TTF_RenderText_Solid(font,"A        Z       E        R",font_color));
     font_im.loadFromCurrentSurface(renderer);
@@ -420,86 +447,132 @@ void SDLSimple::sdlBoucle () {
 
         if(delta > 1000/60){
         
+            if(jeu.ecrans){
+                SDL_GetMouseState(&hx, &hy);
 
-            SDL_GetMouseState(&hx, &hy);
-
-            nt = SDL_GetTicks();
-            jeu.actionsAutomatiques();
-
-            for(int i=0;i<int(jeu.tabE.size());i++){
-                if(jeu.tabE[i].position.y == jeu.ter.getY()-1){
-                    jeu.diplome--;
-                    jeu.tabE.erase(jeu.tabE.begin() + i);
-                }
-                if(jeu.tabE[i].vie <= 0){
-                    jeu.GainFonds(jeu.tabE[i]);
-                    jeu.kill += 1;
-                    jeu.tabE.erase(jeu.tabE.begin() + i);
-                }
-	    	}
-                
-            if(jeu.diplome<0){quit=true;}
-            for(int x=0;x<int(jeu.tabE.size());++x){
-                bool dep = jeu.tabE[x].Charg();
-                if(dep){
-                    Vecteur direction = jeu.ter.prochaineCase(jeu.tabE[x].position);
-                    jeu.tabE[x].Deplacement(direction);
-                }
-
-                //debug pos ennemi
-                //cout<<endl<<"Ennemi "<<x+1<<" : "<<jeu.tabE[x].getX()<<" "<<jeu.tabE[x].getY()<<endl;
-            }
-
-            // tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
-            while (SDL_PollEvent(&events)) {
-                if (events.type == SDL_QUIT) quit = true;           // Si l'utilisateur a clique sur la croix de fermeture
-                else if (events.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
-                    bool pauseTour = false;
-                    switch ( events.key.keysym.scancode) {
-                    case SDL_SCANCODE_Q:
-                        pauseTour = jeu.actionClavier('a');    // car Y inverse
-                        break;
-                    case SDL_SCANCODE_W:
-                        pauseTour = jeu.actionClavier('z');     // car Y inverse
-                        break;
-                    case SDL_SCANCODE_E:
-                        pauseTour = jeu.actionClavier('e');
-                        break;
-                    case SDL_SCANCODE_R:
-                        pauseTour = jeu.actionClavier('r');
-                        break;
-                    case SDL_BUTTON_LEFT:
-                        pauseTour = jeu.actionSouris('g');
-                        break;
-                    case SDL_SCANCODE_ESCAPE:
-                        break;
-                    case SDL_SCANCODE_A:
-                        quit = true;
-                        break;
-                    default: break; 
+                while (SDL_PollEvent(&events)) {
+                    if (events.type == SDL_QUIT) quit = true;           // Si l'utilisateur a clique sur la croix de fermeture
+                    else if (events.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
+                        bool pauseTour = false;
+                        switch ( events.key.keysym.scancode) {
+                        case SDL_SCANCODE_Q:
+                            pauseTour = jeu.actionClavier('a');    // car Y inverse
+                            break;
+                        case SDL_SCANCODE_W:
+                            pauseTour = jeu.actionClavier('z');     // car Y inverse
+                            break;
+                        case SDL_SCANCODE_E:
+                            pauseTour = jeu.actionClavier('e');
+                            break;
+                        case SDL_SCANCODE_R:
+                            pauseTour = jeu.actionClavier('r');
+                            break;
+                        case SDL_BUTTON_LEFT:
+                            pauseTour = jeu.actionSouris('g');
+                            break;
+                        case SDL_SCANCODE_ESCAPE:
+                            break;
+                        case SDL_SCANCODE_A:
+                            quit = true;
+                            break;
+                        default: break; 
+                        }
+                        if ((withSound) && (pauseTour)){}
+                            //Mix_PlayChannel(-1,sound,0);
+                    }else if(events.type == SDL_MOUSEBUTTONDOWN){
+                        bool test;
+                        if(events.button.clicks == 1){
+                            test = jeu.actionSouris('g');
+                            jeu.ajoutTour(Vecteur(int((hy-80) / TAILLE_SPRITE),int(hx / TAILLE_SPRITE)),jeu.tourSel);
+                        }                    
+                        if((withSound) && (test)){}
                     }
-                    if ((withSound) && (pauseTour)){}
-                        //Mix_PlayChannel(-1,sound,0);
-                }else if(events.type == SDL_MOUSEBUTTONDOWN){
-                    bool test;
-                    if(events.button.clicks == 1){
-                        test = jeu.actionSouris('g');
-                        jeu.ajoutTour(Vecteur(int((hy-80) / TAILLE_SPRITE),int(hx / TAILLE_SPRITE)),jeu.tourSel);
-                    }                    
-                    if((withSound) && (test)){}
                 }
-            }
+                sdlAffMenu();
+                SDL_RenderPresent(renderer);
+                delta = 0;
 
-            
-            // on affiche le jeu sur le buffer cach�
-            sdlAff();
-            if (int(hx / TAILLE_SPRITE) >= 0 && int(hx / TAILLE_SPRITE) <= 37 && int((hy-80) / TAILLE_SPRITE) >= 0 && int((hy-80) / TAILLE_SPRITE) <= 9){
-                im_SourisSel.draw(renderer,int(hx / TAILLE_SPRITE)*TAILLE_SPRITE,int((hy-80) / TAILLE_SPRITE)*TAILLE_SPRITE+80,TAILLE_SPRITE,TAILLE_SPRITE);
-            }
+            }else{
+                SDL_GetMouseState(&hx, &hy);
 
-            // on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)
-            SDL_RenderPresent(renderer);
-            delta = 0;
+                nt = SDL_GetTicks();
+                jeu.actionsAutomatiques();
+
+                for(int i=0;i<int(jeu.tabE.size());i++){
+                    if(jeu.tabE[i].position.y == jeu.ter.getY()-1){
+                        jeu.diplome--;
+                        jeu.tabE.erase(jeu.tabE.begin() + i);
+                    }
+                    if(jeu.tabE[i].vie <= 0){
+                        jeu.GainFonds(jeu.tabE[i]);
+                        jeu.kill += 1;
+                        jeu.tabE.erase(jeu.tabE.begin() + i);
+                    }
+                }
+                    
+                if(jeu.diplome<0){quit=true;}
+                for(int x=0;x<int(jeu.tabE.size());++x){
+                    bool dep = jeu.tabE[x].Charg();
+                    if(dep){
+                        Vecteur direction = jeu.ter.prochaineCase(jeu.tabE[x].position);
+                        jeu.tabE[x].Deplacement(direction);
+                    }
+
+                    //debug pos ennemi
+                    //cout<<endl<<"Ennemi "<<x+1<<" : "<<jeu.tabE[x].getX()<<" "<<jeu.tabE[x].getY()<<endl;
+                }
+
+                // tant qu'il y a des évenements à traiter (cette boucle n'est pas bloquante)
+                while (SDL_PollEvent(&events)) {
+                    if (events.type == SDL_QUIT) quit = true;           // Si l'utilisateur a clique sur la croix de fermeture
+                    else if (events.type == SDL_KEYDOWN) {              // Si une touche est enfoncee
+                        bool pauseTour = false;
+                        switch ( events.key.keysym.scancode) {
+                        case SDL_SCANCODE_Q:
+                            pauseTour = jeu.actionClavier('a');    // car Y inverse
+                            break;
+                        case SDL_SCANCODE_W:
+                            pauseTour = jeu.actionClavier('z');     // car Y inverse
+                            break;
+                        case SDL_SCANCODE_E:
+                            pauseTour = jeu.actionClavier('e');
+                            break;
+                        case SDL_SCANCODE_R:
+                            pauseTour = jeu.actionClavier('r');
+                            break;
+                        case SDL_BUTTON_LEFT:
+                            pauseTour = jeu.actionSouris('g');
+                            break;
+                        case SDL_SCANCODE_ESCAPE:
+                            break;
+                        case SDL_SCANCODE_A:
+                            quit = true;
+                            break;
+                        default: break; 
+                        }
+                        if ((withSound) && (pauseTour)){}
+                            //Mix_PlayChannel(-1,sound,0);
+                    }else if(events.type == SDL_MOUSEBUTTONDOWN){
+                        bool test;
+                        if(events.button.clicks == 1){
+                            test = jeu.actionSouris('g');
+                            jeu.ajoutTour(Vecteur(int((hy-80) / TAILLE_SPRITE),int(hx / TAILLE_SPRITE)),jeu.tourSel);
+                        }                    
+                        if((withSound) && (test)){}
+                    }
+                }
+
+                
+                // on affiche le jeu sur le buffer cach�
+                sdlAffJeu();
+                if (int(hx / TAILLE_SPRITE) >= 0 && int(hx / TAILLE_SPRITE) <= 37 && int((hy-80) / TAILLE_SPRITE) >= 0 && int((hy-80) / TAILLE_SPRITE) <= 9){
+                    im_SourisSel.draw(renderer,int(hx / TAILLE_SPRITE)*TAILLE_SPRITE,int((hy-80) / TAILLE_SPRITE)*TAILLE_SPRITE+80,TAILLE_SPRITE,TAILLE_SPRITE);
+                }
+
+                // on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)
+                SDL_RenderPresent(renderer);
+                delta = 0;
+            }
         }
         OldT = SDL_GetTicks();
 	}

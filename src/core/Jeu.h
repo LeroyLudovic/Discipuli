@@ -19,6 +19,7 @@ class Jeu{
 
     public :
 
+        bool ecrans;
         int kill;
         int fonds;
         int vague; 

@@ -47,6 +47,7 @@ private :
 
     bool withSound;
 
+    Image im_FondMenu;
     Image im_Tour1;
     Image im_Tour2;
     Image im_Tour3;
@@ -69,7 +70,8 @@ public :
     SDLSimple ();
     ~SDLSimple ();
     void sdlBoucle ();
-    void sdlAff ();
+    void sdlAffJeu ();
+    void sdlAffMenu ();
 
 };
 

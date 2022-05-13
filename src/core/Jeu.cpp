@@ -10,6 +10,7 @@
 #include <string>
 
 Jeu::Jeu(){
+    ecrans = true;
     tourSel = 1;
     fonds = 800;
     vague = 0;
