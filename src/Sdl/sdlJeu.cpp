@@ -247,6 +247,25 @@ void SDLSimple::sdlAffMenu () {
     Titre2.x = 1872/2-290;Titre2.y = 90;Titre2.w = TextSurface->w;Titre2.h = TextSurface->h; 
     SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&Titre2);
     SDL_FreeSurface(TextSurface);
+
+    font_color.r = 0;font_color.g = 0;font_color.b = 0;
+    font = TTF_OpenFont("Data/alagard.ttf",100);
+
+    TextSurface = TTF_RenderText_Solid(font,"Play",font_color);
+	font_im.setSurface(TTF_RenderText_Solid(font,"Play",font_color));
+    font_im.loadFromCurrentSurface(renderer);
+    SDL_Rect PlayButton;
+    PlayButton.x = 1872/2-100;PlayButton.y = 290;PlayButton.w = TextSurface->w;PlayButton.h = TextSurface->h; 
+    SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&PlayButton);
+    SDL_FreeSurface(TextSurface);
+
+    TextSurface = TTF_RenderText_Solid(font,"Quit",font_color);
+	font_im.setSurface(TTF_RenderText_Solid(font,"Quit",font_color));
+    font_im.loadFromCurrentSurface(renderer);
+    SDL_Rect QuitButton;
+    QuitButton.x = 1872/2-100;QuitButton.y = 435;QuitButton.w = TextSurface->w;QuitButton.h = TextSurface->h; 
+    SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&QuitButton);
+    SDL_FreeSurface(TextSurface);
 }
 
 void SDLSimple::sdlAffJeu () {
@@ -513,7 +532,20 @@ void SDLSimple::sdlBoucle () {
                         bool test;
                         if(events.button.clicks == 1){
                             test = jeu.actionSouris('g');
-                            jeu.ajoutTour(Vecteur(int((hy-80) / TAILLE_SPRITE),int(hx / TAILLE_SPRITE)),jeu.tourSel);
+                            for (int x = 705 ; x <= 1164 ; x++) {
+                                for (int y = 280 ; y <= 394 ; y++) {
+                                    if (hx == x && hy == y) {
+                                        jeu.ecrans = !jeu.ecrans;
+                                    }
+                                }
+                            }
+                            for (int x = 705 ; x <= 1164 ; x++) {
+                                for (int y = 420 ; y <= 534 ; y++) {
+                                    if (hx == x && hy == y) {
+                                        quit = !quit;
+                                    }
+                                }
+                            }
                         }                    
                         if((withSound) && (test)){}
                     }
@@ -576,7 +608,7 @@ void SDLSimple::sdlBoucle () {
                         case SDL_SCANCODE_ESCAPE:
                             break;
                         case SDL_SCANCODE_A:
-                            quit = true;
+                            jeu.ecrans = !jeu.ecrans;
                             break;
                         default: break; 
                         }
