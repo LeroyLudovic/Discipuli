@@ -477,8 +477,8 @@ void SDLSimple::sdlAffJeu () {
 
     if (jeu.tourMenu){
         im_Cadre.draw(renderer,1163,600,TAILLE_SPRITE*13.5,TAILLE_SPRITE*7.5);
-        im_Cadre.draw(renderer,1163,700,TAILLE_SPRITE,TAILLE_SPRITE);
-        im_Cadre.draw(renderer,1163,800,TAILLE_SPRITE,TAILLE_SPRITE);
+        im_Cadre.draw(renderer,1563,650,TAILLE_SPRITE*4,TAILLE_SPRITE*2);
+        im_Cadre.draw(renderer,1563,800,TAILLE_SPRITE*4,TAILLE_SPRITE*2);
     }
 
 }
@@ -638,10 +638,10 @@ void SDLSimple::sdlBoucle () {
                 }
                 if (jeu.tourMenu) {
                     for (int i = 0 ; i < int(jeu.tabT.size()) ; i++) {
-                        if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 1){im_Tour1.draw(renderer,900,725,TAILLE_SPRITE,TAILLE_SPRITE);}
-                        if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 2){im_Tour2.draw(renderer,900,725,TAILLE_SPRITE,TAILLE_SPRITE);}
-                        if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 3){im_Tour3.draw(renderer,900,725,TAILLE_SPRITE,TAILLE_SPRITE);}
-                        if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 4){im_Tour4.draw(renderer,900,725,TAILLE_SPRITE,TAILLE_SPRITE);}
+                        if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 1){im_Tour1.draw(renderer,1200,650,TAILLE_SPRITE*2.5,TAILLE_SPRITE*2.5);}
+                        if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 2){im_Tour2.draw(renderer,1300,650,TAILLE_SPRITE*2.5,TAILLE_SPRITE*2.5);}
+                        if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 3){im_Tour3.draw(renderer,1300,650,TAILLE_SPRITE*2.5,TAILLE_SPRITE*2.5);}
+                        if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 4){im_Tour4.draw(renderer,1300,650,TAILLE_SPRITE*2.5,TAILLE_SPRITE*2.5);}
                         //cout << "X : " << jeu.tabT[i].getX() << " Y : " << jeu.tabT[i].getY() << endl;
                         //cout << "click X : " << jeu.posClick.x << " click Y : " << jeu.posClick.y << endl;
 
