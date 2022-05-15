@@ -439,9 +439,6 @@ void SDLSimple::sdlAffJeu () {
     SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&P4);
     SDL_FreeSurface(TextSurface);
 
-    for(int i = 0 ; i < int(jeu.tabE.size()) ; i++){
-    }
-
     font = TTF_OpenFont("Data/alagard.ttf",70);
 
     switch(jeu.tourSel){
