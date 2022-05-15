@@ -475,6 +475,12 @@ void SDLSimple::sdlAffJeu () {
             break;
     }
 
+    if (jeu.tourMenu){
+        im_Cadre.draw(renderer,1163,600,TAILLE_SPRITE*13.5,TAILLE_SPRITE*7.5);
+        im_Cadre.draw(renderer,1163,700,TAILLE_SPRITE,TAILLE_SPRITE);
+        im_Cadre.draw(renderer,1163,800,TAILLE_SPRITE,TAILLE_SPRITE);
+    }
+
 }
 
 void SDLSimple::sdlBoucle () {
@@ -619,16 +625,28 @@ void SDLSimple::sdlBoucle () {
                         if(events.button.clicks == 1){
                             test = jeu.actionSouris('g');
                             jeu.ajoutTour(Vecteur(int((hy-80) / TAILLE_SPRITE),int(hx / TAILLE_SPRITE)),jeu.tourSel);
+
                         }                    
                         if((withSound) && (test)){}
                     }
                 }
 
-                
                 // on affiche le jeu sur le buffer cach�
                 sdlAffJeu();
                 if (int(hx / TAILLE_SPRITE) >= 0 && int(hx / TAILLE_SPRITE) <= 37 && int((hy-80) / TAILLE_SPRITE) >= 0 && int((hy-80) / TAILLE_SPRITE) <= 9){
                     im_SourisSel.draw(renderer,int(hx / TAILLE_SPRITE)*TAILLE_SPRITE,int((hy-80) / TAILLE_SPRITE)*TAILLE_SPRITE+80,TAILLE_SPRITE,TAILLE_SPRITE);
+                }
+                if (jeu.tourMenu) {
+                    for (int i = 0 ; i < int(jeu.tabT.size()) ; i++) {
+                        if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 1){im_Tour1.draw(renderer,900,725,TAILLE_SPRITE,TAILLE_SPRITE);}
+                        if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 2){im_Tour2.draw(renderer,900,725,TAILLE_SPRITE,TAILLE_SPRITE);}
+                        if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 3){im_Tour3.draw(renderer,900,725,TAILLE_SPRITE,TAILLE_SPRITE);}
+                        if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 4){im_Tour4.draw(renderer,900,725,TAILLE_SPRITE,TAILLE_SPRITE);}
+                        //cout << "X : " << jeu.tabT[i].getX() << " Y : " << jeu.tabT[i].getY() << endl;
+                        //cout << "click X : " << jeu.posClick.x << " click Y : " << jeu.posClick.y << endl;
+
+                        // reste affichage stats + affichage boutons (upgrade + sell) + fonctionnement boutons
+                    }
                 }
 
                 // on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)

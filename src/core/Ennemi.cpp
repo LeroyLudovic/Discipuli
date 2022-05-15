@@ -48,9 +48,9 @@ Ennemi::~Ennemi(){
 }
 
 void Ennemi::lvlUp(int vague){
-    std::cout<<vie<<std::endl;
+    //std::cout<<vie<<std::endl;
     vie += vague*2;
-    std::cout<<vie<<std::endl;
+    //std::cout<<vie<<std::endl;
 }
 
 bool Ennemi::Charg(){

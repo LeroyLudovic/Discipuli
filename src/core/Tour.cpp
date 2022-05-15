@@ -51,10 +51,10 @@ bool Tour::Charg(){
     chargement+=vitesse;
     if(chargement > 70){
         chargement = 0;
-        std::cout<<chargement<<std::endl;
+        //std::cout<<chargement<<std::endl;
         return true;
     }
-    std::cout<<chargement;
+    //std::cout<<chargement;
     return false;
 }
 

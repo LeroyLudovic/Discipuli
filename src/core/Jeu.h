@@ -20,6 +20,7 @@ class Jeu{
     public :
 
         bool ecrans;
+        bool tourMenu;
         int kill;
         int fonds;
         int vague; 
@@ -30,6 +31,7 @@ class Jeu{
         vector<Ennemi> tabE;
         vector<Tour> tabT;
         Vecteur curseur;
+        Vecteur posClick;
 
         Jeu();
 

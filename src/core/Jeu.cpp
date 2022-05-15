@@ -11,6 +11,8 @@
 
 Jeu::Jeu(){
     ecrans = true;
+    tourMenu = false;
+    posClick.x = posClick.y = -1;
     tourSel = 1;
     fonds = 800;
     vague = 0;
@@ -29,6 +31,7 @@ Jeu::~Jeu(){
 
 void Jeu::ajoutTour(Vecteur a,int b){
     if (ter.getCase(a.x,a.y) == 'O') {
+        tourMenu = false;
         switch (tourSel){
             case 1 :
                 if(fonds>=50){
@@ -61,7 +64,8 @@ void Jeu::ajoutTour(Vecteur a,int b){
         }
     }
     else if (ter.getCase(a.x,a.y) == '#'){
-        
+        tourMenu = true;
+        posClick = a;
     }
 }
 
@@ -154,7 +158,7 @@ void Jeu::actionsAutomatiques (){
             }
         }
 	}
-    std::cout<<vague<<std::endl;
+    //std::cout<<vague<<std::endl;
 }
 
 void Jeu::Infos(){
