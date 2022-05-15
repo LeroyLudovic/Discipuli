@@ -46,7 +46,7 @@ void Terrain::generation(){
     while(avcX < 37){
         lon = rand() % (38 - (avcX+ 1));
         val = rand() % 8 + 1;
-        std::cout<<lon<<' '<<val<<' '<<avcX<<' '<<avcY<<std::endl;
+        //std::cout<<lon<<' '<<val<<' '<<avcX<<' '<<avcY<<std::endl;
         for(int i = avcX+1;i<=lon+avcX;i++){
             tab[avcY][i] = ' ';
         }
@@ -70,7 +70,7 @@ void Terrain::generation(){
         avcX += 1;
         
         tab[avcY][avcX] = ' ';
-        std::cout<<"case rempli : "<<avcX<<' '<<avcY<<endl;
+        //std::cout<<"case rempli : "<<avcX<<' '<<avcY<<endl;
     }
 }
 
