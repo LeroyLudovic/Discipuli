@@ -26,5 +26,7 @@ Contrôles :
     clique sur une case avec un professeur : affiche ses statistiques.
     clique sur "Upgrade" : améliore les statistiques du professeur selectionné.
     clique sur "Vendre" : non, on ne fait de traffic d'êtres humains, il est simplement "licencié".
+
   A, Z, E, R : permet de changer le type de professeur selectionné (indiqué en bas par un carré jaune).
+  
   q : si vous êtes sur le menu, ferme le programme; si vous êtes sur le jeu, vous ramène au menu. 
