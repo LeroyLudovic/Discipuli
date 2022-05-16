@@ -853,7 +853,7 @@ void SDLSimple::sdlBoucle () {
                                 for (int x = 1563 ; x <= 1707 ; x++) { // upgrade
                                     for (int y = 650 ; y <= 698 ; y++) {
                                         if (hx == x && hy == y) {
-                                            // fonction upgrade
+                                            jeu.upgradeTour();
                                         }
                                     }
                                 }
@@ -861,7 +861,7 @@ void SDLSimple::sdlBoucle () {
                                 for (int x = 1563 ; x <= 1707 ; x++) { // vendre
                                     for (int y = 800 ; y <= 848 ; y++) {
                                          if (hx == x && hy == y) {
-                                            //fonction vendre
+                                            jeu.vendreTour();
                                             jeu.tourMenu = !jeu.tourMenu;
                                         }
                                     }

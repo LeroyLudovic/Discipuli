@@ -69,6 +69,64 @@ void Jeu::ajoutTour(Vecteur a,int b){
     }
 }
 
+void Jeu::vendreTour() {
+    for (int i = 0 ; i < int(tabT.size()) ; i++) {
+        if(tabT[i].getX() == posClick.x && tabT[i].getY() == posClick.y && tabT[i].type == 1){
+            fonds += 100*tabT[i].upgrade;
+                ter.tab[posClick.x][posClick.y] = 'O';
+            tabT.erase(tabT.begin() + i);
+        }
+        if(tabT[i].getX() == posClick.x && tabT[i].getY() == posClick.y && tabT[i].type == 2){
+            fonds += 100*tabT[i].upgrade;
+                ter.tab[posClick.x][posClick.y] = 'O';
+            tabT.erase(tabT.begin() + i);
+        }
+        if(tabT[i].getX() == posClick.x && tabT[i].getY() == posClick.y && tabT[i].type == 3){
+            fonds += 100*tabT[i].upgrade;
+                ter.tab[posClick.x][posClick.y] = 'O';
+            tabT.erase(tabT.begin() + i);
+        }
+        if(tabT[i].getX() == posClick.x && tabT[i].getY() == posClick.y && tabT[i].type == 4){
+            fonds += 100*tabT[i].upgrade;
+                ter.tab[posClick.x][posClick.y] = 'O';
+            tabT.erase(tabT.begin() + i);
+        }
+    }
+}
+
+void Jeu::upgradeTour() {
+    for (int i = 0 ; i < int(tabT.size()) ; i++) {
+        if(tabT[i].getX() == posClick.x && tabT[i].getY() == posClick.y && tabT[i].type == 1){
+            tabT[i].degat = tabT[i].degat * 1.2;
+            tabT[i].vitesse = tabT[i].vitesse * 1.1;
+            tabT[i].portee = tabT[i].portee + 1;
+            tabT[i].prixUpgrade = tabT[i].prixUpgrade * 1.5;
+            tabT[i].upgrade++;
+        }
+        if(tabT[i].getX() == posClick.x && tabT[i].getY() == posClick.y && tabT[i].type == 2){
+            tabT[i].degat = tabT[i].degat * 1.2;
+            tabT[i].vitesse = tabT[i].vitesse * 1.1;
+            tabT[i].portee = tabT[i].portee + 1;
+            tabT[i].prixUpgrade = tabT[i].prixUpgrade * 1.5;
+            tabT[i].upgrade++;
+        }
+        if(tabT[i].getX() == posClick.x && tabT[i].getY() == posClick.y && tabT[i].type == 3){
+            tabT[i].degat = tabT[i].degat * 1.2;
+            tabT[i].vitesse = tabT[i].vitesse * 1.1;
+            tabT[i].portee = tabT[i].portee + 1;
+            tabT[i].prixUpgrade = tabT[i].prixUpgrade * 1.5;
+            tabT[i].upgrade++;
+        }
+        if(tabT[i].getX() == posClick.x && tabT[i].getY() == posClick.y && tabT[i].type == 4){
+            tabT[i].degat = tabT[i].degat * 1.2;
+            tabT[i].vitesse = tabT[i].vitesse * 1.1;
+            tabT[i].portee = tabT[i].portee + 1;
+            tabT[i].prixUpgrade = tabT[i].prixUpgrade * 1.5;
+            tabT[i].upgrade++;
+        }
+    }
+}
+
 bool Jeu::DevienFort(){
     bool fort;
     int test = rand() % 100 + 1;

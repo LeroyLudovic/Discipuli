@@ -39,6 +39,10 @@ class Jeu{
 
         void ajoutTour(Vecteur,int);
 
+        void vendreTour();
+
+        void upgradeTour();
+
         bool DevienFort();
 
         void creerVague(int);

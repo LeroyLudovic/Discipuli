@@ -18,15 +18,19 @@ class Tour {
     int degat;
     float vitesse;
     int portee;
+    int prixUpgrade;
+    int upgrade;
 
     Tour(Vecteur,int);
 
     ~Tour();
 
+    // ne pas enlever ça casse tout
     void Amelioration();
 
     bool Charg();
 
+    // ne pas enlever ça casse tout
     int Vendre();
 
     int getX();
