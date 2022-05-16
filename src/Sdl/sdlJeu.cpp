@@ -483,10 +483,6 @@ void SDLSimple::sdlAffJeu () {
 
     if (jeu.tourMenu){
 
-        im_Cadre.draw(renderer,1163,600,TAILLE_SPRITE*13.5,TAILLE_SPRITE*7.5);
-        im_Cadre.draw(renderer,1563,650,TAILLE_SPRITE*4,TAILLE_SPRITE*2);
-        im_Cadre.draw(renderer,1563,800,TAILLE_SPRITE*4,TAILLE_SPRITE*2);
-
         for (int i = 0 ; i < int(jeu.tabT.size()) ; i++) {
             if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 1){
                 im_Tour1.draw(renderer,1200,650,TAILLE_SPRITE*2.5,TAILLE_SPRITE*2.5);
@@ -647,10 +643,12 @@ void SDLSimple::sdlAffJeu () {
             //cout << "X : " << jeu.tabT[i].getX() << " Y : " << jeu.tabT[i].getY() << endl;
             //cout << "click X : " << jeu.posClick.x << " click Y : " << jeu.posClick.y << endl;
 
-            // reste affichage stats + fonctionnement boutons
-
-                
+            // reste  fonctionnement boutons
         }
+
+        im_Cadre.draw(renderer,1163,600,TAILLE_SPRITE*13.5,TAILLE_SPRITE*7.5);
+        im_Cadre.draw(renderer,1563,650,TAILLE_SPRITE*4,TAILLE_SPRITE*2);
+        im_Cadre.draw(renderer,1563,800,TAILLE_SPRITE*4,TAILLE_SPRITE*2);
 
         font = TTF_OpenFont("Data/alagard.ttf",30);
         
@@ -703,6 +701,7 @@ void SDLSimple::sdlAffJeu () {
         txtSell.x = 1595;txtSell.y = 830;txtSell.w = TextSurface->w;txtSell.h = TextSurface->h;
         SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&txtSell);
         SDL_FreeSurface(TextSurface);
+
     }
 
 }
@@ -849,14 +848,26 @@ void SDLSimple::sdlBoucle () {
                         if(events.button.clicks == 1){
                             test = jeu.actionSouris('g');
                             jeu.ajoutTour(Vecteur(int((hy-80) / TAILLE_SPRITE),int(hx / TAILLE_SPRITE)),jeu.tourSel);
-                            for (int x = 705 ; x <= 1164 ; x++) {
-                                for (int y = 280 ; y <= 394 ; y++) {
-                                    if (hx == x && hy == y) {
-                                        im_Chemin.draw(renderer,hx,hy,TAILLE_SPRITE,TAILLE_SPRITE);
+
+                            if (jeu.tourMenu) {
+                                for (int x = 1563 ; x <= 1707 ; x++) { // upgrade
+                                    for (int y = 650 ; y <= 698 ; y++) {
+                                        if (hx == x && hy == y) {
+                                            // fonction upgrade
+                                        }
+                                    }
+                                }
+
+                                for (int x = 1563 ; x <= 1707 ; x++) { // vendre
+                                    for (int y = 800 ; y <= 848 ; y++) {
+                                         if (hx == x && hy == y) {
+                                            //fonction vendre
+                                            jeu.tourMenu = !jeu.tourMenu;
+                                        }
                                     }
                                 }
                             }
-                        }                    
+                        }                 
                         if((withSound) && (test)){}
                     }
                 }
