@@ -36,6 +36,13 @@ ${OBJ_DIR}Ennemi.o: src/core/Ennemi.h src/core/Ennemi.cpp
 ${OBJ_DIR}Vecteur.o: src/core/Vecteur.h src/core/Vecteur.cpp
 			${CC} -o ${OBJ_DIR}Vecteur.o ${CFLAGS} src/core/Vecteur.cpp $(SDL)
 
+
+docu: doc/discipuli.doxy
+	cd doc ; doxygen discipuli.doxy
+
+doxyclear:
+		rm -r doc/*
+
 clear:
 		rm obj/*.o
 
