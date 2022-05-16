@@ -1,4 +1,3 @@
-
 /**
 *   @file Ennemi.h
 *   @brief contient la classe ennemi
@@ -15,17 +14,23 @@
 * @brief Classe qui contient les caractéristique d'un ennemie.
 */
 class Ennemi {
-
-    private :
-
+    private:
+    
     public :
     
+    ///vitesse de déplacement
     float vitesse;
+
+    ///valeur de chargement avant le déplacement dans la prochaine case
     float chargement;
 
-
+    ///Type d'ennemi
     unsigned int type;
+
+    ///Position de l'ennemi
     Vecteur position;
+
+    ///Vie de l'enmmi
     double vie;
 
     /** @brief permet de construire un ennemi en fonction de certain paramètre.
@@ -35,8 +40,7 @@ class Ennemi {
     */
     Ennemi(Vecteur, int, bool);
 
-    /** @brief destructeur de l'ennemi
-    */
+    ///@brief destructeur de l'ennemi
     ~Ennemi();
 
     /** @brief Augmente la vie des ennemie en fonction de la vague pour améliorer la difficulté.
@@ -71,4 +75,4 @@ class Ennemi {
 
 };
 
-#endif
+#endif 
