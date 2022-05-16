@@ -38,10 +38,10 @@ ${OBJ_DIR}Vecteur.o: src/core/Vecteur.h src/core/Vecteur.cpp
 
 
 docu: 
-	doxygen dconfig
+	doxygen doc/dconfig
 
 doxyclear:
-		rm -r doc/*
+		rm -r doc/html
 
 clear:
 		rm obj/*.o
