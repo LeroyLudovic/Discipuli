@@ -1,3 +1,10 @@
+
+/**
+*   @file Ennemi.h
+*   @author JeSaisPAs
+*   @brief contient la classe ennemi
+*/
+
 #ifndef _ENNEMI
 #define _ENNEMI
 
@@ -17,10 +24,6 @@ class Ennemi {
     Vecteur position;
     double vie;
 
-    /**
-    @desc Constructeur d'Ennemi avec paramètre
-    \<balise> [Vecteur] 
-    */
     Ennemi(Vecteur, int, bool);
 
     ~Ennemi();

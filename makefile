@@ -37,8 +37,8 @@ ${OBJ_DIR}Vecteur.o: src/core/Vecteur.h src/core/Vecteur.cpp
 			${CC} -o ${OBJ_DIR}Vecteur.o ${CFLAGS} src/core/Vecteur.cpp $(SDL)
 
 
-docu: doc/discipuli.doxy
-	cd doc ; doxygen discipuli.doxy
+docu: 
+	doxygen dconfig
 
 doxyclear:
 		rm -r doc/*
