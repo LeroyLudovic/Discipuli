@@ -277,7 +277,7 @@ void SDLSimple::sdlAffJeu () {
     int decalage = 80;
 	Terrain& ter = jeu.ter;
 
-    ostringstream d,m,v,vag;
+    ostringstream d,m,v,vag,dmgT,vitT,rangeT,upgradeT;
     SDL_Surface* TextSurface;
     font = TTF_OpenFont("Data/alagard.ttf",25);
 
@@ -372,6 +372,8 @@ void SDLSimple::sdlAffJeu () {
     NbDiplome.x = 160;NbDiplome.y = 757;NbDiplome.w = TextSurface->w;NbDiplome.h = TextSurface->h;
     SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbDiplome);
     SDL_FreeSurface(TextSurface);
+    d.str("");
+    d.clear();
 
     // Ecrire la quantité d'argent
     m << jeu.fonds;
@@ -382,6 +384,8 @@ void SDLSimple::sdlAffJeu () {
     NbArgent.x = 95;NbArgent.y = 607;NbArgent.w = TextSurface->w;NbArgent.h = TextSurface->h; 
     SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbArgent);
     SDL_FreeSurface(TextSurface);
+    m.str("");
+    m.clear();
 
     // Ecrire le titre
     TextSurface = TTF_RenderText_Solid(font,"Discipuli",font_color);
@@ -409,6 +413,8 @@ void SDLSimple::sdlAffJeu () {
     vagF.x = 120;vagF.y = 50;vagF.w = TextSurface->w;vagF.h = TextSurface->h; 
     SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&vagF);
     SDL_FreeSurface(TextSurface);
+    vag.str("");
+    vag.clear();
     
     TextSurface = TTF_RenderText_Solid(font,"A        Z       E        R",font_color);
 	font_im.setSurface(TTF_RenderText_Solid(font,"A        Z       E        R",font_color));
@@ -476,9 +482,227 @@ void SDLSimple::sdlAffJeu () {
     }
 
     if (jeu.tourMenu){
+
         im_Cadre.draw(renderer,1163,600,TAILLE_SPRITE*13.5,TAILLE_SPRITE*7.5);
         im_Cadre.draw(renderer,1563,650,TAILLE_SPRITE*4,TAILLE_SPRITE*2);
         im_Cadre.draw(renderer,1563,800,TAILLE_SPRITE*4,TAILLE_SPRITE*2);
+
+        for (int i = 0 ; i < int(jeu.tabT.size()) ; i++) {
+            if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 1){
+                im_Tour1.draw(renderer,1200,650,TAILLE_SPRITE*2.5,TAILLE_SPRITE*2.5);
+                
+                font = TTF_OpenFont("Data/alagard.ttf",30);
+
+                dmgT << jeu.tabT[i].degat;
+                TextSurface = TTF_RenderText_Solid(font,dmgT.str().c_str(),font_color);
+                font_im.setSurface(TTF_RenderText_Solid(font,dmgT.str().c_str(),font_color));
+                font_im.loadFromCurrentSurface(renderer);
+                SDL_Rect NbDmg;
+                NbDmg.x = 1435;NbDmg.y = 680;NbDmg.w = TextSurface->w;NbDmg.h = TextSurface->h; 
+                SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbDmg);
+                SDL_FreeSurface(TextSurface);
+                dmgT.str("");
+                dmgT.clear();
+
+                vitT << jeu.tabT[i].vitesse;
+                TextSurface = TTF_RenderText_Solid(font,vitT.str().c_str(),font_color);
+                font_im.setSurface(TTF_RenderText_Solid(font,vitT.str().c_str(),font_color));
+                font_im.loadFromCurrentSurface(renderer);
+                SDL_Rect NbVit;
+                NbVit.x = 1435;NbVit.y = 780;NbVit.w = TextSurface->w;NbVit.h = TextSurface->h; 
+                SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbVit);
+                SDL_FreeSurface(TextSurface);
+                vitT.str("");
+                vitT.clear();
+
+                rangeT << jeu.tabT[i].portee;
+                TextSurface = TTF_RenderText_Solid(font,rangeT.str().c_str(),font_color);
+                font_im.setSurface(TTF_RenderText_Solid(font,rangeT.str().c_str(),font_color));
+                font_im.loadFromCurrentSurface(renderer);
+                SDL_Rect NbRange;
+                NbRange.x = 1435;NbRange.y = 880;NbRange.w = TextSurface->w;NbRange.h = TextSurface->h; 
+                SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbRange);
+                SDL_FreeSurface(TextSurface);
+                rangeT.str("");
+                rangeT.clear();
+                
+                }
+            if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 2){
+                im_Tour2.draw(renderer,1200,650,TAILLE_SPRITE*2.5,TAILLE_SPRITE*2.5);
+                
+                font = TTF_OpenFont("Data/alagard.ttf",30);
+
+                dmgT << jeu.tabT[i].degat;
+                TextSurface = TTF_RenderText_Solid(font,dmgT.str().c_str(),font_color);
+                font_im.setSurface(TTF_RenderText_Solid(font,dmgT.str().c_str(),font_color));
+                font_im.loadFromCurrentSurface(renderer);
+                SDL_Rect NbDmg;
+                NbDmg.x = 1435;NbDmg.y = 680;NbDmg.w = TextSurface->w;NbDmg.h = TextSurface->h; 
+                SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbDmg);
+                SDL_FreeSurface(TextSurface);
+                dmgT.str("");
+                dmgT.clear();
+
+                vitT << jeu.tabT[i].vitesse;
+                TextSurface = TTF_RenderText_Solid(font,vitT.str().c_str(),font_color);
+                font_im.setSurface(TTF_RenderText_Solid(font,vitT.str().c_str(),font_color));
+                font_im.loadFromCurrentSurface(renderer);
+                SDL_Rect NbVit;
+                NbVit.x = 1435;NbVit.y = 780;NbVit.w = TextSurface->w;NbVit.h = TextSurface->h; 
+                SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbVit);
+                SDL_FreeSurface(TextSurface);
+                vitT.str("");
+                vitT.clear();
+
+                rangeT << jeu.tabT[i].portee;
+                TextSurface = TTF_RenderText_Solid(font,rangeT.str().c_str(),font_color);
+                font_im.setSurface(TTF_RenderText_Solid(font,rangeT.str().c_str(),font_color));
+                font_im.loadFromCurrentSurface(renderer);
+                SDL_Rect NbRange;
+                NbRange.x = 1435;NbRange.y = 880;NbRange.w = TextSurface->w;NbRange.h = TextSurface->h; 
+                SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbRange);
+                SDL_FreeSurface(TextSurface);
+                rangeT.str("");
+                rangeT.clear();
+
+                }
+            if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 3){
+                im_Tour3.draw(renderer,1200,650,TAILLE_SPRITE*2.5,TAILLE_SPRITE*2.5);
+                
+                font = TTF_OpenFont("Data/alagard.ttf",30);
+
+                dmgT << jeu.tabT[i].degat;
+                TextSurface = TTF_RenderText_Solid(font,dmgT.str().c_str(),font_color);
+                font_im.setSurface(TTF_RenderText_Solid(font,dmgT.str().c_str(),font_color));
+                font_im.loadFromCurrentSurface(renderer);
+                SDL_Rect NbDmg;
+                NbDmg.x = 1435;NbDmg.y = 680;NbDmg.w = TextSurface->w;NbDmg.h = TextSurface->h; 
+                SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbDmg);
+                SDL_FreeSurface(TextSurface);
+                dmgT.str("");
+                dmgT.clear();
+
+                vitT << jeu.tabT[i].vitesse;
+                TextSurface = TTF_RenderText_Solid(font,vitT.str().c_str(),font_color);
+                font_im.setSurface(TTF_RenderText_Solid(font,vitT.str().c_str(),font_color));
+                font_im.loadFromCurrentSurface(renderer);
+                SDL_Rect NbVit;
+                NbVit.x = 1435;NbVit.y = 780;NbVit.w = TextSurface->w;NbVit.h = TextSurface->h; 
+                SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbVit);
+                SDL_FreeSurface(TextSurface);
+                vitT.str("");
+                vitT.clear();
+
+                rangeT << jeu.tabT[i].portee;
+                TextSurface = TTF_RenderText_Solid(font,rangeT.str().c_str(),font_color);
+                font_im.setSurface(TTF_RenderText_Solid(font,rangeT.str().c_str(),font_color));
+                font_im.loadFromCurrentSurface(renderer);
+                SDL_Rect NbRange;
+                NbRange.x = 1435;NbRange.y = 880;NbRange.w = TextSurface->w;NbRange.h = TextSurface->h; 
+                SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbRange);
+                SDL_FreeSurface(TextSurface);
+                rangeT.str("");
+                rangeT.clear();
+                
+                }
+            if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 4){
+                im_Tour4.draw(renderer,1200,650,TAILLE_SPRITE*2.5,TAILLE_SPRITE*2.5);
+                
+                font = TTF_OpenFont("Data/alagard.ttf",30);
+
+                dmgT << jeu.tabT[i].degat;
+                TextSurface = TTF_RenderText_Solid(font,dmgT.str().c_str(),font_color);
+                font_im.setSurface(TTF_RenderText_Solid(font,dmgT.str().c_str(),font_color));
+                font_im.loadFromCurrentSurface(renderer);
+                SDL_Rect NbDmg;
+                NbDmg.x = 1435;NbDmg.y = 680;NbDmg.w = TextSurface->w;NbDmg.h = TextSurface->h; 
+                SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbDmg);
+                SDL_FreeSurface(TextSurface);
+                dmgT.str("");
+                dmgT.clear();
+
+                vitT << jeu.tabT[i].vitesse;
+                TextSurface = TTF_RenderText_Solid(font,vitT.str().c_str(),font_color);
+                font_im.setSurface(TTF_RenderText_Solid(font,vitT.str().c_str(),font_color));
+                font_im.loadFromCurrentSurface(renderer);
+                SDL_Rect NbVit;
+                NbVit.x = 1435;NbVit.y = 780;NbVit.w = TextSurface->w;NbVit.h = TextSurface->h; 
+                SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbVit);
+                SDL_FreeSurface(TextSurface);
+                vitT.str("");
+                vitT.clear();
+
+                rangeT << jeu.tabT[i].portee;
+                TextSurface = TTF_RenderText_Solid(font,rangeT.str().c_str(),font_color);
+                font_im.setSurface(TTF_RenderText_Solid(font,rangeT.str().c_str(),font_color));
+                font_im.loadFromCurrentSurface(renderer);
+                SDL_Rect NbRange;
+                NbRange.x = 1435;NbRange.y = 880;NbRange.w = TextSurface->w;NbRange.h = TextSurface->h; 
+                SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&NbRange);
+                SDL_FreeSurface(TextSurface);
+                rangeT.str("");
+                rangeT.clear();
+
+                }
+            //cout << "X : " << jeu.tabT[i].getX() << " Y : " << jeu.tabT[i].getY() << endl;
+            //cout << "click X : " << jeu.posClick.x << " click Y : " << jeu.posClick.y << endl;
+
+            // reste affichage stats + fonctionnement boutons
+
+                
+        }
+
+        font = TTF_OpenFont("Data/alagard.ttf",30);
+        
+        TextSurface = TTF_RenderText_Solid(font,"Degats",font_color);
+        font_im.setSurface(TTF_RenderText_Solid(font,"Degats",font_color));
+        font_im.loadFromCurrentSurface(renderer);
+        SDL_Rect txtDegats;
+        txtDegats.x = 1400;txtDegats.y = 650;txtDegats.w = TextSurface->w;txtDegats.h = TextSurface->h;
+        SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&txtDegats);
+        SDL_FreeSurface(TextSurface);
+        
+        TextSurface = TTF_RenderText_Solid(font,"Vitesse",font_color);
+        font_im.setSurface(TTF_RenderText_Solid(font,"Vitesse",font_color));
+        font_im.loadFromCurrentSurface(renderer);
+        SDL_Rect txtVitesse;
+        txtVitesse.x = 1400;txtVitesse.y = 750;txtVitesse.w = TextSurface->w;txtVitesse.h = TextSurface->h;
+        SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&txtVitesse);
+        SDL_FreeSurface(TextSurface);
+
+        TextSurface = TTF_RenderText_Solid(font,"Portee",font_color);
+        font_im.setSurface(TTF_RenderText_Solid(font,"Portee",font_color));
+        font_im.loadFromCurrentSurface(renderer);
+        SDL_Rect txtPortee;
+        txtPortee.x = 1400;txtPortee.y = 850;txtPortee.w = TextSurface->w;txtPortee.h = TextSurface->h;
+        SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&txtPortee);
+        SDL_FreeSurface(TextSurface);
+
+        font = TTF_OpenFont("Data/alagard.ttf",25);
+        TextSurface = TTF_RenderText_Solid(font,"Prix upgrade",font_color);
+        font_im.setSurface(TTF_RenderText_Solid(font,"Prix upgrade",font_color));
+        font_im.loadFromCurrentSurface(renderer);
+        SDL_Rect txtUpgrade1;
+        txtUpgrade1.x = 1200;txtUpgrade1.y = 800;txtUpgrade1.w = TextSurface->w;txtUpgrade1.h = TextSurface->h;
+        SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&txtUpgrade1);
+        SDL_FreeSurface(TextSurface);
+
+        font = TTF_OpenFont("Data/alagard.ttf",40);
+        TextSurface = TTF_RenderText_Solid(font,"Upgrade",font_color);
+        font_im.setSurface(TTF_RenderText_Solid(font,"Upgrade",font_color));
+        font_im.loadFromCurrentSurface(renderer);
+        SDL_Rect txtUpgrade2;
+        txtUpgrade2.x = 1580;txtUpgrade2.y = 680;txtUpgrade2.w = TextSurface->w;txtUpgrade2.h = TextSurface->h;
+        SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&txtUpgrade2);
+        SDL_FreeSurface(TextSurface);
+
+        TextSurface = TTF_RenderText_Solid(font,"Vendre",font_color);
+        font_im.setSurface(TTF_RenderText_Solid(font,"Vendre",font_color));
+        font_im.loadFromCurrentSurface(renderer);
+        SDL_Rect txtSell;
+        txtSell.x = 1595;txtSell.y = 830;txtSell.w = TextSurface->w;txtSell.h = TextSurface->h;
+        SDL_RenderCopy(renderer,font_im.getTexture(),nullptr,&txtSell);
+        SDL_FreeSurface(TextSurface);
     }
 
 }
@@ -625,7 +849,13 @@ void SDLSimple::sdlBoucle () {
                         if(events.button.clicks == 1){
                             test = jeu.actionSouris('g');
                             jeu.ajoutTour(Vecteur(int((hy-80) / TAILLE_SPRITE),int(hx / TAILLE_SPRITE)),jeu.tourSel);
-
+                            for (int x = 705 ; x <= 1164 ; x++) {
+                                for (int y = 280 ; y <= 394 ; y++) {
+                                    if (hx == x && hy == y) {
+                                        im_Chemin.draw(renderer,hx,hy,TAILLE_SPRITE,TAILLE_SPRITE);
+                                    }
+                                }
+                            }
                         }                    
                         if((withSound) && (test)){}
                     }
@@ -635,18 +865,6 @@ void SDLSimple::sdlBoucle () {
                 sdlAffJeu();
                 if (int(hx / TAILLE_SPRITE) >= 0 && int(hx / TAILLE_SPRITE) <= 37 && int((hy-80) / TAILLE_SPRITE) >= 0 && int((hy-80) / TAILLE_SPRITE) <= 9){
                     im_SourisSel.draw(renderer,int(hx / TAILLE_SPRITE)*TAILLE_SPRITE,int((hy-80) / TAILLE_SPRITE)*TAILLE_SPRITE+80,TAILLE_SPRITE,TAILLE_SPRITE);
-                }
-                if (jeu.tourMenu) {
-                    for (int i = 0 ; i < int(jeu.tabT.size()) ; i++) {
-                        if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 1){im_Tour1.draw(renderer,1200,650,TAILLE_SPRITE*2.5,TAILLE_SPRITE*2.5);}
-                        if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 2){im_Tour2.draw(renderer,1200,650,TAILLE_SPRITE*2.5,TAILLE_SPRITE*2.5);}
-                        if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 3){im_Tour3.draw(renderer,1200,650,TAILLE_SPRITE*2.5,TAILLE_SPRITE*2.5);}
-                        if(jeu.tabT[i].getX() == jeu.posClick.x && jeu.tabT[i].getY() == jeu.posClick.y && jeu.tabT[i].type == 4){im_Tour4.draw(renderer,1200,650,TAILLE_SPRITE*2.5,TAILLE_SPRITE*2.5);}
-                        //cout << "X : " << jeu.tabT[i].getX() << " Y : " << jeu.tabT[i].getY() << endl;
-                        //cout << "click X : " << jeu.posClick.x << " click Y : " << jeu.posClick.y << endl;
-
-                        // reste affichage stats + affichage boutons (upgrade + sell) + fonctionnement boutons
-                    }
                 }
 
                 // on permute les deux buffers (cette fonction ne doit se faire qu'une seule fois dans la boucle)
