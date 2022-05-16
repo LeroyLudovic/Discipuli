@@ -20,5 +20,11 @@ les élèves arrivent par vague de plus en plus grosse et de plus en plus forte.
 
 Contrôles :
   clique gauche : beaucoup de fonctions, tout dépend d'où vous cliquez.
+    clique sur "Play" : lance le jeu.
+    clique sur "Quit" : ferme le programme.
+    clique sur une case vide du terrain : ajoute un professeur.
+    clique sur une case avec un professeur : affiche ses statistiques.
+    clique sur "Upgrade" : améliore les statistiques du professeur selectionné.
+    clique sur "Vendre" : non, on ne fait de traffic d'êtres humains, il est simplement "licencié".
   A, Z, E, R : permet de changer le type de professeur selectionné (indiqué en bas par un carré jaune).
   q : si vous êtes sur le menu, ferme le programme; si vous êtes sur le jeu, vous ramène au menu. 
