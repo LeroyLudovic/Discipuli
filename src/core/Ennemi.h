@@ -17,6 +17,10 @@ class Ennemi {
     Vecteur position;
     double vie;
 
+    /**
+    @desc Constructeur d'Ennemi avec paramètre
+    \<balise> [Vecteur] 
+    */
     Ennemi(Vecteur, int, bool);
 
     ~Ennemi();
